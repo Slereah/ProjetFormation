@@ -107,6 +107,10 @@ class SecurityController extends Controller
         			$password = password_hash($password, PASSWORD_DEFAULT);
     			}
 
+    			if (empty($country)) {
+    				$save = false;
+    			}
+
 			if ($save) {
 				
 			
