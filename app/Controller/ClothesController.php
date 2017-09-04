@@ -7,6 +7,34 @@ use \Model\ClothesModel;
 
 class ClothesController extends Controller
 {
+	public function indexPersonal()
+	{
+		$data = [];
+		$data["clothes"] = [["id" => 1, "name" => "clothe1"], ["id" => 2, "name" => "clothe2"]];
+		$this->show('clothes/index', $data);
+	}
+
+	public function indexDefault()
+	{
+		$data = [];
+		$this->show('clothes/index', $data);	
+	}
+
+	public function search()
+	{
+		$data = [];
+
+		$search = "";
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+		{
+			$search = (isset($_POST["search"]))?$_POST["search"]:"";
+		}
+		$this->show('clothes/search', $data);
+	}
+
+	public function add()
+	{
 
 	private $clothesModel;
 
@@ -79,6 +107,7 @@ class ClothesController extends Controller
 
 	public function read($id)
 	{
+
 		$clothes = $this->clothesModel->find($id);
 
 		$this->show('clothes/read', [
@@ -137,6 +166,7 @@ class ClothesController extends Controller
 
 	public function delete($id)
 	{
+
 		$clothes = $this->clothesModel->find($id);
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {

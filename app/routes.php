@@ -38,6 +38,8 @@
         ['GET|POST', '/lost-password', 'Security#lostpwd', 'security_lost_pwd'],
         ['GET|POST', '/reset-password/[a:token]', 'Security#resetPwd', 'security_reset_pwd'],
 
+        ['POST', '/upload', 'Default#uploadImage', 'upload'],
+
 
 	);
 

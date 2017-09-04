@@ -6,6 +6,7 @@ use \W\Model\Model;
 
 class ClothesModel extends Model
 {
+
 	public function getCategories()
 	{
 		$sql = 'SHOW COLUMNS FROM '.$this->getTable().' WHERE field="category"';
@@ -18,6 +19,5 @@ class ClothesModel extends Model
 		$categories = explode("','",$matches[1]);
 
 		return $categories;
-	}
-	
+	}	
 }
