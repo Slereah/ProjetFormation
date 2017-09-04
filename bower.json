@@ -19,6 +19,13 @@
   "dependencies": {
     "bootstrap": "boostrap#^3.3.7",
     "components-font-awesome": "^4.7.0",
-    "magnific-popup": "^1.1.0"
+    "magnific-popup": "^1.1.0",
+    "cropper": "^3.0.0",
+    "gmaps": "^0.4.25",
+    "jQuery-One-Page-Nav": "^3.0.0",
+    "jquery.typer": "*",
+    "jquery.event.move": "^2.0.1",
+    "jquery-countTo": "^1.2.0",
+    "protonet/jquery.inview": "jquery.inview#^1.1.2"
   }
 }

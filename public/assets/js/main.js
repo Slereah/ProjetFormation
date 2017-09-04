@@ -52,20 +52,6 @@ jQuery(function ($) {
 	}());
 	
 	
-	/*==============================================================*/
-    // Parallax Scrolling
-    /*==============================================================*/
-	
-	(function () {
-		function parallaxInit() {				
-			$("#ticket").parallax("50%", 0.3);
-			$("#choose-color").parallax("50%", 0.3);
-			$("#blue #choose-color").parallax("50%", 0.3);
-		}	
-		parallaxInit();
-	}());
-	
-	
 	
 	/*==============================================================*/
     // Fun Facts
@@ -135,11 +121,12 @@ jQuery(function ($) {
 	(function () {
 		var win = $(window),
 			foo = $('#typer');
-		foo.typer(["Inroducing The World's Best", "Get New Idea's - New Concept", "Build Your Dream With"]);
+		foo.typer(["THERE’S NO SUCH THING AS BAD WEATHER, ONLY BAD CLOTHES", "Get New Idea's - New Concept", "Build Your Dream With"]);
 		foo = $('#promotion h1');
 		foo.typer(["Want to Work with Us?", "Make your dreams come true"]);	
 	}());
 	
+
 	
 	/*==============================================================*/
     // Twenty20 Plugin
