@@ -10,7 +10,7 @@ $this->layout('layout', ['title' => 'Vêtement']);
 
 	<?php if (count($clothes)): ?>
 
-		<?php foreach ($categories as $category): ?> <br> 
+		<?php foreach ($clothes as $clothes): ?> <br> 
 			<div>
 				<a href="<?= $this->url('clothes_read', ["id" => $clothes ['id']]) ?>">
 				<?= $clothes['name']; ?></a>
