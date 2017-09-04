@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <!-- <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -64,7 +62,8 @@
 		<link href="<?= $this->assetUrl('css/blue.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/responsive.css') ?>" rel="stylesheet">	
 		<link href="<?= $this->assetUrl('css/responsive.css') ?>" rel="stylesheet">
-		<link href="<?= $this->assetUrl('css/cropper.css') ?>" rel="stylesheet">		
+		<link href="<?= $this->assetUrl('css/cropper.css') ?>" rel="stylesheet">
+		<link href="<?= $this->assetUrl('css/weather-icons.css') ?>" rel="stylesheet">			
 		
 		<!--Google Fonts-->
 		<link href='https://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,700italic,900' rel='stylesheet' type='text/css'>
@@ -265,8 +264,6 @@
 
 	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
 	ne fonctionnent pas.
-
-	- Fichier main.css dans public/assets/img: la ligne 1364 a été modifiée (chemin d'accès vers photo à revoir: php $this->assetUrl possible?)
 
 	- Le glyphicon glyphicon-refresh sur les carrousels ne fonctionnent pas: j'ai tenté de charger glyphicon via bower (commande sur powershell:PS C:\xampp\htdocs\ProjetFormation> bower install bootstrap-glyphicon ); réponse de powershell:
 

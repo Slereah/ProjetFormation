@@ -95,6 +95,11 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform:capitalize;
 }
 
+.welcome-image h3 {
+	color: white;
+    margin-top: 9px;
+}
+
 .padding{	
 	padding:80px 0;
 }
@@ -1291,7 +1296,11 @@ textarea.form-control {
 
 .welcome-content .welcome-image {
 	padding:5px;
-	border:1px solid #f0f0f0;
+	text-align: center;
+	border:1px solid #0096ca;
+	border-radius: 20px;
+    background-color: #0096ca;
+    margin-bottom: 10px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;

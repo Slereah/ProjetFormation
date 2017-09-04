@@ -20,23 +20,23 @@
 	    <div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h1>Date du jour </h1>
+					<h1><?= date("l, F d, Y", time())?></h1>
 					<h2>Prévisions météo pour "NOM DE LA VILLE"</h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
-						<div class="col-md-3 col-sm-6">
+						<div class="col-md-4 col-md-offset-4 col-sm-6">
 							<div class="welcome-image">
-								<h3>Minimal temperature : xx °F</h3>
+								<h3>Minimal temperature : <?= $weather["maxTemp"] ?> °C</h3>
 							</div>						
 						</div>
-						<div class="col-md-3 col-sm-6">
+						<div class="col-md-4 col-md-offset-4 col-sm-6">
 							<div class="welcome-image">							
-							<h3>Maximal temperature : xx °F</h3>
+							<h3>Maximal temperature : <?= $weather["minTemp"] ?> °C</h3>
 							</div>
 						</div>
 						<div>
-							<i><?php // = $weather["icon"] ?></i>
+							<?= $weather["icon"] ?>
 						</div>
 					</div>
 				</div>
