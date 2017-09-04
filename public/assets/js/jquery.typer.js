@@ -1,0 +1,1 @@
+C:/xampp/htdocs/ProjetFormation/vendor/bower_components/jquery.typer/src/jquery.typer.js

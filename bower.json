@@ -1,0 +1,24 @@
+{
+  "name": "ProjetFormation",
+  "homepage": "https://github.com/Slereah/ProjetFormation",
+  "authors": [
+    "Delphine <d-martinet@outlook.fr>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "boostrap#^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "magnific-popup": "^1.1.0"
+  }
+}

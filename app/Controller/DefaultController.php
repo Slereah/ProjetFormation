@@ -20,6 +20,9 @@ class DefaultController extends Controller
 		];
 		$data["imgbas"] = [
 		"http://www.forcesenior.fr/images/ekjnoad/Nouveau%20Raffinement%20Homme%20V%C3%AAtements%20Jean%20Skinny%20Sid%20Bleu%20Vif%20Stretch%20Paris%20604.jpg"];
+
+
+		var_dump($data);
 		$this->show('default/home', $data);
 	}
 

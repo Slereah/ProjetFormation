@@ -1,0 +1,1 @@
+C:/xampp/htdocs/ProjetFormation/vendor/bower_components/jQuery-One-Page-Nav/jquery.nav.js
