@@ -5,7 +5,7 @@
 		/* 
         *-- Home page
         */
-		['GET', '/', 'Default#home', 'default_home'],
+		['GET', '/', 'Default#home', 'home'],
 
 		/* 
         *-- Contact 
