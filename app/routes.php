@@ -21,12 +21,12 @@
         *-- Clothes
         */
         ['GET', '/personal-clothes', 'Clothes#indexPersonal', 'personal_clothes_index'],
-        ['GET', '/default-clothes', 'Clothes#indexDefault', 'default_clothes_index'],
+        ['GET', '/default-clothes', 'Clothes#index', 'default_clothes_index'],
         ['GET|POST', '/search', 'Clothes#search', 'search'],
-        ['GET|POST', '/clothes/create', 'Clothes#add', 'clothes_add'],
+        ['GET|POST', '/clothes/create', 'Clothes#create', 'clothes_create'],
     	['GET', '/clothes/[i:id]', 'Clothes#read', 'clothes_read'],
-    	['GET|POST', '/clothes/[i:id]/update', 'Clothes#update', 'product_update'],
-    	['GET|POST', '/clothes/[i:id]/delete', 'Clothes#delete', 'product_delete'],
+    	['GET|POST', '/clothes/[i:id]/update', 'Clothes#update', 'clothes_update'],
+    	['GET|POST', '/clothes/[i:id]/delete', 'Clothes#delete', 'clothes_delete'],
 
 
         /* 
