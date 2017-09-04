@@ -28,7 +28,7 @@
 		<div class="form-group">
 			<label for="firstname" class="col-sm-2 control-label">Prénom</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="firstname" placeholder="firstname" name="firstname" value="<?= $firstname ?>">
+				<input type="text" class="form-control" id="firstname" placeholder="Prénom" name="firstname" value="<?= $firstname ?>">
 			</div>
 		</div><br>
 
@@ -56,7 +56,7 @@
 		<div class="form-group">
 			<label for="country" class="col-sm-2 control-label">Pays</label>
 			<div class="col-sm-5">
-				<select id="country">
+				<select id="country" name="country">
 					<option value="">Sélectionner votre pays :</option>
 					<option value="AF">Afghanistan</option>
 					<option value="AX">Åland Islands</option>
@@ -312,9 +312,16 @@
 		</div><br>
 
 		<div class="form-group">
-			<label for="repeat_password" class="col-sm-2 control-label">Répéter le mot de passe</label>
+			<label for="city" class="col-sm-2 control-label">Ville</label>
 			<div class="col-sm-5">
-				<input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder=" Répéter le mot de passe">
+				<input type="text" class="form-control" id="city" name="city" placeholder=" Ville ">
+			</div>
+		</div><br>
+
+		<div class="form-group">
+			<label for="zipcode" class="col-sm-2 control-label">Code Postale</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale ">
 			</div>
 		</div><br>
 

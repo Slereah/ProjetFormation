@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \W\Manager\UserManager;
+use \W\Model\UsersModel;
 
 class UsersController extends Controller
 {
@@ -11,8 +11,8 @@ class UsersController extends Controller
 
 	public function __construct()
 	{
-		$this->userManager = new UserManager;
-		$this->userManager->setTable('users');
+		$this->usersModel = new UsersModel;
+		$this->usersModel->setTable('users');
 	}
 	
 	public function index()
@@ -25,12 +25,12 @@ class UsersController extends Controller
 		}
 
 		// Récupération des données de l'utilisateur dans la BDD
-		$user = $this->userManager->find($user['id']);
+		$user = $this->usersModel->find($user['id']);
 
 		// Affichage de la vue du profil
 		$this->show('users/index',[
 			"title" => "Bonjour".$user['username'],
-			"user" => $this->userManager->find($user['id'])
+			"user" => $this->usersModel->find($user['id'])
 		]);
 	}
 }

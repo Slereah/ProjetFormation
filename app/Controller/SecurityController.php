@@ -2,9 +2,9 @@
 
 namespace Controller;
 
-use\W\Controller\Controller; 
-use\W\Security\AuthentificationManager;
-use\W\Manager\UserManager;
+use \W\Controller\Controller; 
+use \W\Security\AuthentificationModel;
+use \W\Model\UsersModel;
 
 class SecurityController extends Controller
 {
@@ -13,10 +13,10 @@ class SecurityController extends Controller
 
 	public function __construct()
 	{
-	  $this->userManager = new UserManager;
-	  $this->userManager->setTable('users');
+	  $this->usersModel = new UsersModel;
+	  $this->usersModel->setTable('users');
 
-	  $this->AuthManager = new AuthentificationManager;
+	  $this->AuthModel = new AuthentificationModel;
 	}
 
 
@@ -33,13 +33,13 @@ class SecurityController extends Controller
 
 		// Vérifier les données dans la BDD ( Est ce que l'utilisateur existe ? )
 		// Controller les identification (login + pwd)
-		if ($userId = $this->AuthManager->isValidLoginInfo($email, $password)) {
+		if ($userId = $this->AuthModel->isValidLoginInfo($email, $password)) {
 
 			// Recup des données de l'utilisateurs dans la BDD
-			$user = $this->userManager->find($userId);
+			$user = $this->usersModel->find($userId);
 
 			// Ajouter l'utilisateur à la SESSION
-			$this->AuthManager->logUserIn($user);
+			$this->AuthModel->logUserIn($user);
 
 			// Redirige l'utiliateur vers sa page profile
 			$this->redirectToRoute('profile');
@@ -116,10 +116,10 @@ class SecurityController extends Controller
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
 			//	SI l'utilisateur n'existe pas
-			    if (!$this->userManager->emailExists($email)) {
+			    if (!$this->usersModel->emailExists($email)) {
 
 				// On enregistre  les données dans la BDD
-			    $user = $this->userManager->insert([
+			    $user = $this->usersModel->insert([
 		          "username" => $username,
 		          "email" => $email,
 		          "password" => $password,
@@ -135,11 +135,11 @@ class SecurityController extends Controller
 			        "id" => $user['id'],
 			        "email" => $user['email'],
 			        "username" => $user['username'],
-			        "firstname" => $firstname['firstname'],
-				 	"lastname" => $lastname['lastname'],
-					"country" => $country['country'],
-					"city" => $city['city'],
-					"zipcode" => $zipcode['zipcode']
+			        "firstname" => $user['firstname'],
+				 	"lastname" => $user['lastname'],
+					"country" => $user['country'],
+					"city" => $user['city'],
+					"zipcode" => $user['zipcode']
 			    );
 
 				// On redirige l'utilisateur vers sa page profil
@@ -174,7 +174,7 @@ class SecurityController extends Controller
 	{
 
 		//	On detruit la SESSION
-		$this->AuthManager->logUserOut();
+		$this->AuthModel->logUserOut();
 
 		//	On redirige vers la page d'acceuil
 		$this->redirectToRoute('home');
@@ -194,7 +194,7 @@ class SecurityController extends Controller
       		$email = strip_tags(trim($_POST['email']));
 
       		// Récupération de l'utilisateur dans la BDD (est ce que l'utilisateur existe ?)
-      		if ($user = $this->userManager->getUserByUsernameOrEmail($email)) {
+      		if ($user = $this->usersModel->getUserByUsernameOrEmail($email)) {
 
 
 
@@ -206,11 +206,11 @@ class SecurityController extends Controller
           			"user_id"=> $user['id'], // ID user
           		);
 
-          		$tokensManager = new \Manager\TokensManager;
-          		$tokensManager->insert($token);
+          		$tokensModel = new \Model\TokensModel;
+          		$tokensModel->insert($token);
 
           		// Générer l'URL de la page qui va permettre de renouveller le MDP
-          		$url = $this->generateUrl('security_reset_Pwd', 
+          		$url = $this->generateUrl('security_reset_pwd', 
           			["token" => $token['token']], true);
           		$_THE_TOKEN = $url;
           		
@@ -263,7 +263,7 @@ class SecurityController extends Controller
 	        $repeat_password = strip_tags(trim($_POST['repeat_password']));
 
 	        // Controle du Token + recup des données associées au token
-	        $tokensManager = new \Manager\TokensManager;
+	        $tokensManager = new \Model\TokensModel;
 	        $token_data = $tokensManager->findByToken($token);
 
 	        if ($token_data) {
@@ -287,7 +287,7 @@ class SecurityController extends Controller
 	        			$password = password_hash($password, PASSWORD_DEFAULT);
 
 			        // M.A.J. du MDP dans la BDD
-	        			$this->userManager->update([
+	        			$this->usersModel->update([
 	        				"password" => $password,
 	        			], $token_data['user_id']);
 

@@ -24,7 +24,7 @@
                 <button type="submit" class="btn btn-pink">Se connecter</button>
             </form><br>
 
-            <a href="<?= $this->url('security_lost_Pwd')?>">Mot de passe oublié</a>
+            <a href="<?= $this->url('security_lost_pwd')?>">Mot de passe oublié</a>
 
 		</div>
 	</div>

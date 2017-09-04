@@ -12,7 +12,7 @@
 				</div>
 			<?php endif; ?>
 
-			<form action="<?= $this->url('security_reset_Pwd', ["token" => $token]) ?>" method="post">
+			<form action="<?= $this->url('security_reset_pwd', ["token" => $token]) ?>" method="post">
 
 				<input type="text" name="token" value="<?= $token ?>">
 
@@ -28,8 +28,6 @@
 
                 <button type="submit" class="btn btn-pink">Enregistrer</button>
             </form><br>
-
-            <a href="<?= $this->url('security_lost_Pwd')?>">Mot de passe oublié</a>
 
 		</div>
 	</div>

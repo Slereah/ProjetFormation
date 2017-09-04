@@ -5,7 +5,7 @@
 		/* 
         *-- Home page
         */
-		['GET', '/', 'Default#home', 'default_home'],
+		['GET', '/', 'Default#home', 'home'],
 
 		/* 
         *-- Contact 
@@ -35,7 +35,7 @@
         ['GET|POST', '/signin', 'Security#signin', 'security_signin'],
         ['GET|POST', '/signup', 'Security#signup', 'security_signup'],
         ['GET|POST', '/logout', 'Security#logout', 'security_logout'],
-        ['GET|POST', '/lost-password', 'Security#lostPwd', 'security_lost_pwd'],
+        ['GET|POST', '/lost-password', 'Security#lostpwd', 'security_lost_pwd'],
         ['GET|POST', '/reset-password/[a:token]', 'Security#resetPwd', 'security_reset_pwd'],
 
 

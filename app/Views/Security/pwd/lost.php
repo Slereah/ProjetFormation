@@ -7,7 +7,7 @@
 		<div class="col-md4 col-md-offset-4">
 
 		<!-- A EFFACER -->
-		<a href="<?= $THE_TOKEN_URL ?>"><?= $THE_TOKEN_URL ?></a>
+		<a href="<?= $THE_TOKEN_URL ?>"><?= $THE_TOKEN_URL ?></a><br>
 		<!-- A EFFACER -->
 			
 			<?php if (!empty($error)): ?>
@@ -16,7 +16,7 @@
 				</div>
 			<?php endif; ?>
 
-			<form action="<?= $this->url('security_lost_Pwd') ?>" method="post">
+			<form action="<?= $this->url('security_lost_pwd') ?>" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email">
@@ -25,7 +25,7 @@
                 <button type="submit" class="btn btn-pink">Enregistrer</button>
             </form><br>
 
-            <a href="<?= $this->url('security_lost_Pwd')?>">Mot de passe oublié</a>
+            <a href="<?= $this->url('security_lost_pwd')?>">Mot de passe oublié</a>
 
 		</div>
 	</div>
