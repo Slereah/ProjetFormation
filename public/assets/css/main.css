@@ -409,6 +409,9 @@ textarea.form-control {
 	overflow: hidden;
 	padding-top:0;
 	color: #fff;
+	position: relative;
+    top: -30px;
+    left: 40px;
 }
 
 .navbar-brand .logo-two, 

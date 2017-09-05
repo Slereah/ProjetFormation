@@ -23,19 +23,20 @@
 					<h1><?= date("l, F d, Y", time())?></h1>
 					<h2>Prévisions météo pour "NOM DE LA VILLE"</h2>
 				</div>
+				<!-- Re voir les push et pull pour le md -->
 				<div class="welcome-content">
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4 col-sm-6">
 							<div class="welcome-image">
-								<h3>Minimal temperature : <?= $weather["maxTemp"] ?> °C</h3>
+								<h3>Minimal temperature : <?= $weather["minTemp"] ?> °C</h3>
 							</div>						
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-6">
 							<div class="welcome-image">							
-							<h3>Maximal temperature : <?= $weather["minTemp"] ?> °C</h3>
+							<h3>Maximal temperature : <?= $weather["maxTemp"] ?> °C</h3>
 							</div>
 						</div>
-						<div>
+						<div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-4 col-xs-offset-4">
 							<?= $weather["icon"] ?>
 						</div>
 					</div>
@@ -52,7 +53,7 @@
 				</div>
 				<div class="recent-projects">
 					<div class="row"> 
-						<div class="carousel slide col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="mon-carrousel">
+						<div class="carousel slides" id="mon-carrousel">
 							<!-- Carrousel d'images -->
 							<div class="carousel-inner">
 								<div class="item active">
@@ -69,7 +70,7 @@
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
-						<div class="carousel slide col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="mon-carrousel">
+						<div class="carousel slide" id="mon-carrousel">
 							<div class="carousel-inner">
 								<div class="item active">
 									<img src="https://media.quiksilver.co.id/media/catalog/product/cache/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/q/eqyws03252_quiksilver_mens_everyday_chino_walkshort_tmp0_1_h.jpg"/>
@@ -85,7 +86,7 @@
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
-						<div class="carousel slide col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="mon-carrousel">
+						<div class="carousel slide" id="mon-carrousel">
 							<div class="carousel-inner">
 								<div class="item active">
 									<img src="https://photos6.spartoo.com/photos/365/3654062/3654062_350_A.jpg"/>

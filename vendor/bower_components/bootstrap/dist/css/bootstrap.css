@@ -1121,7 +1121,7 @@ img {
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   display: block;
-  max-width: 60%;
+  max-width: 20%;
   height: auto;
 }
 .img-rounded {
@@ -4057,6 +4057,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   top: auto;
   left: auto;
 }
+
+@media (min-width: 992px) {
+  .navbar-brand {
+    top: 0px !important;
+  }
+}
+top: 0;
+
+
 @media (min-width: 768px) {
   .nav-tabs.nav-justified > li {
     display: table-cell;
