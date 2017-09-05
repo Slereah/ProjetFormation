@@ -17,7 +17,6 @@
 		<link href="<?= $this->assetUrl('css/tr-animation.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/blue.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/responsive.css') ?>" rel="stylesheet">	
-		<link href="<?= $this->assetUrl('css/responsive.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/cropper.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/weather-icons.css') ?>" rel="stylesheet">			
 		
@@ -55,7 +54,7 @@
 	                </div>  
 					<div class="top-bar">
 						<span class="login-section">
-							<a href="login-signup.html"><i class="fa fa-user"></i>Signup / Login</a>
+							<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Signup / Login</a>
 						</span>
 					</div>
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         
@@ -169,43 +168,6 @@
 
 	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
 	ne fonctionnent pas.
-
-	- Le glyphicon glyphicon-refresh sur les carrousels ne fonctionnent pas: j'ai tenté de charger glyphicon via bower (commande sur powershell:PS C:\xampp\htdocs\ProjetFormation> bower install bootstrap-glyphicon ); réponse de powershell:
-
-	bower                     invalid-meta for:C:\xampp\htdocs\ProjetFormation\bower.json
-	bower                     invalid-meta The "name" is recommended to be lowercase, can contain digits, dots, dashes
-	bower bootstrap-glyphicon#* not-cached https://github.com/Mortega5/bootstrap-glyphicon.git#*
-	bower bootstrap-glyphicon#*    resolve https://github.com/Mortega5/bootstrap-glyphicon.git#*
-	bower bootstrap-glyphicon#*   download https://github.com/Mortega5/bootstrap-glyphicon/archive/1.0.8.tar.gz
-	bower bootstrap-glyphicon#*    extract archive.tar.gz
-	bower bootstrap-glyphicon#*   resolved https://github.com/Mortega5/bootstrap-glyphicon.git#1.0.8
-	bower polymer#^1.2.0        not-cached https://github.com/Polymer/polymer.git#^1.2.0
-	bower polymer#^1.2.0           resolve https://github.com/Polymer/polymer.git#^1.2.0
-	bower polymer#^1.2.0          download https://github.com/Polymer/polymer/archive/v1.9.3.tar.gz
-	bower polymer#^1.2.0           extract archive.tar.gz
-	bower polymer#^1.2.0      invalid-meta for:C:\Users\DELPHI~1\AppData\Local\Temp\DESKTOP-HMCHLF6-delphine martinet\bower\6ac9fb6e69374501bea0bcad9749c0a7-4816-qfTmPi\bower.json
-	bower polymer#^1.2.0      invalid-meta The "main" field has to contain only 1 file per filetype; found multiple .html files: ["polymer.html","polymer-mini.html","polymer-micro.html"]
-	bower polymer#^1.2.0          resolved https://github.com/Polymer/polymer.git#1.9.3
-	bower webcomponentsjs#^0.7.24       not-cached https://github.com/Polymer/webcomponentsjs.git#^0.7.24
-	bower webcomponentsjs#^0.7.24          resolve https://github.com/Polymer/webcomponentsjs.git#^0.7.24
-	bower webcomponentsjs#^0.7.24         download https://github.com/Polymer/webcomponentsjs/archive/v0.7.24.tar.gz
-	bower webcomponentsjs#^0.7.24          extract archive.tar.gz
-	bower webcomponentsjs#^0.7.24         resolved https://github.com/Polymer/webcomponentsjs.git#0.7.24
-	bower bs-glyphicon#^1.0.8              install bs-glyphicon#1.0.8
-	bower polymer#^1.2.0                   install polymer#1.9.3
-	bower webcomponentsjs#^0.7.24          install webcomponentsjs#0.7.24
-
-	bs-glyphicon#1.0.8 vendor\bower_components\bs-glyphicon
-	└── polymer#1.9.3
-
-	polymer#1.9.3 vendor\bower_components\polymer
-	└── webcomponentsjs#0.7.24
-
-	webcomponentsjs#0.7.24 vendor\bower_components\webcomponentsjs
-	
-
-
-	****************je n'ai pas su sur quel(s) fichier(s) faire un lien symbolique************
 
 	- Ajouter logo drapeaux pr traduction fr/en
 

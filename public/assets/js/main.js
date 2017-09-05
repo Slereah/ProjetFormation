@@ -132,7 +132,7 @@ jQuery(function ($) {
     // Twenty20 Plugin
     /*==============================================================*/
 	(function () {
-		$(window).load(function() {
+		$(window).on('load', function() {
 			$(".layer-slide").twentytwenty();
 		});
 	}());
@@ -178,7 +178,7 @@ jQuery(function ($) {
     /*==============================================================*/
 
 	(function () {
-		$(window).load(function(){
+		$(window).on('load', function(){
 		  var $portfolio_selectors = $('.project-filter >ul>li>a');
 			var $portfolio = $('#projects');
 			$portfolio.isotope({
@@ -205,7 +205,7 @@ jQuery(function ($) {
     /*==============================================================*/
 
 	(function () {
-		$(window).load(function(){
+		$(window).on('load', function(){
 		  var $portfolio_selectors = $('.architect-filter >ul>li>a');
 			var $portfolio = $('#all-architect');
 			$portfolio.isotope({

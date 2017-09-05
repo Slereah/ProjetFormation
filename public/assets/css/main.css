@@ -290,6 +290,14 @@ textarea.form-control {
 	background-color:#ea0f42;
 }
 
+@media (max-width: 767px) {
+	.section-title h2 {
+    	font-size: 18px !important;
+	}
+}
+
+
+
 /*==============================
 =========navigation-section=========
 ================================*/
@@ -1375,6 +1383,14 @@ textarea.form-control {
 #home-three .item-two .home-content {
 	margin-top:-100px;
 }
+
+#weatherIcon {
+    text-align: center;
+}
+
+.wi {
+    line-height: normal !important;
+}
 /*==============================
 =========Recent-projects=========
 ================================*/
@@ -1471,7 +1487,14 @@ textarea.form-control {
 	opacity:1;
 }
 
+.imgClothes  {
+    margin: 0 auto;
+}
 
+.carousel-control.right {
+    background-image: none!important;
+    right: 42%;
+}
 
 /*==============================
 =========Amazing Features=========
