@@ -1,5 +1,5 @@
 {
-  "name": "ProjetFormation",
+  "name": "projet_formation",
   "homepage": "https://github.com/Slereah/ProjetFormation",
   "authors": [
     "Delphine <d-martinet@outlook.fr>"
@@ -25,7 +25,6 @@
     "jQuery-One-Page-Nav": "^3.0.0",
     "jquery.typer": "*",
     "jquery.event.move": "^2.0.1",
-    "jquery-countTo": "^1.2.0",
-    "protonet/jquery.inview": "jquery.inview#^1.1.2"
+    "jquery-countTo": "^1.2.0"
   }
 }
