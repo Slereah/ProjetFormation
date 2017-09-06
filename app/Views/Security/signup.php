@@ -327,7 +327,7 @@
 
 
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-pink">Je m'inscris</button>
+			<button type="submit" class="btn btn-default">Je m'inscris</button>
 		</div>
 		
 	</form>

@@ -42,4 +42,18 @@ class ClothesModel extends Model
 		$sth->bindParam(":idclothe", $idClothe);
 		$sth->execute();
 	}
+
+	public function getCategories()
+	{
+		$sql = 'SHOW COLUMNS FROM '.$this->getTable().' WHERE field="category"';
+		$sth = $this->dbh->prepare($sql);
+		$sth->execute();
+
+		$columns = $sth->fetch();
+
+		preg_match("/^enum\(\'(.*)\'\)$/", $columns['Type'], $matches);
+		$categories = explode("','",$matches[1]);
+
+		return $categories;
+	}	
 }
