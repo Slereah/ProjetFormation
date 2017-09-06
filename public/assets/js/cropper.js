@@ -1,1 +1,1 @@
-C:/xampp/htdocs/ProjetFormation/vendor/bower_components/cropper/dist/cropper.min.js
+C:/xampp/htdocs/ProjetFormation/vendor/bower_components/cropper/dist/cropper.js

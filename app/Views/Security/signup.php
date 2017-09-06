@@ -315,7 +315,6 @@
 									<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale ">
 								</div>
 
-
 								<div class="col-md-offset-4">
 									<button type="submit" class="btn btn-pink">Je m'inscris</button>
 								</div>
