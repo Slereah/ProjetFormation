@@ -47,9 +47,9 @@
 	                        <span class="icon-bar"></span>
 	                    </button>
 	                    
-	                    <a class="navbar-brand" href="index.html">
+	                    <div> class="navbar-brand">
 	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>" alt="">
-	                    </a> 
+	                    </div> 
 
 	                </div>  
 					<div class="top-bar">
