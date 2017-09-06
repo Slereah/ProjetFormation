@@ -145,8 +145,6 @@
 		<!--/#scripts--> 
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.js') ?>"></script>
-		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script> <!--  Ne pas toucher-->
-	  	<script type="text/javascript" src="<?= $this->assetUrl('js/gmaps.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('magnific-popup/jquery.magnific-popup.min.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.nav.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.typer.js') ?>"></script>
@@ -154,8 +152,8 @@
 	    <script type="text/javascript" src="<?= $this->assetUrl('twentytwenty/twentytwenty.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.countTo.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 
-	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/cropper.js') ?>"></script>
+	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
 	</body>
 </html>
 

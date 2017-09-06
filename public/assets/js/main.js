@@ -171,141 +171,85 @@ jQuery(function ($) {
 		
 	}());
 	
-	
-	
-	/*==============================================================*/
-    // projects Filter
-    /*==============================================================*/
 
-	(function () {
-		$(window).on('load', function(){
-		  var $portfolio_selectors = $('.project-filter >ul>li>a');
-			var $portfolio = $('#projects');
-			$portfolio.isotope({
-				itemSelector : '.project-content',
-				layoutMode : 'fitRows'
-			});
-			
-			$portfolio_selectors.on('click', function(){
-				$portfolio_selectors.removeClass('active');
-				$(this).addClass('active');
-				var selector = $(this).attr('data-filter');
-				$portfolio.isotope({ filter: selector });
-				return false;
-			});
-			
-		});
 
-    }());
-	
-	
-	
-	/*==============================================================*/
-    // Architect Filter
-    /*==============================================================*/
 
-	(function () {
-		$(window).on('load', function(){
-		  var $portfolio_selectors = $('.architect-filter >ul>li>a');
-			var $portfolio = $('#all-architect');
-			$portfolio.isotope({
-				itemSelector : '.architect',
-				layoutMode : 'fitRows'
-			});
-			
-			$portfolio_selectors.on('click', function(){
-				$portfolio_selectors.removeClass('active');
-				$(this).addClass('active');
-				var selector = $(this).attr('data-filter');
-				$portfolio.isotope({ filter: selector });
-				return false;
-			});
-			
-		});
+	var cropper;
+	var image;
+	initCropper();
 
-    }());
+	function addCropper()
+	{
+		image = $("#image");
 		
-		
-	/*==============================================================*/
-    // Google Map
-    /*==============================================================*/
-
-	
-	(function(){
-
-		var map;
-
-		map = new GMaps({
-			el: '#gmap',
-			lat: 43.04446,
-			lng: -76.130791,
-			scrollwheel:false,
-			zoom: 6,
-			zoomControl : true,
-			panControl : false,
-			streetViewControl : false,
-			mapTypeControl: false,
-			overviewMapControl: false,
-			clickable: false
+		cropper = new Cropper(image, {
+		  aspectRatio: 16 / 9,
+		  crop: function(e) {
+		    console.log(e.detail.x);
+		    console.log(e.detail.y);
+		    console.log(e.detail.width);
+		    console.log(e.detail.height);
+		    console.log(e.detail.rotate);
+		    console.log(e.detail.scaleX);
+		    console.log(e.detail.scaleY);
+		  }
 		});
+		console.log(cropper);
+	}
 
-		var image = 'images/map-icon.png';
-		map.addMarker({
-			lat: 43.04446,
-			lng: -76.130791,
-			icon: image,
-			animation: google.maps.Animation.DROP,
-			verticalAlign: 'bottom',
-			horizontalAlign: 'center',
-			backgroundColor: '#d3cfcf',
-			 infoWindow: {
-				content: '<div class="map-info"><address>ThemeRegion<br />234 West 25th Street <br />New York</address></div>',
-				borderColor: 'red',
-			}
+
+	function initCropper()
+	{
+		$("#loadImage").change(function(){
+		    readURL(this);
 		});
-		  
-		var styles = [ 
+		addCropper();
 
-			{
-			  "featureType": "road",
-			  "stylers": [
-				{ "color": "#00aeef" }
-			  ]
-			  },{
-			  "featureType": "landscape",
-			  "stylers": [
-				{ "color": "#f7f7f7" }
-			  ]
-			  },{
-			  "elementType": "labels.text.fill",
-			  "stylers": [
-				{ "color": "#d3cfcf" }
-			  ]
-			  },{
-			  "featureType": "poi",
-			  "stylers": [
-				{ "color": "#ffffff" }
-			  ]
-			  },{
-			  "elementType": "labels.text",
-			  "stylers": [
-				{ "saturation": 1 },
-				{ "weight": 0.1 },
-				{ "color": "#555555" }
-			  ]
-			}
-	  
-		];
+	}
 
-		map.addStyle({
-			styledMapName:"Styled Map",
-			styles: styles,
-			mapTypeId: "map_style"  
+
+
+	function cropImage()
+	{
+		cropper.getCroppedCanvas().toBlob(function(blob)
+		{
+			console.log(blob);
+			var formData = new FormData();
+			formData.append('croppedImage', blob);
+	  		$.ajax('/crop/upload.php', {
+		    	method: "POST",
+		    	data: formData,
+		    	processData: false,
+		    	contentType: false,
+		    	success: function (response) 
+		    	{
+		      		console.log(response);
+		    	},
+			    error: function () {
+		    	  console.log('Upload error');
+		    	}
+		  	});
+		  	
+
 		});
+	}
 
-		map.setStyle("map_style");
-	}());
-	
-	
-	
+	function readURL(input) 
+	{
+
+	    if (input.files && input.files[0]) 
+	    {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            image.attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	        addCropper();
+	    }
+	}
+
+
+
 });
