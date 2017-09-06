@@ -16,6 +16,8 @@
         *-- Users
         */
         ['GET', '/profile', 'Users#index', 'profile'],
+        ['GET|POST', '/user-update', 'Users#update', 'user_update'],
+      	['GET|POST', '/user-delete', 'Users#delete', 'user_delete'],
 
         /* 
         *-- Clothes
@@ -39,6 +41,7 @@
         ['GET|POST', '/reset-password/[a:token]', 'Security#resetPwd', 'security_reset_pwd'],
 
         ['POST', '/upload', 'Default#uploadImage', 'upload'],
+
 
 
 	);

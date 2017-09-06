@@ -352,6 +352,20 @@ textarea.form-control {
     border-radius: 4px;
 }
 
+.navbar-brand {
+    padding: 0;
+}
+
+a.navbar-brand {
+	width: 260px;
+}
+
+.logo-two {
+    max-width: 40%;
+}
+
+
+
 /*Navigation CSS*/
 #navigation{
 	position:absolute;
@@ -392,8 +406,7 @@ textarea.form-control {
 
 #navigation .navbar-fixed-top .navbar-right li a, 
 #page #navigation .navbar .navbar-right li a {
-	color:#000;
-	line-height:50px;
+	line-height: 46px;
 }
 
 
@@ -403,9 +416,6 @@ textarea.form-control {
 	color:#fff;
 }
 
-#navigation .navbar-fixed-top .navbar-right li.active > a {
-	color:#000;
-}
 
 #navigation .container {
 	position:relative;
@@ -442,7 +452,7 @@ textarea.form-control {
 	color:#fff;
 	font-size:14px;
 	text-transform:uppercase;
-	padding:10px 17px;
+	padding:10px 40px;
 	font-weight:400;
 	background-color:transparent;
 }
@@ -1391,6 +1401,12 @@ textarea.form-control {
 .wi {
     line-height: normal !important;
 }
+
+.form-signin {
+    border-radius: 8px !important;
+}
+
+
 /*==============================
 =========Recent-projects=========
 ================================*/
@@ -1494,6 +1510,18 @@ textarea.form-control {
 .carousel-control.right {
     background-image: none!important;
     right: 42%;
+}
+
+.carousel-inner {
+    margin-top: 15px;
+}
+
+.carousel-caption {
+	color: #000;
+}
+
+.fa-refresh {
+	color: #302e2e !important;
 }
 
 /*==============================
@@ -3410,4 +3438,13 @@ img.mfp-img {
 	margin-top:35px;
 	text-transform:uppercase;
 	background-color:#ed1c24;
+}
+
+/*=========================
+===== Signin CSS =======
+===========================*/
+
+.form-control {
+	border: 1px solid #0096ca;
+	border-radius: 4 !important;
 }

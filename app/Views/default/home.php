@@ -23,7 +23,6 @@
 					<h1><?= date("l, F d, Y", time())?></h1>
 					<h2>Prévisions météo pour "NOM DE LA VILLE"</h2>
 				</div>
-				<!-- Re voir les push et pull pour le md -->
 				<div class="welcome-content">
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
@@ -33,7 +32,7 @@
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">							
-							<h3>Maximal temperature : <?= $weather["maxTemp"] ?> °C</h3>
+								<h3>Maximal temperature : <?= $weather["maxTemp"] ?> °C</h3>
 							</div>
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" id="weatherIcon">
@@ -72,7 +71,7 @@
 
 							<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true"></i>
+								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
@@ -86,9 +85,9 @@
 								</div>
 							</div>
 
-							<!-- Contrôleurs -->
+			 				<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel2" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true"></i>
+								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
@@ -104,7 +103,7 @@
 
 							<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel3" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true"></i>
+								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@
 	                    </button>
 	                    
 	                    <a class="navbar-brand" href="index.html">
-	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>">
+	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>" alt="">
 	                    </a> 
 
 	                </div>  
@@ -99,7 +99,6 @@
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
 							<div class="footer-widget">
-								<a class="logo" href="#"><img class="img-responsive" src="images/logo2.png" alt="" /></a>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 								<address>
 									<ul>

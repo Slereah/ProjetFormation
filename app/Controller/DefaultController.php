@@ -23,6 +23,11 @@ class DefaultController extends Controller
 		$this->show('default/home', $data);
 	}
 
+	public function contact()
+	{
+		$this->show('default/contact');
+	}
+
 	public function uploadImage()
 	{
 		if(isset($_FILES["croppedImage"]))
