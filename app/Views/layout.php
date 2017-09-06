@@ -157,8 +157,8 @@
 	    <script type="text/javascript" src="<?= $this->assetUrl('twentytwenty/twentytwenty.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.countTo.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 
-	    <script type="text/javascript" src="<?= $this->assetUrl('js/cropper.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
+	    <script type="text/javascript" src="<?= $this->assetUrl('js/cropper.js') ?>"></script>
 	</body>
 </html>
 

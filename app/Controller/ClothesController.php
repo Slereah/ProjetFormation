@@ -18,7 +18,6 @@ class ClothesController extends Controller
 	
 	public function create()
 	{
-		$errors = [];
 		$name = null;
 		$categories = $this->clothesModel->getCategories();
 		$picture = null;
@@ -26,23 +25,9 @@ class ClothesController extends Controller
 		{
 			$save = true;
 			// Récupération du $_POST
-			$name = 	trim( strip_tags( $_POST['name'] ) );
-			$categories = trim( strip_tags( $_POST['categories'] ) );
-			$picture = 	trim( strip_tags( $_POST['picture'] ) );
-
-			if (empty($name)) {
-				$save = false;
-        		array_push($errors, "Le nom du vêtement est vide");
-    		}
-    		if (empty($categories)) {
-    			$save = false;
-        		array_push($errors, "La catégorie est vide");
-    		}
-    		if (!filter_var($picture, FILTER_VALIDATE_URL)) {
-    			$save = false;
-        		array_push($errors, "L'url de l'image n'est pas valide.");
-    		}
-
+			$name = $_POST['name'];
+			$category = $_POST['category'];
+			$picture = $_POST['picture'];
 			// Vérification des données
 			// ...
 			if ($save) 
@@ -83,26 +68,13 @@ class ClothesController extends Controller
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST")
 		{
-			$errors = [];
+
 			$save = true;
 
 			// Récupération du $_POST
-			$name = 	trim( strip_tags( $_POST['name'] ) );
-			$categories = trim( strip_tags( $_POST['categories'] ) );
-			$picture = 	trim( strip_tags( $_POST['picture'] ) );
-
-			if (empty($name)) {
-				$save = false;
-        		array_push($errors, "Le nom du vêtement est vide");
-    		}
-    		if (empty($categories)) {
-    			$save = false;
-        		array_push($errors, "La catégorie est vide");
-    		}
-    		if (!filter_var($picture, FILTER_VALIDATE_URL)) {
-    			$save = false;
-        		array_push($errors, "L'url de l'image n'est pas valide.");
-    		}
+			$name = $_POST['name'];
+			$category = $_POST['category'];
+			$picture = $_POST['picture'];
 
 			// Vérification des données
 			// ...
