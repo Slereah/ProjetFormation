@@ -25,8 +25,6 @@
 
 		<button type="submit" class="btn btn-pink">Enregistrer</button>
 	</div>
-<<<<<<< Updated upstream
+
 </form>
-=======
-</form>
->>>>>>> Stashed changes
+
