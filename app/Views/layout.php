@@ -151,7 +151,6 @@
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
 							<div class="footer-widget">
-								<a class="logo" href="#"><img class="img-responsive" src="images/logo2.png" alt="" /></a>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 								<address>
 									<ul>

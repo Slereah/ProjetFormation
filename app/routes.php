@@ -28,6 +28,8 @@
     	['GET|POST', '/clothes/[i:id]/update', 'Clothes#update', 'clothes_update'],
     	['GET|POST', '/clothes/[i:id]/delete', 'Clothes#delete', 'clothes_delete'],
 
+        ['GET', '/clothes/[i:id]/[i:idUser]/addWardrobe', 'Clothes#addToWardrobe', 'clothes_addW'],
+        ['GET', '/clothes/[i:id]/[i:idUser]/deleteWardrobe', 'Clothes#deleteFromWardrobe', 'clothes_deleteW'],
 
         /* 
         *-- Security (signin = s'identifier; signup = créer son compte)
