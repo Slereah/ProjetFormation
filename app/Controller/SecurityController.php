@@ -116,7 +116,7 @@ class SecurityController extends Controller
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
 			//	SI l'utilisateur n'existe pas
-			    if (!$this->usersModel->emailExists($email)) {
+			    if (!$this->userManager->emailExists($email)) {
 
 				// On enregistre  les données dans la BDD
 			    $user = $this->usersModel->insert([
