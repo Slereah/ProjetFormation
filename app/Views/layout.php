@@ -76,7 +76,7 @@
 							
 	                        <li><a href="shortcode.html">How to get dress today ?</a></li>
 							
-	                        <li><a href="contact.html">Contact</a></li>
+	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
 	                </nav>
 	                <div class="search-icon">
