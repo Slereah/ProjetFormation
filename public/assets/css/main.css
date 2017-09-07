@@ -3474,3 +3474,6 @@ form.userData {
     padding-left: 18px;
 }
 
+#imgWardrobe {
+	max-width: 100%;
+}
