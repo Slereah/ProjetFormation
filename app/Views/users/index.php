@@ -5,7 +5,7 @@
 		<div id="recent-projects" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h1><?= $title ?></h1>
+					<h1 id="indexTitle"><?= $title ?></h1>
 				</div>
 				<div class="row"> 
 					<div class="recent-projects">
@@ -39,17 +39,71 @@
 								</div>
 							</form>
 							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Modifier mon profil</button>
+								<button type="submit" class="btn btn-dark indexButton">Modifier mon profil</button>
 							</div>
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-4 col-md-offset-4">
+						<div class="col-md-6 col-md-offset-2">
 							<div class="text-center section-title">
-								<a href="<?= $this->url('clothes_read') ?>"><h2>Ma garde-robe</h2></a>
+								<h2>Ma garde-robe</h2>
 							</div>
+
+								<!-- Thumbnails -->
+							<div class="row">
+							  	<div class="col-sm-6 col-md-4">
+							    	<div class="thumbnail">
+							      		<img src="https://photos6.spartoo.com/photos/365/3654062/3654062_350_A.jpg" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
+							      		<div class="caption">
+							        		<h3>Catégorie du vêtement ici</h3>
+							        		<p>Nom du vêtement ici</p>
+							        		<p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
+							      		</div>
+							    	</div>
+							  	</div>
+							  	<div class="col-sm-6 col-md-4">
+							    	<div class="thumbnail">
+							      		<img src="http://www.celio.com/medias/sys_master/productMedias/productMediasImport/h2e/hc5/9144818696222/product-media-import-1040935-3-weared.jpg?frz-v914" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
+							      		<div class="caption">
+									        <h3>Catégorie du vêtement ici</h3>
+									        <p>Nom du vêtement ici</p>
+									        <p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
+							      		</div>
+							    	</div>
+							  	</div>
+
+							  	<div class="col-sm-6 col-md-4">
+							    	<div class="thumbnail">
+							      		<img src="https://media.quiksilver.co.id/media/catalog/product/cache/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/q/eqyws03252_quiksilver_mens_everyday_chino_walkshort_tmp0_1_h.jpg" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
+							      		<div class="caption">
+									        <h3>Catégorie du vêtement ici</h3>
+									        <p>Nom du vêtement ici</p>
+									        <p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
+							      		</div>
+							    	</div>
+							  	</div>
+								<nav aria-label="Page navigation">
+									<ul class="pagination pagination-sm">
+										<li>
+									  		<a href="#" aria-label="Previous">
+										    	<span aria-hidden="true">&laquo;</span>
+									  		</a>
+										</li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li>
+									  		<a href="#" aria-label="Next">
+								    			<span aria-hidden="true">&raquo;</span>
+										  	</a>
+										</li>
+									</ul>
+								</nav>
+							</div><!-- Fin div row -->
 							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Créer ma garde-robe</button>
+								<button type="submit" class="btn btn-dark">Ajouter un vêtement</button>
 								<button type="submit" class="btn btn-dark">Modifier ma garde-robe</button>
 							</div>
 						</div>
