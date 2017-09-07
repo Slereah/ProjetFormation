@@ -1,5 +1,7 @@
 RewriteEngine On
 
+Options +FollowSymLinks
+
 # PIQUÉ AU HTACCESS DE SYMFONY2 : 
 # Determine the RewriteBase automatically and set it as environment variable.
 # If you are using Apache aliases to do mass virtual hosting or installed the

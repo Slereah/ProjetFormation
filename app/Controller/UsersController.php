@@ -29,7 +29,7 @@ class UsersController extends Controller
 
 		// Affichage de la vue du profil
 		$this->show('users/index',[
-			"title" => "Bonjour".$user['username'],
+			"title" => "Bonjour ".$user['username'],
 			"user" => $this->usersModel->find($user['id'])
 		]);
 	}

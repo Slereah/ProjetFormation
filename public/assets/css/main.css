@@ -95,6 +95,11 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform:capitalize;
 }
 
+.welcome-image h3 {
+	color: white;
+    margin-top: 9px;
+}
+
 .padding{	
 	padding:80px 0;
 }
@@ -285,6 +290,14 @@ textarea.form-control {
 	background-color:#ea0f42;
 }
 
+@media (max-width: 767px) {
+	.section-title h2 {
+    	font-size: 18px !important;
+	}
+}
+
+
+
 /*==============================
 =========navigation-section=========
 ================================*/
@@ -339,6 +352,20 @@ textarea.form-control {
     border-radius: 4px;
 }
 
+.navbar-brand {
+    padding: 0;
+}
+
+a.navbar-brand {
+	width: 260px;
+}
+
+.logo-two {
+    max-width: 40%;
+}
+
+
+
 /*Navigation CSS*/
 #navigation{
 	position:absolute;
@@ -379,8 +406,7 @@ textarea.form-control {
 
 #navigation .navbar-fixed-top .navbar-right li a, 
 #page #navigation .navbar .navbar-right li a {
-	color:#000;
-	line-height:50px;
+	line-height: 46px;
 }
 
 
@@ -390,9 +416,6 @@ textarea.form-control {
 	color:#fff;
 }
 
-#navigation .navbar-fixed-top .navbar-right li.active > a {
-	color:#000;
-}
 
 #navigation .container {
 	position:relative;
@@ -404,6 +427,9 @@ textarea.form-control {
 	overflow: hidden;
 	padding-top:0;
 	color: #fff;
+	position: relative;
+    top: -30px;
+    left: 40px;
 }
 
 .navbar-brand .logo-two, 
@@ -426,7 +452,7 @@ textarea.form-control {
 	color:#fff;
 	font-size:14px;
 	text-transform:uppercase;
-	padding:10px 17px;
+	padding:10px 40px;
 	font-weight:400;
 	background-color:transparent;
 }
@@ -439,6 +465,11 @@ textarea.form-control {
 #navigation .navbar-fixed-top .navbar-right .dropdown-menu li a, 
 #page #navigation .navbar .navbar-right .dropdown-menu li a {
 	line-height:18px;
+}
+
+.navbar {
+    border-radius: 4px;
+    background-color: #0096ca;
 }
 
 /*Dropdown Menu CSS*/
@@ -1291,7 +1322,11 @@ textarea.form-control {
 
 .welcome-content .welcome-image {
 	padding:5px;
-	border:1px solid #f0f0f0;
+	text-align: center;
+	border:1px solid #0096ca;
+	border-radius: 20px;
+    background-color: #0096ca;
+    margin-bottom: 10px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
@@ -1363,6 +1398,20 @@ textarea.form-control {
 #home-three .item-two .home-content {
 	margin-top:-100px;
 }
+
+#weatherIcon {
+    text-align: center;
+}
+
+.wi {
+    line-height: normal !important;
+}
+
+.form-sign {
+    border-radius: 8px !important;
+}
+
+
 /*==============================
 =========Recent-projects=========
 ================================*/
@@ -1459,7 +1508,26 @@ textarea.form-control {
 	opacity:1;
 }
 
+.imgClothes  {
+    margin: 0 auto;
+}
 
+.carousel-control.right {
+    background-image: none!important;
+    right: 42%;
+}
+
+.carousel-inner {
+    margin-top: 15px;
+}
+
+.carousel-caption {
+	color: #000;
+}
+
+.fa-refresh {
+	color: #302e2e !important;
+}
 
 /*==============================
 =========Amazing Features=========
@@ -3376,3 +3444,121 @@ img.mfp-img {
 	text-transform:uppercase;
 	background-color:#ed1c24;
 }
+
+/*=========================
+===== Signin CSS =======
+===========================*/
+
+.form-control {
+	border: 1px solid #0096ca;
+	border-radius: 4 !important;
+}
+
+div#password {
+    text-align: center;
+    margin-right: 12px;
+    margin-top: 10px
+}
+
+#signinTitle {
+	margin-top: 80px;
+}
+
+
+/*=========================
+===== Signup CSS =======
+===========================*/
+#signupTitle {
+    margin-top: 80px;
+}
+
+
+/*=========================
+===== Page Index CSS =======
+===========================*/
+.userData h3 {
+	display: inline-block;
+}
+
+form.userData {
+    border: 1px solid #0096ca;
+    border-radius: 5%;
+    background-color: #0096ca;
+    margin-left: 30px;
+    padding-left: 18px;
+}
+
+span.profileData {
+    margin-left: 8px;
+}
+
+.imgWardrobe {
+	max-width: 100% !important;
+    height: 50% !important;
+}
+
+#indexTitle {
+    padding-top: 23px;
+}
+
+.indexButton {
+    margin-top: 10px;
+}
+
+.btn-primary {
+ 	background-color: #363636 !important;
+    border: 1px solid #363636 !important;
+    color: #fff;
+}
+
+.btn-secondary {
+	background-color: #8c8989 !important;
+    border: 1px solid #8c8989 !important;
+    color: #fff;
+}
+
+#addButton {
+	margin-right: 8px;
+}
+
+.thumbnail {
+    height: 350px;
+}
+
+
+@media (max-width: 768px) {
+	span.profileData {
+		font-size: 12px;
+	}
+	form.userData h3 {
+    	font-size: 12px;
+	}
+	.col-sm-offset-2 {
+		margin-top: 120px;
+	}
+	.myWardrobe {
+		margin-top: 50px;
+	}
+	.personalData {
+		margin-top: 22px;
+	}
+}
+    
+
+/*=========================
+=====  Layout =======
+===========================*/
+
+.leftSection {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px){
+	.rightSection {
+    	margin-right: 70px;
+	}
+	.leftSection {
+		margin-left: 28px;
+	}
+}
+

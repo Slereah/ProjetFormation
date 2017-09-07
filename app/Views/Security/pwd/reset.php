@@ -6,10 +6,14 @@
 	<div class="row">
 		<div class="col-md4 col-md-offset-4">
 
-			<?php if (!empty($error)): ?>
-				<div class="alert alert-danger">
+			<?php if (!empty($errors)): ?>
+								
+				<?php foreach ($errors as $error) : ?>
+					<div class="alert alert-danger">
 					<?= $error ?>
-				</div>
+					</div>
+				<?php endforeach; ?>
+			
 			<?php endif; ?>
 
 			<form action="<?= $this->url('security_reset_pwd', ["token" => $token]) ?>" method="post">
