@@ -8,7 +8,7 @@ use \W\Model\UsersModel;
 
 class SecurityController extends Controller
 {
-	private $userManager;
+	private $usersModel;
 	private $AuthManager;
 
 	public function __construct()
@@ -22,44 +22,45 @@ class SecurityController extends Controller
 
 	public function signin()
 	{
-		$error = null;
+		$errors = [];
 
 		//' If ' method POST
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
-		// Récupérer les données du formulaire
-		$email = $_POST['user']['email'];
-		$password = $_POST['user']['password'];
+			// Récupérer les données du formulaire
+			$email 		= trim(strip_tags( $_POST['user']['email']));
+			$password 	= trim(strip_tags( $_POST['user']['password']));
 
-		// Vérifier les données dans la BDD ( Est ce que l'utilisateur existe ? )
-		// Controller les identification (login + pwd)
-		if ($userId = $this->AuthModel->isValidLoginInfo($email, $password)) {
+			// Vérifier les données dans la BDD ( Est-ce que l'utilisateur existe ? )
+			// Contrôler les identification (login + pwd)
+			if ($userId = $this->AuthModel->isValidLoginInfo($email, $password)) {
 
-			// Recup des données de l'utilisateurs dans la BDD
-			$user = $this->usersModel->find($userId);
+				// Recup des données de l'utilisateurs dans la BDD
+				$user = $this->usersModel->find($userId);
 
-			// Ajouter l'utilisateur à la SESSION
-			$this->AuthModel->logUserIn($user);
+				// Ajouter l'utilisateur à la SESSION
+				$this->AuthModel->logUserIn($user);
 
-			// Redirige l'utiliateur vers sa page profile
-			$this->redirectToRoute('profile');
+				// Redirige l'utilisateur vers sa page profile
+				$this->redirectToRoute('profile');
 
+			}
+			//Echec de connexion
+			else {
+				// Message d'erreur
+				array_push($errors, "Echec d'identification");
+
+			}	
 		}
-		//Echec de connexion
-		else {
-			// Message d'erreur
-			$error = "Echec d'identification";
-		}	
-	}
 		// Affiche le formulaire d'identification
-		$this->show('security/signin', ["title" => " Identification", "error" => $error]);
+		$this->show('security/signin', ["title" => " Identification", "errors" => $errors]);
 
 	}
 
 	public function signup()
 	{
 
-		$error = null;
+		$errors = [];
 		$username = null;
 		$email = null;
 		$password = null;
@@ -78,68 +79,137 @@ class SecurityController extends Controller
 			$save = true;
 
 			// Récupérer les données du formulaire
-				$username = $_POST['username'];
-				$email = $_POST['email'];
-				$password = $_POST['password'];
-				$repeat_password = $_POST['repeat_password'];
-				$firstname = $_POST['firstname'];
-				$lastname = $_POST['lastname'];
-				$country = $_POST['country'];
-				$city = $_POST['city'];
-				$zipcode = $_POST['zipcode'];
+				$username 			= trim(strip_tags( $_POST['username']));
+				$email 				= trim(strip_tags( $_POST['email']));
+				$password 			= trim(strip_tags( $_POST['password']));
+				$repeat_password 	= trim(strip_tags( $_POST['repeat_password']));
+				$firstname 			= trim(strip_tags( $_POST['firstname']));
+				$lastname 			= trim(strip_tags( $_POST['lastname']));
+				$country 			= trim(strip_tags( $_POST['country']));
+				$city 				= trim(strip_tags( $_POST['city']));
+				$zipcode 			= trim(strip_tags( $_POST['zipcode']));
 
-			//	Controlle des données du POST 
-			//	Controlle l'adresse email
+			//	Contrôle des données du POST
+				// Vérifie le nom d'utilisateur
+				if (empty($username)) {
+					$save = false;
+					array_push($errors, "Le nom d'utilisateur doit être rempli.");
+				} else if (strlen($username) < 3) {
+					$save = false;
+					array_push($errors, "Le nom d'utilisateur doit faire au moins 3 caractères.");
+				}
+
+				//	Contrôle l'adresse email
 				if (empty($email)) {
 					$save = false;
-
-					
+					array_push($errors, "Veuillez saisir une adresse mail valide.");
+		
 				}	else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 					$save = false;
-					//	message d'erreur
+					array_push($errors, "Veuillez saisir une adresse mail valide.");
+
 				}
-			// Controle des 2 MDP saisis dans le formulaire
+
+				// Vérification du mot de passe
+				if (empty($password)) {
+					$save = false;
+					array_push($errors, "Veuillez saisir un mot de passe.");
+
+				}else if (strlen($password) < 8 || strlen($password) > 16) {
+			        $save = false;
+			        array_push($errors, "Le mot de passe doit avoir 8 caractères minimum et 16 caractères maximum.");
+		        }
+			    // -> doit avoir au moins un caractère de type numérique
+			     else if (!preg_match("/[0-9]/", $password)) {
+			        $save = false;
+			        array_push($errors, "Le mot de passe doit contenir au moins un caractère numérique.");
+			    }
+
+			    // Controle des 2 MDP saisis dans le formulaire
 			    if ($password !== $repeat_password) {
 			    	$save = false;
-			     // message d'erreur
+			    	array_push($errors, "Les mots de passe doivent être identiques.");
+			   		
+
 			    } else {
 			    	// Cryptage du MDP
         			$password = password_hash($password, PASSWORD_DEFAULT);
     			}
 
+
+    			// Vérifie le prénom
+				if (empty($firstname)) {
+					$save = false;
+					array_push($errors, "Veuillez entrer votre prénom.");
+				} else if (strlen($firstname) < 3) {
+					$save = false;
+					array_push($errors, "Le prénom doit faire au moins 3 caractères.");
+				}
+
+
+				// Vérifie le nom
+				if (empty($lastname)) {
+					$save = false;
+					array_push($errors, "Veuillez entrer votre nom.");
+				} else if (strlen($lastname) < 3) {
+					$save = false;
+					array_push($errors, "Le nom doit faire au moins 3 caractères.");
+				}
+
+
+				// Vérifie le pays
     			if (empty($country)) {
     				$save = false;
+    				array_push($errors, "Veuillez sélectionner un pays.");
     			}
 
+    			// Vérifie la ville
+    			if (empty($city)) {
+    				$save = false;
+    				array_push($errors, "Veuillez entrer une ville.");
+    			} else if (strlen($city) < 2) {
+					$save = false;
+					array_push($errors, "La ville doit faire au moins 3 caractères.");
+				}
+			
+				// Vérifie le code postal
+				if (empty($zipcode)) {
+    				$save = false;
+    				array_push($errors, "Veuillez entrer un code postal.");
+    			} else if (strlen($zipcode) > 11) {
+					$save = false;
+					array_push($errors, "Le code postal doit faire moins de 10 caractères.");
+				}
+
+
 			if ($save) {
-				
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
 			//	SI l'utilisateur n'existe pas
-			    if (!$this->userManager->emailExists($email)) {
+			    if (!$this->usersModel->emailExists($email)) {
 
 				// On enregistre  les données dans la BDD
 			    $user = $this->usersModel->insert([
-		          "username" => $username,
-		          "email" => $email,
-		          "password" => $password,
-		          "firstname" => $firstname,
-				  "lastname" => $lastname,
-				  "country" => $country,
-				  "city" => $city,
-				  "zipcode" => $zipcode,
+		          "username" 	=> $username,
+		          "email" 		=> $email,
+		          "password" 	=> $password,
+		          "firstname" 	=> $firstname,
+				  "lastname" 	=> $lastname,
+				  "country" 	=> $country,
+				  "city"	 	=> $city,
+				  "zipcode" 	=> $zipcode,
 		        ]);
-
+			    
 				// Ajouter l'utilisateur a la SESSION
 				$_SESSION['user'] = array(
-			        "id" => $user['id'],
-			        "email" => $user['email'],
-			        "username" => $user['username'],
+			        "id" 		=> $user['id'],
+			        "email" 	=> $user['email'],
+			        "username" 	=> $user['username'],
 			        "firstname" => $user['firstname'],
-				 	"lastname" => $user['lastname'],
-					"country" => $user['country'],
-					"city" => $user['city'],
-					"zipcode" => $user['zipcode']
+				 	"lastname" 	=> $user['lastname'],
+					"country" 	=> $user['country'],
+					"city" 		=> $user['city'],
+					"zipcode" 	=> $user['zipcode']
 			    );
 
 				// On redirige l'utilisateur vers sa page profil
@@ -149,7 +219,7 @@ class SecurityController extends Controller
 				} else {
         	// On affiche un message d'erreur
         	// message dans un flashbag
-      			$error = "Un utilisateur existe déjà avec l'adresse email : $email";
+      			$errors = "Un utilisateur existe déjà avec l'adresse email : $email";
 
     			}
     		}
@@ -157,15 +227,15 @@ class SecurityController extends Controller
 
 		// Affiche le formulaire d'inscription
 		$this->show('security/signup', [
-			"title" => " Inscription ",
-			"username" => $username,
-      		"email" => $email,
+			"title" 	=> " Inscription ",
+			"username" 	=> $username,
+      		"email" 	=> $email,
       		"firstname" => $firstname,
-			"lastname" => $lastname,
-			"country" => $country,
-			"city" => $city,
-			"zipcode" => $zipcode,
-      		"error" => $error,
+			"lastname" 	=> $lastname,
+			"country" 	=> $country,
+			"city" 		=> $city,
+			"zipcode" 	=> $zipcode,
+      		"errors" 	=> $errors,
       	]);
 		
 	}
@@ -183,7 +253,7 @@ class SecurityController extends Controller
 
 	public function lostPwd()
   	{
-  		$error = null;
+  		$errors = [];
 
   		$_THE_TOKEN = null;
 
@@ -216,22 +286,23 @@ class SecurityController extends Controller
           		
           		// Envois du mail avec le process de renouvellement du MDP
           		$to = $email;
-          		$subject = " renouvellement de votre mot de passe ";
+          		$subject = " Renouvellement de votre mot de passe ";
           		$message = "Copier/Coller l'adresse suivante dans votre navigateur pour modifier votre mot de passe.\n".$url;
           		
 
 
           		// Affiche le message de prise en compte de la demande
           		if(@mail($to,$subject,$message)) {
-          			$error = "Un email avec la procédure de renouvellement du mot de passe à été envoyé à l'adresse $email.";
+          			array_push($errors, "Un email avec la procédure de renouvellement du mot de passe a été envoyé à l'adresse $email.");
           		} else {
-          			$error = "Une erreur est survenue lors de l'envois du mail";
+          			array_push($errors, "Une erreur est survenue lors de l'envoi du mail");
+
           		}
 			}
 
       		// Pas d'utilisateur en BDD - Affiche un message d'erreur
       		else {
-      			$error = "Oops, aucun utilisateur n'a été trouvé.";
+      			array_push($errors, "Oops, aucun utilisateur n'a été trouvé.");
 
       		}
 
@@ -240,7 +311,7 @@ class SecurityController extends Controller
     	// Affichage du formulaire (adresse email)
     	$this->show('security/pwd/lost', [
     		"title" => " Mot de passe oublié ? ",
-    		"error" => $error,
+    		"errors" => $errors,
     		"THE_TOKEN_URL" => $_THE_TOKEN
 
     	]);
@@ -249,7 +320,7 @@ class SecurityController extends Controller
   	public function resetPwd($token)
   	{
 
-  		$error = null;
+  		$errors = [];
 
   	// Recuperation du Token ( pour le transmettre dans le formulaire en champ caché)
 
@@ -258,9 +329,9 @@ class SecurityController extends Controller
 	  	if ($_SERVER['REQUEST_METHOD'] === "POST") {
 	  
 	        // Récupération des données du POST
-	        $token = strip_tags(trim($_POST['token']));
-	        $password = strip_tags(trim($_POST['password']));
-	        $repeat_password = strip_tags(trim($_POST['repeat_password']));
+	        $token 				= strip_tags(trim($_POST['token']));
+	        $password 			= strip_tags(trim($_POST['password']));
+	        $repeat_password 	= strip_tags(trim($_POST['repeat_password']));
 
 	        // Controle du Token + recup des données associées au token
 	        $tokensManager = new \Model\TokensModel;
@@ -273,12 +344,11 @@ class SecurityController extends Controller
 	        	
 		        // Controle des MDP
 	        		if (empty($password)) {
-	        			$error = "Le mot de passe ne doit pas être vide";
+	        			array_push($errors, "Le mot de passe ne doit pas être vide");
 	        		}
 
 	        		else if ($repeat_password !== $password) {
-	        		 	
-	        		 	$error = "Les mots de passe doivent être identique";
+	        		 	array_push($errors, "Les mots de passe doivent être identique");
 
 	        		} 
 
@@ -303,7 +373,7 @@ class SecurityController extends Controller
 
 	        	else {
 
-	        		$error = 'Le délai de validité du token est expiré.';
+	        		array_push($errors, 'Le délai de validité du token est expiré.');
 	        		
 	        	}
 
@@ -311,7 +381,7 @@ class SecurityController extends Controller
 
 	        else {
 	        	// La requête  -> findByToken return FALSE
-	        	$error = "Le token est invalide";
+	        	array_push($errors, "Le token est invalide");
 
 			}
 		
@@ -320,7 +390,7 @@ class SecurityController extends Controller
 	    	$this->show('security/pwd/reset', [
 	    		"title" => " Changer le mot de passe ",
 	    		"token" => $token,
-	    		"error" => $error
+	    		"errors" => $errors
 	    	]);
   	}
 }

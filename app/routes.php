@@ -22,16 +22,16 @@
         /* 
         *-- Clothes
         */
-        ['GET', '/personal-clothes', 'Clothes#indexPersonal', 'personal_clothes_index'],
-        ['GET', '/default-clothes', 'Clothes#index', 'default_clothes_index'],
+        ['GET', '/clothes', 'Clothes#index', 'clothes_index'],
+        ['GET', '/clothes/[:type]', 'Clothes#index', 'clothes_index_type'],
         ['GET|POST', '/search', 'Clothes#search', 'search'],
         ['GET|POST', '/clothes/create', 'Clothes#create', 'clothes_create'],
     	['GET', '/clothes/[i:id]', 'Clothes#read', 'clothes_read'],
+        ['GET|POST', '/clothes/[i:id]/[i:idUser]/update', 'Clothes#update', 'clothes_update_user'],
     	['GET|POST', '/clothes/[i:id]/update', 'Clothes#update', 'clothes_update'],
-    	['GET|POST', '/clothes/[i:id]/delete', 'Clothes#delete', 'clothes_delete'],
+        ['GET|POST', '/clothes/[i:id]/[i:idUser]/delete', 'Clothes#delete', 'clothes_delete_user'],
+        ['GET|POST', '/clothes/[i:id]/delete', 'Clothes#delete', 'clothes_delete'],
 
-        ['GET', '/clothes/[i:id]/[i:idUser]/addWardrobe', 'Clothes#addToWardrobe', 'clothes_addW'],
-        ['GET', '/clothes/[i:id]/[i:idUser]/deleteWardrobe', 'Clothes#deleteFromWardrobe', 'clothes_deleteW'],
 
         /* 
         *-- Security (signin = s'identifier; signup = créer son compte)

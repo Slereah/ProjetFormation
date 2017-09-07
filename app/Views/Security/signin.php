@@ -10,10 +10,14 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4">
 
-							<?php if (!empty($error)): ?>
-								<div class="alert alert-danger">
-									<?= $error ?>
-								</div>
+							<?php if (!empty($errors)): ?>
+								
+									<?php foreach ($errors as $error) : ?>
+										<div class="alert alert-danger">
+										<?= $error ?>
+										</div>
+									<?php endforeach; ?>
+								
 							<?php endif; ?>
 
 							<form action="<?= $this->url('security_signin') ?>" method="post">
