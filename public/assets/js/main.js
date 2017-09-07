@@ -182,7 +182,7 @@ $(document).ready(function()
 	function addCropper()
 	{
 		image = $("#image");
-		console.log(image);
+		//console.log(image);
 		myCropper = new Cropper(image, {
 		  aspectRatio: 16 / 9,
 		  crop: function(e) {

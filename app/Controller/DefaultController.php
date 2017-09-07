@@ -3,23 +3,38 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \Model\ClothesModel;
 
 class DefaultController extends Controller
 {
+	private $clothesModel;
 
+	public function __construct ()
+	{
+		$this->clothesModel = new ClothesModel;
+	}
 	/**
 	 * Page d'accueil par défaut
 	 */
 	public function home()
 	{
 		$data["weather"] = DefaultController::forecast();
-		$data["imghaut"] = [
-		"https://gloimg.rosewholesale.com/ROSE/pdm-product-pic/Clothing/2016/07/27/goods-img/1473012160372349548.jpg",
-		"https://images-eu.ssl-images-amazon.com/images/I/61hnenbaFDL._UL1500_.jpg",
-		"https://cdn.laredoute.com/products/310by310/6/a/1/6a10499b7eebbcd27ca96f9370b2c5f3.jpg"
-		];
-		$data["imgbas"] = [
-		"http://www.forcesenior.fr/images/ekjnoad/Nouveau%20Raffinement%20Homme%20V%C3%AAtements%20Jean%20Skinny%20Sid%20Bleu%20Vif%20Stretch%20Paris%20604.jpg"];
+		$data["upperClothes"] = [];
+		$data["lowerClothes"] = [];
+		$data["shoes"] = [];
+		if(isset($_SESSION["user"]))
+		{
+			$id = $_SESSION["user"]["id"];
+			$data["upperClothes"] = $this->clothesModel->getFromCategory("shirts", "personal", $id);
+			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants", "personal", $id);
+			$data["shoes"] = $this->clothesModel->getFromCategory("shoes", "personal", $id);
+		}
+		else
+		{
+			$data["upperClothes"] = $this->clothesModel->getFromCategory("shirts");
+			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants");
+			$data["shoes"] = $this->clothesModel->getFromCategory("shoes");
+		}
 		$this->show('default/home', $data);
 	}
 

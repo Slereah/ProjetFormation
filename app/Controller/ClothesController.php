@@ -104,7 +104,12 @@ class ClothesController extends Controller
 	public function delete($id, $idUser = null)
 	{
 		$clothes = $this->clothesModel->find($id);
-		if ($_SERVER['REQUEST_METHOD'] === "POST") {
+		if ($_SERVER['REQUEST_METHOD'] === "POST") 
+		{
+			if(!is_null($idUser))
+			{
+				$this->clothesModel->deleteClothesUser($id, $idUser);
+			}
 			$this->clothesModel->delete($id);
 			$this->redirectToRoute('default_clothes_index');
 		}
@@ -114,11 +119,31 @@ class ClothesController extends Controller
 		]);
 	}
 
-	public function index($type = "both")
+	public function index($type = "default")
 	{
 		// retrieve all clothes
-		$clothes = $this->clothesModel->findAll();
+		$clothes = [];
 
+		switch ($type) 
+		{
+			case 'both':
+				$clothes = $this->clothesModel->get("both");
+				break;
+			case 'personal':
+				{
+					if(isset($_SESSION))
+					{
+						$clothes = $this->clothesModel->get("personal", $_SESSION["user"]["id"]);
+					}
+					
+					break;
+				}
+			case 'default':
+				$clothes = $this->clothesModel->get("default");
+				break;
+			default:
+				break;
+		}
 
 		// Show view
 		$this->show('clothes/index', [
@@ -129,26 +154,13 @@ class ClothesController extends Controller
 		]);
 	}
 
-	public function indexPersonal()
-	{
-		$data = [];
-		$data["clothes"] = [["id" => 1, "name" => "clothe1"], ["id" => 2, "name" => "clothe2"]];
-		$this->show('clothes/index', $data);
-	}
-
-	public function indexDefault()
-	{
-		$data = [];
-		$this->show('clothes/index', $data);	
-	}
-
 	public function search()
 	{
 		$search = "";
 		$data["userClothes"] = [];
 		if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
 		{
-			$data["userClothes"] = $this->clothesModel->getUserClothes($_SESSION["user"]["id"]);
+			$data["userClothes"] = $this->clothesModel->get("personal", $_SESSION["user"]["id"]);
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
@@ -168,7 +180,7 @@ class ClothesController extends Controller
 		{
 			if($idUser == $_SESSION["user"]["id"])
 			{
-				$this->clothesModel->addClothesUser($id, $userId);
+				$this->clothesModel->addClothesUser($id, $idUser);
 				$this->redirectToRoute('clothes_read', ["id" => $id]);
 			}
 			
@@ -200,7 +212,7 @@ class ClothesController extends Controller
 	{
 		foreach ($wardrobe as $value) 
 		{
-			if($value["idClothes"] == $id)
+			if($value["id"] == $id)
 			{
 				return true;
 			}

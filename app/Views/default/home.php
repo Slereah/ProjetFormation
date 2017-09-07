@@ -55,18 +55,19 @@
 						<div class="carousel slides" id="mon-carrousel">
 							<!-- Carrousel d'images -->
 							<div class="carousel-inner">
-								<div class="item active">
-									<img src="http://www.celio.com/medias/sys_master/productMedias/productMediasImport/h2e/hc5/9144818696222/product-media-import-1040935-3-weared.jpg?frz-v914" class="img-responsive imgClothes"/>
-									<div class="carousel-caption">
-								        <h3>Top</h3>
-							      	</div>
-								</div>
-								<div class="item">
-									<img src="http://www.celio.com/medias/sys_master/productMedias/productMediasImport/h2e/hc5/9144818696222/product-media-import-1040935-3-weared.jpg?frz-v914" class="img-responsive imgClothes"/>
-									<div class="carousel-caption">
-								        <h3>test</h3>
-							      	</div>
-								</div>
+								<?php
+									foreach ($upperClothes as $key => $value) 
+									{
+										?>
+										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										</div>
+										<div class="carousel-caption">
+								        	<h3>Top</h3>
+							      		</div>
+										<?php
+									}
+								?>
 							</div>
 
 							<!-- Contrôleurs -->
@@ -77,12 +78,19 @@
 						</div>
 						<div class="carousel slide" id="mon-carrousel2">
 							<div class="carousel-inner">
-								<div class="item active">
-									<img src="https://media.quiksilver.co.id/media/catalog/product/cache/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/q/eqyws03252_quiksilver_mens_everyday_chino_walkshort_tmp0_1_h.jpg" class="img-responsive imgClothes"/>
-									<div class="carousel-caption">
-								        <h3>Bottom</h3>
-							      	</div>
-								</div>
+								<?php
+									foreach ($lowerClothes as $key => $value) 
+									{
+										?>
+										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										</div>
+										<div class="carousel-caption">
+								        	<h3>Bottom</h3>
+							      		</div>
+										<?php
+									}
+								?>
 							</div>
 
 			 				<!-- Contrôleurs -->
@@ -93,12 +101,19 @@
 						</div>
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
-								<div class="item active">
-									<img src="https://photos6.spartoo.com/photos/365/3654062/3654062_350_A.jpg" class="img-responsive imgClothes"/>
-									<div class="carousel-caption">
-								        <h3>Shoes</h3>
-							      	</div>
-								</div>
+								<?php
+									foreach ($shoes as $key => $value) 
+									{
+										?>
+										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										</div>
+										<div class="carousel-caption">
+								        	<h3>Shoes</h3>
+							      		</div>
+										<?php
+									}
+								?>
 							</div>
 
 							<!-- Contrôleurs -->
