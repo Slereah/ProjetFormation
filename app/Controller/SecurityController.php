@@ -264,14 +264,14 @@ class SecurityController extends Controller
 	public function lostPwd()
   	{
   		$errors = [];
-
+  	
   		$_THE_TOKEN = null;
 
     	// if method POST
     	if ($_SERVER['REQUEST_METHOD'] === "POST") {
     		
       		// Récupération des données du POST
-      		$email = strip_tags(trim($_POST['email']));
+      		$email = strip_tags(trim($_POST["user"]['email']));
 
       		// Récupération de l'utilisateur dans la BDD (est ce que l'utilisateur existe ?)
       		if ($user = $this->usersModel->getUserByUsernameOrEmail($email)) {

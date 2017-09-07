@@ -44,7 +44,7 @@
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-1 myWardrobe">
+						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-2 myWardrobe">
 							<div class="text-center section-title">
 								<h2>Ma garde-robe</h2>
 							</div>
