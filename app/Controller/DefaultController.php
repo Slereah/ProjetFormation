@@ -4,6 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ClothesModel;
+use \Model\ContactModel;
 
 class DefaultController extends Controller
 {
@@ -103,7 +104,53 @@ class DefaultController extends Controller
 
 	public function contact()
 	{
-		$this->show('default/contact');
+		$errors = [];
+		$lastname = null;
+		$firstname = null;
+    	$email = null;
+    	$message = null;
+
+    	$save =true;
+
+
+		if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        // Récupération des données du formulaire
+		$lastname = trim(strip_tags( $_POST['lastname']));
+		$firstname = trim(strip_tags( $_POST['firstname']));
+		$email = trim(strip_tags( $_POST['email']));
+    	$message = trim(strip_tags( $_POST['message']));
+
+        // Vérification des données
+
+
+
+    		if ($save) {
+
+    			
+        		// Enregistrer les données dans la BDD 
+
+    			$contact_manager = new ContactModel();
+    			$contact_manager->insert([
+
+    				"lastname" => $lastname,
+    				"firstname" => $firstname,
+        			"email" => $email,
+        			"message" => $message,
+				]);
+
+				$_SESSION['contactSubmit'] = true;
+
+			}
+        }
+        // Afficher la vue
+
+        $this->show('default/contact', [
+
+        	"lastname" => $lastname,
+        	"firstname" => $firstname,
+        	"email" => $email,
+        	"message" => $message,
+        ]);
 	}
 
 	public function uploadImage()
