@@ -157,6 +157,7 @@ class ClothesController extends Controller
 	public function search()
 	{
 		$search = "";
+		$data["title"] = "Search";
 		$data["userClothes"] = [];
 		if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
 		{
