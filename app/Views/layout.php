@@ -53,12 +53,30 @@
 
 	                </div>  
 					<div class="top-bar">
-						<span class="login-section">
-							<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
-						</span>
-						<span class="login-section">
-							<a href="<?= $this->url('security_signin') ?>">Login</a>
-						</span>
+						<?php 
+							if(isset($_SESSION["user"]))
+							{
+								?>
+									<span class="login-section">
+										<a href="<?= $this->url('profile') ?>"><i class="fa fa-user"></i>Profile</a>
+									</span>
+									<span class="login-section">
+										<a href="<?= $this->url('security_logout') ?>"><i class="fa fa-user"></i>Log out</a>
+									</span>
+								<?php
+							}
+							else
+							{
+								?>
+									<span class="login-section">
+										<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
+									</span>
+									<span class="login-section">
+										<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Login</a>
+									</span>
+								<?php
+							}
+						?>
 					</div>
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         
 	                    <ul class="nav navbar-nav">

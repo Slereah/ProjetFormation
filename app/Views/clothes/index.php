@@ -10,13 +10,25 @@ $this->layout('layout', ['title' => 'Vêtement']);
 
 	<?php if (count($clothes)): ?>
 
-		<?php foreach ($clothes as $clothes): ?> <br> 
-			<div>
-				<a href="<?= $this->url('clothes_read', ["id" => $clothes ['id']]) ?>">
-				<?= $clothes['name']; ?></a>
-				
-			</div>
-		<?php endforeach; ?>
+		<?php 
+			foreach ($clothes as $key => $clothes):
+				if($key % 4 == 0)
+				{
+					?><div class="row"><?php
+				}
+				?>
+				<div class="col-xs-12 col-md-3">
+				    <a href="<?= $this->url('clothes_read', ["id" => $clothes ['id']]) ?>" class="thumbnail">
+				      <img src="<?= $clothes ['picture'] ?>" alt="<?= $clothes ['name']?> ">
+				    </a>
+				    <caption><?= $clothes ['name'] ?></caption>
+				</div>
+  				<?php
+				if($key % 4 == 3)
+				{
+					?></div><?php
+				}
+			endforeach; ?>
 
 	<?php else: ?>
 

@@ -25,7 +25,8 @@
         ['GET', '/clothes', 'Clothes#index', 'clothes_index'],
         
         ['GET|POST', '/search', 'Clothes#search', 'search'],
-        ['GET|POST', '/clothes/create', 'Clothes#create', 'clothes_create'],
+        ['GET|POST', '/clothes/create', 'Clothes#create', 'clothes_create_admin'],
+        ['GET|POST', '/clothes/[i:id]/create', 'Clothes#create', 'clothes_create'],
     	['GET', '/clothes/[i:id]', 'Clothes#read', 'clothes_read'],
         ['GET|POST', '/clothes/[i:id]/[i:idUser]/update', 'Clothes#update', 'clothes_update_user'],
     	['GET|POST', '/clothes/[i:id]/update', 'Clothes#update', 'clothes_update'],

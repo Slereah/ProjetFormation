@@ -3485,3 +3485,16 @@ form.userData {
 .indexButton {
     margin-top: 10px;
 }
+
+.carousel-control
+{
+}
+
+.carousel-control i
+{
+	margin-top: 100px;
+	background-color: white;
+	padding: 5px;
+	border-radius: 10px;
+	border : 1px solid black;
+}
