@@ -8,7 +8,6 @@
   "keywords": [
     "image",
     "crop",
-    "cropper",
     "cropping",
     "move",
     "zoom",
@@ -31,13 +30,24 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "build",
-    "docs",
-    "examples",
+    "bower_components",
+    "tests",
     "test",
-    "postcss.config.json",
-    "rollup.config.js",
+    "examples",
+    "assets",
+    "demo",
+    "docs",
+    "gulpfile.js",
     "CONTRIBUTING.md",
-    "ISSUE_TEMPLATE.md"
-  ]
+    "FAQ.md"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1"
+  },
+  "devDependencies": {
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.4.0",
+    "jquery": "~1.11.3",
+    "qunit": "~1.18.0"
+  }
 }

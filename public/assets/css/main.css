@@ -467,6 +467,11 @@ a.navbar-brand {
 	line-height:18px;
 }
 
+.navbar {
+    border-radius: 4px;
+    background-color: #0096ca;
+}
+
 /*Dropdown Menu CSS*/
 .dropdown-menu {
 	background-color:#fff;
@@ -3453,3 +3458,19 @@ div#password {
     text-align: center;
     margin-right: 12px;
 }
+
+/*=========================
+===== Page Index CSS =======
+===========================*/
+.userData h3 {
+	display: inline-block;
+}
+
+form.userData {
+    border: 1px solid #0096ca;
+    border-radius: 5%;
+    background-color: #0096ca;
+    margin-left: 30px;
+    padding-left: 18px;
+}
+

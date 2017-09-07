@@ -12,10 +12,14 @@
 
 						<form method="post">
 
-							<?php if (!empty($error)): ?>
-								<div class="alert alert-danger">
-									<?= $error ?>
-								</div>
+							<?php if (!empty($errors)): ?>
+								
+									<?php foreach ($errors as $error) : ?>
+										<div class="alert alert-danger">
+										<?= $error ?>
+										</div>
+									<?php endforeach; ?>
+								
 							<?php endif; ?>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">

@@ -62,21 +62,19 @@
 					</div>
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         
 	                    <ul class="nav navbar-nav">
-	                        <li class="dropdown active">
-								<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-									Home
+	                        <li><a href="<?= $this->url('home') ?>">
+	                        	Home
+	                        	</a>
+                        	</li>
+		
+							<li><a href="javascript:void(0);">
+								How it works ?
 								</a>
-							</li>
-							
-							<li class="dropdown">
-	                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-	                                How it works ?
-	                            </a>
-	                        </li>						
+							</li>						
 							
 	                        <li><a href="shortcode.html">How to get dress today ?</a></li>
 							
-	                        <li><a href="contact.html">Contact</a></li>
+	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
 	                </nav>
 	                <div class="search-icon">
