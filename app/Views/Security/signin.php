@@ -4,7 +4,7 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2><?= $title ?></h2>
+					<h2 id="signinTitle"><?= $title ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
@@ -21,20 +21,20 @@
 							<?php endif; ?>
 
 							<form action="<?= $this->url('security_signin') ?>" method="post">
-				                <div class="form-group welcome-image form-sign col-xs-8 col-xs-offset-2">
+				                <div class="form-group welcome-image form-sign">
 				                    <label for="email">Email</label>
 				                    <input type="email" class="form-control" id="email" name="user[email]" placeholder="Email">
 				                </div>
-				                <div class="form-group welcome-image form-sign col-xs-8 col-xs-offset-2">
+				                <div class="form-group welcome-image form-sign">
 				                    <label for="password">Mot de passe</label>
 				                    <input type="password" class="form-control" id="password" name="user[password]" placeholder="Mot de passe">
 				                </div>
-				                <div class="col-md-offset-4 col-sm-offset-5 col-xs-offset-5">
-				                	<button type="submit" class="btn btn-dark">Se connecter</button>
+				                <div class="text-center">
+				                	<button type="submit" class="btn btn-primary">Se connecter</button>
 				                </div>
 				            </form>
 
-				            <div id="password">
+				            <div class="text-center" id="password">
 			            	 	<a href="<?= $this->url('security_lost_pwd')?>">Mot de passe oublié</a>
 				            </div>
 				           

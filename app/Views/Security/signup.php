@@ -5,7 +5,7 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2><?= $title ?></h2>
+					<h2 id="signupTitle"><?= $title ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
@@ -318,8 +318,8 @@
 								<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale ">
 							</div>
 
-							<div class="col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4">
-								<button type="submit" class="btn btn-pink">Je m'inscris</button>
+							<div class="text-center col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4">
+								<button type="submit" class="btn btn-primary">Je m'inscris</button>
 							</div>
 							
 						</form>

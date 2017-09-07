@@ -181,6 +181,92 @@ jQuery(function ($) {
 		});
 		
 	}());
+<<<<<<< HEAD
 
 	
 });
+=======
+	
+
+
+
+	var cropper;
+	var image;
+	initCropper();
+
+	function addCropper()
+	{
+		image = $("#image");
+		
+		cropper = new Cropper(image, {
+		  aspectRatio: 16 / 9,
+		  crop: function(e) {
+		    console.log(e.detail.x);
+		    console.log(e.detail.y);
+		    console.log(e.detail.width);
+		    console.log(e.detail.height);
+		    console.log(e.detail.rotate);
+		    console.log(e.detail.scaleX);
+		    console.log(e.detail.scaleY);
+		  }
+		});
+		console.log(cropper);
+	}
+
+
+	function initCropper()
+	{
+		$("#loadImage").change(function(){
+		    readURL(this);
+		});
+		addCropper();
+
+	}
+
+
+
+	function cropImage()
+	{
+		cropper.getCroppedCanvas().toBlob(function(blob)
+		{
+			console.log(blob);
+			var formData = new FormData();
+			formData.append('croppedImage', blob);
+	  		$.ajax('/crop/upload.php', {
+		    	method: "POST",
+		    	data: formData,
+		    	processData: false,
+		    	contentType: false,
+		    	success: function (response) 
+		    	{
+		      		console.log(response);
+		    	},
+			    error: function () {
+		    	  console.log('Upload error');
+		    	}
+		  	});
+		  	
+
+		});
+	}
+
+	function readURL(input) 
+	{
+
+	    if (input.files && input.files[0]) 
+	    {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            image.attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	        addCropper();
+	    }
+	}
+
+
+
+});
+>>>>>>> origin/develop

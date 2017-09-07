@@ -23,12 +23,15 @@
 			<input type="text" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>"> <br>
 		</div><br>
 
-		<!--<div>
-  		<img id="image" src="picture.jpg">
-  		<button onclick="cropImage()">Crop</button>
-		-->
+		<div>
+			<input type="file" name="loadImage" id="loadImage">
+	  		<img id="image" src="" width="300px">
+	  		<button onclick="cropImage()">Crop</button>
+  		</div>
+
 
 		<button type="submit" class="btn btn-pink">Enregistrer</button>
 	</div>
+
 
 </form>

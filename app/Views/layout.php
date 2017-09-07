@@ -53,12 +53,30 @@
 
 	                </div>  
 					<div class="top-bar">
-						<span class="login-section">
-							<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
-						</span>
-						<span class="login-section">
-							<a href="<?= $this->url('security_signin') ?>">Login</a>
-						</span>
+						<?php 
+							if(isset($_SESSION["user"]))
+							{
+								?>
+									<span class="login-section leftSection">
+										<a href="<?= $this->url('profile') ?>"><i class="fa fa-user"></i>Profile</a>
+									</span>
+									<span class="login-section rightSection">
+										<a href="<?= $this->url('security_logout') ?>"><i class="fa fa-user"></i>Log out</a>
+									</span>
+								<?php
+							}
+							else
+							{
+								?>
+									<span class="login-section leftSection">
+										<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
+									</span>
+									<span class="login-section rightSection">
+										<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Login</a>
+									</span>
+								<?php
+							}
+						?>
 					</div>
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         
 	                    <ul class="nav navbar-nav">
@@ -76,10 +94,7 @@
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
-	                </nav>
-	                <div class="search-icon">
-	                    <span><i class="fa fa-search"></i></span>
-	                </div>                
+	                </nav>                
 	            </div>
 				<div class="search">
 					<form role="form">
@@ -146,17 +161,15 @@
 		<!--/#scripts--> 
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.js') ?>"></script>
-		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script> <!--  Ne pas toucher-->
-	  	<script type="text/javascript" src="<?= $this->assetUrl('js/gmaps.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('magnific-popup/jquery.magnific-popup.min.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.nav.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.typer.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.event.move.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('twentytwenty/twentytwenty.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.countTo.js') ?>"></script>
-	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 	
+	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/cropper.js') ?>"></script>
-	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>
+	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
 	</body>
 </html>
 
@@ -165,11 +178,7 @@
 <!-- 								*********
 								CORRECTIONS A FAIRE
      								*********
-
 	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
 	ne fonctionnent pas.
-
 	- Ajouter logo drapeaux pr traduction fr/en
-
-
  -->
