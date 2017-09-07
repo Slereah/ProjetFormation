@@ -10,10 +10,14 @@
 		<a href="<?= $THE_TOKEN_URL ?>"><?= $THE_TOKEN_URL ?></a><br>
 		<!-- A EFFACER -->
 			
-			<?php if (!empty($error)): ?>
-				<div class="alert alert-danger">
+			<?php if (!empty($errors)): ?>
+								
+				<?php foreach ($errors as $error) : ?>
+					<div class="alert alert-danger">
 					<?= $error ?>
-				</div>
+					</div>
+				<?php endforeach; ?>
+			
 			<?php endif; ?>
 
 			<form action="<?= $this->url('security_lost_pwd') ?>" method="post">

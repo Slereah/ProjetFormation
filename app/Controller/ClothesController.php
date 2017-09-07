@@ -60,7 +60,7 @@ class ClothesController extends Controller
 			"clothes" => $clothes
 		]);
 	}
-	public function update($id)
+	public function update($id, $idUser = null)
 	{
 		// Get product from BDD
 		$clothes = $this->clothesModel->find($id);
@@ -101,7 +101,7 @@ class ClothesController extends Controller
 			"selected_category" => $clothes['category'],
 		]);
 	}
-	public function delete($id)
+	public function delete($id, $idUser = null)
 	{
 		$clothes = $this->clothesModel->find($id);
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -114,7 +114,7 @@ class ClothesController extends Controller
 		]);
 	}
 
-	public function index()
+	public function index($type = "both")
 	{
 		// retrieve all clothes
 		$clothes = $this->clothesModel->findAll();
