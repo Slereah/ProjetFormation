@@ -47,14 +47,17 @@
 	                        <span class="icon-bar"></span>
 	                    </button>
 	                    
-	                    <a class="navbar-brand" href="index.html">
+	                    <a class="navbar-brand">
 	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>" alt="">
 	                    </a> 
 
 	                </div>  
 					<div class="top-bar">
 						<span class="login-section">
-							<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Signup / Login</a>
+							<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
+						</span>
+						<span class="login-section">
+							<a href="<?= $this->url('security_signin') ?>">Login</a>
 						</span>
 					</div>
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         

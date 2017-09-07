@@ -1402,7 +1402,7 @@ a.navbar-brand {
     line-height: normal !important;
 }
 
-.form-signin {
+.form-sign {
     border-radius: 8px !important;
 }
 
@@ -3447,4 +3447,9 @@ img.mfp-img {
 .form-control {
 	border: 1px solid #0096ca;
 	border-radius: 4 !important;
+}
+
+div#password {
+    text-align: center;
+    margin-right: 12px;
 }
