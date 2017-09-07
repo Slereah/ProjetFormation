@@ -254,7 +254,7 @@ class SecurityController extends Controller
 	public function lostPwd()
   	{
   		$errors = [];
-
+  		var_dump($_POST);
   		$_THE_TOKEN = null;
 
     	// if method POST

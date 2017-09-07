@@ -1,7 +1,18 @@
 jQuery(function ($) {
 
     'use strict';
+    /*==============================================================*/
+    // Contact
+    /*==============================================================*/
 		
+   	function clearform()
+	{
+		document.getElementById("lastname").value=""; //don't forget to set the textbox ID
+    	document.getElementById("firstname").value=""; //don't forget to set the textbox ID
+    	document.getElementById("email").value=""; //don't forget to set the textbox ID
+    	document.getElementById("message").value=""; //don't forget to set the textbox ID
+	}
+
 	/*==============================================================*/
     // Search
     /*==============================================================*/

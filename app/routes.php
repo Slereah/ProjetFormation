@@ -10,7 +10,7 @@
 		/* 
         *-- Contact 
         */
-    	['GET|POST', '/contactez-nous', 'Default#contact', 'contact'],
+    	['GET|POST', '/contact', 'Default#contact', 'contact'],
 
 	  	/* 
         *-- Users
