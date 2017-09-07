@@ -318,6 +318,14 @@
 								<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale ">
 							</div>
 
+							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+								<label for="unit" class="control-label">Unité</label>
+								<select id="unit" name="unit">
+									<option value="">Sélectionner votre pays :</option>
+									<option value="°C">Celcius</option>
+									<option value="°F">Fahrenheit</option>
+								</select>
+							</div>
 							<div class="col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4">
 								<button type="submit" class="btn btn-pink">Je m'inscris</button>
 							</div>

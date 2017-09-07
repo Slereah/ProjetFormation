@@ -16,7 +16,7 @@ class ClothesController extends Controller
 
 	/*CRUD clothes*/
 	
-	public function create()
+	public function create($id = null)
 	{
 		$name = null;
 		$categories = $this->clothesModel->getCategories();
@@ -28,17 +28,41 @@ class ClothesController extends Controller
 			$name = $_POST['name'];
 			$category = $_POST['category'];
 			$picture = $_POST['picture'];
+			$minTemp = $_POST['minTemp'];
+			$maxTemp = $_POST['maxTemp'];
+			$rain = $_POST['rain'];
 			// Vérification des données
 			// ...
 			if ($save) 
 			{
 				// Enregistre en BDD
-				$clothes = $this->clothesModel->insert([
+				if(is_null($id))
+				{
+					$clothes = $this->clothesModel->insert([
 					'name' => $name,
 					'category' => $category,
 					'picture' => $picture,
-					
-				]);
+					'minTemperature' => $minTemp,
+					'maxTemperature' => $maxTemp,
+					'rain' => $rain,
+					'defaultClothes' => true
+					]);
+				}
+				else
+				{
+					$clothes = $this->clothesModel->insert([
+					'name' => $name,
+					'category' => $category,
+					'picture' => $picture,
+					'minTemperature' => $minTemp,
+					'maxTemperature' => $maxTemp,
+					'rain' => $rain,
+					'defaultClothes' => false
+					]);
+
+					$this->clothesModel->addClothesUser($clothes["id"], $id);
+				}
+				
 				$this->redirectToRoute('clothes_read', [id => $clothes['id']]);
 			}
 		}
@@ -55,6 +79,7 @@ class ClothesController extends Controller
 	public function read($id)
 	{
 		$clothes = $this->clothesModel->find($id);
+		var_dump($clothes);
 		$this->show('clothes/read', [
 			"title" => $clothes['name'],
 			"clothes" => $clothes
@@ -75,6 +100,9 @@ class ClothesController extends Controller
 			$name = $_POST['name'];
 			$category = $_POST['category'];
 			$picture = $_POST['picture'];
+			$minTemp = $_POST['minTemp'];
+			$maxTemp = $_POST['maxTemp'];
+			$rain = $_POST['rain'];
 
 			// Vérification des données
 			// ...
@@ -85,6 +113,9 @@ class ClothesController extends Controller
 					'name' => $name,
 					'category' => $category,
 					'picture' => $picture,
+					'minTemperature' => $minTemp,
+					'maxTemperature' => $maxTemp,
+					'rain' => $rain
 				], $clothes['id']);
 
 				$this->redirectToRoute('clothes_read', [id => $clothes['id']]);
@@ -111,7 +142,7 @@ class ClothesController extends Controller
 				$this->clothesModel->deleteClothesUser($id, $idUser);
 			}
 			$this->clothesModel->delete($id);
-			$this->redirectToRoute('default_clothes_index');
+			$this->redirectToRoute('clothes_index');
 		}
 		$this->show('clothes/delete',[
 			"title" => " Suppression d'un vêtements :".$clothes['name'],

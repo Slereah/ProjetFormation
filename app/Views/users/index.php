@@ -50,52 +50,43 @@
 							</div>
 
 								<!-- Thumbnails -->
-							<div class="row">
-							  	<div class="col-sm-6 col-md-4">
-							    	<div class="thumbnail">
-							      		<img src="https://photos6.spartoo.com/photos/365/3654062/3654062_350_A.jpg" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
-							      		<div class="caption">
-							        		<h3>Catégorie du vêtement ici</h3>
-							        		<p>Nom du vêtement ici</p>
-							        		<p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
-							      		</div>
-							    	</div>
-							  	</div>
-							  	<div class="col-sm-6 col-md-4">
-							    	<div class="thumbnail">
-							      		<img src="http://www.celio.com/medias/sys_master/productMedias/productMediasImport/h2e/hc5/9144818696222/product-media-import-1040935-3-weared.jpg?frz-v914" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
-							      		<div class="caption">
-									        <h3>Catégorie du vêtement ici</h3>
-									        <p>Nom du vêtement ici</p>
-									        <p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
-							      		</div>
-							    	</div>
-							  	</div>
 
-							  	<div class="col-sm-6 col-md-4">
-							    	<div class="thumbnail">
-							      		<img src="https://media.quiksilver.co.id/media/catalog/product/cache/image/1000x1000/9df78eab33525d08d6e5fb8d27136e95/e/q/eqyws03252_quiksilver_mens_everyday_chino_walkshort_tmp0_1_h.jpg" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
-							      		<div class="caption">
-									        <h3>Catégorie du vêtement ici</h3>
-									        <p>Nom du vêtement ici</p>
-									        <p><a href="#" class="btn btn-default indexButton" role="button">Effacer</a></p>
-							      		</div>
-							    	</div>
-							  	</div>
+							<?php 
+								foreach ($clothes as $key => $value) 
+								{
+									?>
+									<div class="col-sm-6 col-md-3">
+								    	<div class="thumbnail">
+								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
+								      		<div class="caption">
+								        		<h3><?= $value["category"] ?></h3>
+								        		<p><?= $value["name"] ?></p>
+								        		<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" role="button">Effacer</a>
+								      		</div>
+								    	</div>
+								  	</div>
+									<?php
+								}
+
+							?>
 								<nav aria-label="Page navigation">
 									<ul class="pagination pagination-sm">
-										<li>
-									  		<a href="#" aria-label="Previous">
+										<li class="<?= ($page == 1)?"disabled":null ?>">
+									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="Previous">
 										    	<span aria-hidden="true">&laquo;</span>
 									  		</a>
 										</li>
-										<li><a href="#">1</a></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li><a href="#">4</a></li>
-										<li><a href="#">5</a></li>
-										<li>
-									  		<a href="#" aria-label="Next">
+										<?php
+											for($i = 1; $i <= $maxpage; $i++)
+											{
+												?>
+												<li><a href="?page=<?= $i ?>"><?= $i ?></a></li>
+												<?php
+											}
+										?>
+										
+										<li class="<?= ($page == $maxpage)?"disabled":null ?>">
+									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="Next" >
 								    			<span aria-hidden="true">&raquo;</span>
 										  	</a>
 										</li>
@@ -103,8 +94,9 @@
 								</nav>
 							</div><!-- Fin div row -->
 							<div class="text-center">
-								<button type="submit" class="btn btn-dark">Ajouter un vêtement</button>
-								<button type="submit" class="btn btn-dark">Modifier ma garde-robe</button>
+								<a href="<?= $this->url("clothes_create", ["id" => $user["id"]]) ?>" class="btn btn-dark">Ajouter un vêtement</a>
+								<a class="btn btn-dark">Chercher un vêtement</a>
+								<a class="btn btn-dark">Modifier ma garde-robe</a>
 							</div>
 						</div>
 					</div>

@@ -21,18 +21,18 @@
 			<div class="container">
 				<div class="text-center section-title">
 					<h1><?= date("l, F d, Y", time())?></h1>
-					<h2>Prévisions météo pour "NOM DE LA VILLE"</h2>
+					<h2>Prévisions météo pour <?= $city ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">
-								<h3>Minimal temperature : <?= $weather["minTemp"] ?> °C</h3>
+								<h3>Minimal temperature : <?= $weather["minTemp"] ?> <?= $unit?></h3>
 							</div>						
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">							
-								<h3>Maximal temperature : <?= $weather["maxTemp"] ?> °C</h3>
+								<h3>Maximal temperature : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
 							</div>
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" id="weatherIcon">
@@ -46,8 +46,21 @@
 
 		<div id="recent-projects" class="padding">
 			<div class="container">
+				<form class="">
+					<div>
+						<label>City</label>
+						<input type="text" name="city" id="city" value="<?= $cityInput ?>">
+					</div>
+					<div>
+						<label>Country</label>
+						<input type="text" name="country" id="country" value="<?= $countryInput ?>">
+					</div>
+					<button type="submit">update</button>
+				</div>
+
+
 				<div class="text-center section-title">
-					<h1>Date</h1>
+						<button type="submit" href="&day=<?= ($day == 0)?0:$day-1 ?>"><</button><h1><?= $date ?></h1><button href="&day=<?= ($day < 6)?$day+1:5 ?>">></button>
 					<h2>How to get dress today ?</h2>
 				</div>
 				<div class="recent-projects">

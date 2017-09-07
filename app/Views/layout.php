@@ -95,9 +95,6 @@
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
 	                </nav>
-	                <div class="search-icon">
-	                    <span><i class="fa fa-search"></i></span>
-	                </div>                
 	            </div>
 				<div class="search">
 					<form role="form">
@@ -107,6 +104,8 @@
 				</div>
 	        </div>
 	    </header><!--/#navigation--> 
+
+
 	    
     	<section>
 			<?= $this->section('main_content') ?>
