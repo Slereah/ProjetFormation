@@ -256,11 +256,54 @@ $(document).ready(function()
 
 function prevDay(day)
 {
-	console.log(day);
+	var url = removeParam("day", window.location.href);  
+
+	var prev = parseInt(day);
+	prev = (prev == 0)?0:prev-1;
+	if (url.indexOf('?') > -1)
+	{
+	   url += '&day=' + prev;
+	}
+	else
+	{
+	   url += '?day=' + prev;
+	}
+	window.location.href = url;
 }
 
 
 function nextDay(day)
 {
-	console.log(day);
+	var url = removeParam("day", window.location.href); 
+
+	var next = parseInt(day);
+	next = (next < 5)?next+1:5;
+	if (url.indexOf('?') > -1)
+	{
+	   url += '&day=' + next;
+	}
+	else
+	{
+	   url += '?day=' + next;
+	}
+	window.location.href = url;	var url = window.location.href;  
+
+}
+
+function removeParam(key, sourceURL) {
+    var rtn = sourceURL.split("?")[0],
+        param,
+        params_arr = [],
+        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    if (queryString !== "") {
+        params_arr = queryString.split("&");
+        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+            param = params_arr[i].split("=")[0];
+            if (param === key) {
+                params_arr.splice(i, 1);
+            }
+        }
+        rtn = rtn + "?" + params_arr.join("&");
+    }
+    return rtn;
 }

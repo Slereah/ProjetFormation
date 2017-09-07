@@ -60,7 +60,7 @@
 
 
 				<div class="text-center section-title">
-						<button type="button" onclick="prevDay(<?= $day ?>)" ?>"><</button><h1><?= $date ?></h1><button type="button" onclick="nextDay(<?= $day ?>)">></button>
+						<button type="button" onclick="prevDay(<?= $day ?>)">prev</button><h1><?= $date ?></h1><button type="button" onclick="nextDay(<?= $day ?>)">next</button>
 					<h2>How to get dress today ?</h2>
 				</div>
 				<div class="recent-projects">

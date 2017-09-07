@@ -67,9 +67,10 @@ class DefaultController extends Controller
 		$data["countryInput"] = $data["country"];
 		if(isset($_GET))
 		{
-			$city = $_GET["city"];
-			$country = $_GET["country"];
-			$day = $data["day"];
+
+			$city = isset($_GET["city"])?$_GET["city"]:$data["city"];
+			$country = isset($_GET["country"])?$_GET["country"]:$data["country"];
+			$day = isset($_GET["day"])?$_GET["day"]:$data["day"];
 
 			$data["cityInput"] = $city;
 			$data["countryInput"] = $country;
@@ -94,6 +95,9 @@ class DefaultController extends Controller
 				$data["day"] = $day;
 			}
 		}
+
+		$data["time"] += ($data["day"] * 3600 * 24);
+		$data["date"] = date("Y-m-d", $data["time"]);
 		$this->show('default/home', $data);
 	}
 
