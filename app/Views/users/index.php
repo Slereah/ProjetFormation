@@ -11,64 +11,78 @@
 					<div class="recent-projects">
 					
 						<!-- Infos persos -->
-						<div class="col-md-4">
+						<div class="col-md-4 col-xs-6 col-xs-offset-3 personalData">
 							<div class="text-center section-title">
 								<h2>Mes infos persos</h2>
 							</div>
 							<form class="userData">
 								<div>
-									<h3>Nom d'utilisateur : </h3><?= $user['username']?>
+									<h3>Nom d'utilisateur : </h3><span class="profileData"><?= $user['username']?></span>
 								</div>
 								<div>
-									<h3>Nom : </h3><?= $user['lastname']?>
+									<h3>Nom : </h3><span class="profileData"><?= $user['lastname']?></span>
 								</div>
 								<div>
-									<h3>Prénom : </h3><?= $user['firstname']?>
+									<h3>Prénom : </h3><span class="profileData"><?= $user['firstname']?></span>
 								</div>
 								<div>
-									<h3>Adresse Email : </h3><?= $user['email']?>
+									<h3>Adresse Email : </h3><span class="profileData"><?= $user['email']?></span>
 								</div>
 								<div>
-									<h3>Ville : </h3><?= $user['city']?>
+									<h3>Ville : </h3><span class="profileData"><?= $user['city']?></span>
 								</div>
 								<div>
-									<h3>Pays : </h3><?= $user['country']?>
+									<h3>Pays : </h3><span class="profileData"><?= $user['country']?></span>
 								</div>
 								<div>
-									<h3>Code Postal : </h3><?= $user['zipcode']?>
+									<h3>Code Postal : </h3><span class="profileData"><?= $user['zipcode']?></span>
 								</div>
 							</form>
 							<div class="text-center">
-								<button type="submit" class="btn btn-dark indexButton">Modifier mon profil</button>
+								<button type="submit" class="btn btn-primary indexButton">Modifier mon profil</button>
 							</div>
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-6 col-md-offset-2">
+						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-1 myWardrobe">
 							<div class="text-center section-title">
 								<h2>Ma garde-robe</h2>
 							</div>
 
 								<!-- Thumbnails -->
 
-							<?php 
+							<?php
 								foreach ($clothes as $key => $value) 
 								{
+									if($key % 4 == 0)
+									{
+										?>
+								<div class="row">
+										<?php
+									}
 									?>
 									<div class="col-sm-6 col-md-3">
 								    	<div class="thumbnail">
-								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes" id="imgWardrobe" alt="vêtement">
+								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="vêtement">
 								      		<div class="caption">
 								        		<h3><?= $value["category"] ?></h3>
 								        		<p><?= $value["name"] ?></p>
-								        		<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" role="button">Effacer</a>
+								        		<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
 								      		</div>
 								    	</div>
 								  	</div>
 									<?php
+									if($key % 4 == 3 || $key == count($clothes) - 1)
+									{
+										?>
+								</div>
+										<?php
+									}
 								}
 
+
 							?>
+
 								<nav aria-label="Page navigation">
 									<ul class="pagination pagination-sm">
 										<li class="<?= ($page == 1)?"disabled":null ?>">
@@ -94,9 +108,8 @@
 								</nav>
 							</div><!-- Fin div row -->
 							<div class="text-center">
-								<a href="<?= $this->url("clothes_create", ["id" => $user["id"]]) ?>" class="btn btn-dark">Ajouter un vêtement</a>
-								<a class="btn btn-dark">Chercher un vêtement</a>
-								<a class="btn btn-dark">Modifier ma garde-robe</a>
+								<a href="<?= $this->url("clothes_create", ["id" => $user["id"]]) ?>" class="btn btn-primary"  id="addButton">Ajouter un vêtement</a>
+								<a href="<?= $this->url("search") ?>"  class="btn btn-primary">Chercher un vêtement</a>
 							</div>
 						</div>
 					</div>

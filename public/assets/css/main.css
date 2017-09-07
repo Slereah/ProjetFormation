@@ -3457,7 +3457,21 @@ img.mfp-img {
 div#password {
     text-align: center;
     margin-right: 12px;
+    margin-top: 10px
 }
+
+#signinTitle {
+	margin-top: 80px;
+}
+
+
+/*=========================
+===== Signup CSS =======
+===========================*/
+#signupTitle {
+    margin-top: 80px;
+}
+
 
 /*=========================
 ===== Page Index CSS =======
@@ -3474,8 +3488,13 @@ form.userData {
     padding-left: 18px;
 }
 
-#imgWardrobe {
-	max-width: 100%;
+span.profileData {
+    margin-left: 8px;
+}
+
+.imgWardrobe {
+	max-width: 100% !important;
+    height: 50% !important;
 }
 
 #indexTitle {
@@ -3498,3 +3517,61 @@ form.userData {
 	border-radius: 10px;
 	border : 1px solid black;
 }
+
+.btn-primary {
+ 	background-color: #363636 !important;
+    border: 1px solid #363636 !important;
+    color: #fff;
+}
+
+.btn-secondary {
+	background-color: #8c8989 !important;
+    border: 1px solid #8c8989 !important;
+    color: #fff;
+}
+
+#addButton {
+	margin-right: 8px;
+}
+
+.thumbnail {
+    height: 350px;
+}
+
+
+@media (max-width: 768px) {
+	span.profileData {
+		font-size: 12px;
+	}
+	form.userData h3 {
+    	font-size: 12px;
+	}
+	.col-sm-offset-2 {
+		margin-top: 120px;
+	}
+	.myWardrobe {
+		margin-top: 50px;
+	}
+	.personalData {
+		margin-top: 22px;
+	}
+}
+    
+
+/*=========================
+=====  Layout =======
+===========================*/
+
+.leftSection {
+    margin-right: 10px;
+}
+
+@media (max-width: 768px){
+	.rightSection {
+    	margin-right: 70px;
+	}
+	.leftSection {
+		margin-left: 28px;
+	}
+}
+

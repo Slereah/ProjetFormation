@@ -5,7 +5,7 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2><?= $title ?></h2>
+					<h2 id="signupTitle"><?= $title ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
