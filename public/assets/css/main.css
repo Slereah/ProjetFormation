@@ -3477,3 +3477,11 @@ form.userData {
 #imgWardrobe {
 	max-width: 100%;
 }
+
+#indexTitle {
+    padding-top: 23px;
+}
+
+.indexButton {
+    margin-top: 10px;
+}
