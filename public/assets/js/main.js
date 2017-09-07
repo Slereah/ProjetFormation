@@ -253,3 +253,14 @@ $(document).ready(function()
 
 	}
 );
+
+function prevDay(day)
+{
+	console.log(day);
+}
+
+
+function nextDay(day)
+{
+	console.log(day);
+}
