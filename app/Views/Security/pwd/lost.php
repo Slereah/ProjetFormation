@@ -12,7 +12,7 @@
 						<div class="col-md-4 col-md-offset-4">
 
 							<!-- A EFFACER -->
-							<a href="<?= $THE_TOKEN_URL ?>"><?= $THE_TOKEN_URL ?></a>
+							<a class="hidden" href="<?= $THE_TOKEN_URL ?>"><?= $THE_TOKEN_URL ?></a>
 							<!-- A EFFACER -->
 
 							<?php if (!empty($errors)): ?>

@@ -271,7 +271,7 @@ class SecurityController extends Controller
     	if ($_SERVER['REQUEST_METHOD'] === "POST") {
     		
       		// Récupération des données du POST
-      		$email = strip_tags(trim($_POST['email']));
+      		$email = strip_tags(trim($_POST['user']['email']));
 
       		// Récupération de l'utilisateur dans la BDD (est ce que l'utilisateur existe ?)
       		if ($user = $this->usersModel->getUserByUsernameOrEmail($email)) {
@@ -332,76 +332,14 @@ class SecurityController extends Controller
 
   		$errors = [];
 
-  	// Recuperation du Token ( pour le transmettre dans le formulaire en champ caché)
-
-
-	    // If method POST
-	  	if ($_SERVER['REQUEST_METHOD'] === "POST") {
-	  
-	        // Récupération des données du POST
-	        $token 				= strip_tags(trim($_POST['token']));
-	        $password 			= strip_tags(trim($_POST['password']));
-	        $repeat_password 	= strip_tags(trim($_POST['repeat_password']));
-
-	        // Controle du Token + recup des données associées au token
-	        $tokensManager = new \Model\TokensModel;
-	        $token_data = $tokensManager->findByToken($token);
-
-	        if ($token_data) {
-	        	
-	        // Controle de la validité du token (timeout)
-	        	if ($token_data['timeout'] >= time()) {
-	        	
-		        // Controle des MDP
-	        		if (empty($password)) {
-	        			array_push($errors, "Le mot de passe ne doit pas être vide");
-	        		}
-
-	        		else if ($repeat_password !== $password) {
-	        		 	array_push($errors, "Les mots de passe doivent être identique");
-
-	        		} 
-
-	        		else {
-	        		// Cryptage du mot de passe
-	        			$password = password_hash($password, PASSWORD_DEFAULT);
-
-			        // M.A.J. du MDP dans la BDD
-	        			$this->usersModel->update([
-	        				"password" => $password,
-	        			], $token_data['user_id']);
-
-
-
-			        // Redirige l'utilisateur vers la page signIN
-	        		$this->redirectToRoute('security_signin');
-
-
-					}
-	        	}
-	        	// Le délai de la validité du token est dépassé
-
-	        	else {
-
-	        		array_push($errors, 'Le délai de validité du token est expiré.');
-	        		
-	        	}
-
-	        } 
-
-	        else {
-	        	// La requête  -> findByToken return FALSE
-	        	array_push($errors, "Le token est invalide");
-
-			}
-		
-		}
 	    	// Affichage du formulaire
 	    	$this->show('security/pwd/reset', [
 	    		"title" => " Changer le mot de passe ",
 	    		"token" => $token,
 	    		"errors" => $errors
 	    	]);
+
+	    $this->redirectToRoute('security_signin');
   	}
 }
 
