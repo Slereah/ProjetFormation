@@ -156,10 +156,10 @@ class ClothesController extends Controller
 				$this->clothesModel->deleteClothesUser($id, $idUser);
 			}
 			$this->clothesModel->delete($id);
-			$this->redirectToRoute('clothes_index');
+			$this->redirectToRoute('profile');
 		}
 		$this->show('clothes/delete',[
-			"title" => " Suppression d'un vêtements :".$clothes['name'],
+			"title" => " Supprimer le vêtement : ".$clothes['name'],
 			"clothes" => $clothes
 		]);
 	}

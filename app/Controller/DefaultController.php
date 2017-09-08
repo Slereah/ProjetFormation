@@ -47,9 +47,9 @@ class DefaultController extends Controller
 		}
 
 		$data["cityInput"] = $data["city"];
-		$data["countryInput"] = $data["country"];
-		
+		$data["countryInput"] = $data["country"];		
 		$data["date"] = date("Y-m-d", $data["time"]);
+
 		$this->show('default/home', $data);
 	}
 

@@ -401,7 +401,7 @@ a.navbar-brand {
 #navigation .navbar-fixed-top .navbar-right, 
 #page #navigation .navbar .navbar-right {
 	margin-top:0;
-	margin-right: 180px;
+	margin-right: 250px;
 }
 
 #navigation .navbar-fixed-top .navbar-right li a, 
@@ -452,7 +452,7 @@ a.navbar-brand {
 	color:#fff;
 	font-size:14px;
 	text-transform:uppercase;
-	padding:10px 40px;
+	padding:10px 24px;
 	font-weight:400;
 	background-color:transparent;
 }
@@ -850,7 +850,6 @@ a.navbar-brand {
 #home-section {
 	height:650px;
 	background-color:#CD3057;
-	background-image:url(../images/home/banner.jpg);
 	background-repeat:no-repeat;
 	background-size:cover;
 	position:relative;
@@ -3497,6 +3496,10 @@ span.profileData {
     height: 50% !important;
 }
 
+#wardrobeThumbnail {
+    padding-right: 0px;
+}
+
 #indexTitle {
     padding-top: 23px;
 }
@@ -3556,6 +3559,27 @@ span.profileData {
 		margin-top: 22px;
 	}
 }
+
+@media (min-width:768px) and (max-width: 991px) {
+	.myWardrobe {
+    	margin-top: 100px;
+	}
+
+}
+
+@media (max-width: 767px) {
+	.myWardrobe {
+    	margin-top: 50px;
+	}
+
+}
+
+@media (min-width: 1200px) {
+	.myWardrobe .personalData {
+	    margin-top: -34px;
+	}
+	
+}
     
 
 /*=========================
@@ -3564,6 +3588,10 @@ span.profileData {
 
 .leftSection {
     margin-right: 10px;
+}
+
+@media () and () {
+
 }
 
 @media (max-width: 768px){
@@ -3575,3 +3603,23 @@ span.profileData {
 	}
 }
 
+@media (min-width: 768px) {
+	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    	margin-left: -80px;
+	}
+}
+
+
+/*=========================
+=====  Delete =======
+===========================*/
+#yesButton {
+	margin-right: 23px;
+}
+
+/*=========================
+=====  page Clothes (index) =======
+===========================*/
+.imgClothesIndex {
+	max-width: 50% !important;
+}
