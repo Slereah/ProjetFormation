@@ -3177,7 +3177,7 @@ var Cropper = function () {
     key: 'init',
     value: function init() {
       var self = this;
-      var element = self.element[0];
+      var element = self.element;
       var tagName = element.tagName.toLowerCase();
       var url = void 0;
 
