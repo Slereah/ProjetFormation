@@ -54,25 +54,28 @@
 							<?php
 								foreach ($clothes as $key => $value) 
 								{
-									if($key % 4 == 0)
+									if($key % 3 == 0)
 									{
 										?>
 								<div class="row">
 										<?php
 									}
 									?>
-									<div class="col-sm-6 col-md-3">
+									<div class="col-sm-6 col-md-4" id="wardrobeThumbnail">
 								    	<div class="thumbnail">
 								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="vêtement">
 								      		<div class="caption">
 								        		<h3><?= $value["category"] ?></h3>
 								        		<p><?= $value["name"] ?></p>
-								        		<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
+								        		<div class="text-center">
+								        			<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
+								        			<a href="<?= $this->url('clothes_update_user', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Modifier</a>
+								        		</div>
 								      		</div>
 								    	</div>
 								  	</div>
 									<?php
-									if($key % 4 == 3 || $key == count($clothes) - 1)
+									if($key % 3 == 2 || $key == count($clothes) - 1)
 									{
 										?>
 								</div>

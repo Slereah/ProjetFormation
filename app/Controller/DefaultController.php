@@ -68,9 +68,9 @@ class DefaultController extends Controller
 		$data["countryInput"] = $data["country"];
 		if(isset($_GET))
 		{
-			$city = "";
-			$country = "";
-			$day = "";
+			$city = isset($_GET["city"])?$_GET["city"]:$data["city"];
+			$country = isset($_GET["country"])?$_GET["country"]:$data["country"];
+			$day = isset($_GET["day"])?$_GET["day"]:$data["day"];
 
 			$data["cityInput"] = $city;
 			$data["countryInput"] = $country;

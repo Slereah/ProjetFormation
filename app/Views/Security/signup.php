@@ -34,7 +34,7 @@
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="firstname" class="control-label">Prénom</label>
-								<input type="text" class="form-control" id="firstname" name="firstname"  placeholder="Prénom">
+								<input type="text" class="form-control" id="firstname" name="firstname"  placeholder="Prénom" value="<?= $firstname ?>">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
@@ -44,7 +44,7 @@
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="password" class="control-label">Mot de passe</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  value="<?= $password ?>">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
@@ -310,19 +310,19 @@
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="city" class="control-label">Ville</label>
-								<input type="text" class="form-control" id="city" name="city" placeholder=" Ville ">
+								<input type="text" class="form-control" id="city" name="city" placeholder=" Ville " value="<?= $city ?>">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="zipcode" class="control-label">Code Postale</label>
-								<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale ">
+								<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale " value="<?= $zipcode ?>">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="unit" class="control-label">Unité</label>
 								<select id="unit" name="unit">
 									<option value="">Sélectionner votre pays :</option>
-									<option value="°C">Celcius</option>
+									<option value="°C">Celsius</option>
 									<option value="°F">Fahrenheit</option>
 								</select>
 							</div>

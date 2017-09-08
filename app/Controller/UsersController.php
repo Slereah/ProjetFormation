@@ -37,7 +37,7 @@ class UsersController extends Controller
 
 		$maxpage = $this->clothesModel->count("personal", $user["id"])["COUNT(*)"];
 
-		$data["maxpage"] = ceil($maxpage / 4) ;
+		$data["maxpage"] = ceil($maxpage / 3) ;
 
 		$page = 1;
 
@@ -48,7 +48,7 @@ class UsersController extends Controller
 
 		$data["page"] = $page;
 
-		$data["clothes"] = $this->clothesModel->get("personal", $user["id"], 4, $page);
+		$data["clothes"] = $this->clothesModel->get("personal", $user["id"], 3, $page);
 		// Affichage de la vue du profil
 		$this->show('users/index',$data);
 	}
