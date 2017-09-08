@@ -11,7 +11,7 @@
 					<div class="recent-projects">
 					
 						<!-- Infos persos -->
-						<div class="col-md-4 col-xs-6 col-xs-offset-3 personalData">
+						<div class="col-md-4 personalData">
 							<div class="text-center section-title">
 								<h2>Mes infos persos</h2>
 							</div>
@@ -44,7 +44,7 @@
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-2 myWardrobe">
+						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-1 myWardrobe">
 							<div class="text-center section-title">
 								<h2>Ma garde-robe</h2>
 							</div>

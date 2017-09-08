@@ -75,7 +75,7 @@ class ClothesController extends Controller
 		}
 	
 		$this->show('clothes/create', [
-			"title" => " Ajouter d'un vêtements",
+			"title" => " Ajouter un vêtement",
 			"name" => $name,
 			"categories" => $categories,
 			"picture" => $picture,

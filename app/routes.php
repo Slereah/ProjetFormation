@@ -6,6 +6,8 @@
         *-- Home page
         */
 		['GET', '/', 'Default#home', 'home'],
+        ['GET|POST', '/update-weather', 'Default#updateWeather', 'update_weather'],
+
 
 		/* 
         *-- Contact 

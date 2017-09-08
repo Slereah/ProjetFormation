@@ -58,11 +58,11 @@
 							{
 								?>
 									<span class="login-section leftSection">
-										<a href="<?= $this->url('profile') ?>"><i class="fa fa-user"></i>Profile</a>
+										<a href="<?= $this->url('profile') ?>"><i class="fa fa-user"></i>Profil</a>
 									</span>
 									<span class="login-section rightSection">
 
-										<a href="<?= $this->url('security_logout') ?>"><i class="fa fa-user"></i>Log out</a>
+										<a href="<?= $this->url('security_logout') ?>"><i class="fa fa-user"></i>Déconnexion</a>
 									</span>
 								<?php
 							}
@@ -70,10 +70,10 @@
 							{
 								?>
 									<span class="login-section leftSection">
-										<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Signup</a>
+										<a href="<?= $this->url('security_signup') ?>"><i class="fa fa-user"></i>Inscription</a>
 									</span>
 									<span class="login-section rightSection">
-										<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Login</a>
+										<a href="<?= $this->url('security_signin') ?>"><i class="fa fa-user"></i>Connexion</a>
 									</span>
 								<?php
 							}
@@ -82,16 +82,16 @@
 	                <nav id="main-menu" class="collapse navbar-collapse navbar-right">         
 	                    <ul class="nav navbar-nav">
 	                        <li><a href="<?= $this->url('home') ?>">
-	                        	Home
+	                        	Accueil
 	                        	</a>
                         	</li>
 		
 							<li><a href="javascript:void(0);">
-								How it works ?
+								Comment ça marche ?
 								</a>
 							</li>						
 							
-	                        <li><a href="shortcode.html">How to get dress today ?</a></li>
+	                        <li><a href="">Comment s'habiller aujourd'hui ?</a></li>
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
@@ -118,35 +118,23 @@
 					<div class="row">
 						<div class="col-md-4 col-sm-4">
 							<div class="footer-widget">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+								<h2>Nos coordonnées</h2>
 								<address>
 									<ul>
-										<li><span>Address:</span>URBILOG - 31 Rue Denis Papin, 59650 Villeneuve-d'Ascq - France</li>
-										<li><span>Phone:</span>+33 1 23 45 67 89</li>
+										<li><span>Adresse :</span>URBILOG - 31 Rue Denis Papin, 59650 Villeneuve-d'Ascq - France</li>
+										<li><span>Téléphone :</span>+33 1 23 45 67 89</li>
 										<li><span>Mail:</span><a href="#">weather&wear@gmail.com</a></li>
 									</ul>
 								</address>
 							</div>
 						</div>
-						<div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-4">
+						<div class="col-md-4 col-md-offset-4 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-4">
 							<div class="footer-widget">
-								<h2>Quick Links</h2>
+								<h2>Partenaires</h2>
 								<ul>
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Project</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">FAQ</a></li>
-									<li><a href="#">Intern</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-2 col-md-offset-2 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-4">
-							<div class="footer-widget">
-								<h2>Partners</h2>
-								<ul>
-									<li><a href="#">Le mouton à 5 pattes</a></li>
-									<li><a href="#">Compéthance</a></li>
-									<li><a href="#">Centre Ressources Autisme Nord Pas de Calais</a></li>
+									<li><a href="https://www.facebook.com/aspergerlemoutona5pattes/">Le mouton à 5 pattes</a></li>
+									<li><a href="http://compethance.fr/">Compéthance</a></li>
+									<li><a href="https://www.cra-npdc.fr/">Centre Ressources Autisme Nord Pas de Calais</a></li>
 								</ul>
 							</div>
 						</div>
@@ -183,5 +171,5 @@
      								*********
 	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
 	ne fonctionnent pas.
-	- Ajouter logo drapeaux pr traduction fr/en
+	
  -->

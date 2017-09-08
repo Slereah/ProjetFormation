@@ -186,135 +186,111 @@ jQuery(function ($){
 $(document).ready(function()
 	{
 
-	var myCropper;
-	var image;
-	initCropper();
+		var myCropper;
+		var image;
+		initCropper();
 
-	function addCropper()
-	{
-		image = $("#image");
-		//console.log(image);
-		myCropper = new Cropper(image, {
-		  aspectRatio: 16 / 9,
-		  crop: function(e) {
-		    console.log(e.detail.x);
-		    console.log(e.detail.y);
-		    console.log(e.detail.width);
-		    console.log(e.detail.height);
-		    console.log(e.detail.rotate);
-		    console.log(e.detail.scaleX);
-		    console.log(e.detail.scaleY);
-		  }
-		});
-	}
-
-
-	function initCropper()
-	{
-		$("#loadImage").change(function(){
-		    readURL(this);
-		});
-		addCropper();
-
-	}
-
-
-
-	function cropImage()
-	{
-		myCropper.getCroppedCanvas().toBlob(function(blob)
+		function addCropper()
 		{
-			console.log(blob);
-			var formData = new FormData();
-			formData.append('croppedImage', blob);
-	  		$.ajax('/crop/upload.php', {
-		    	method: "POST",
-		    	data: formData,
-		    	processData: false,
-		    	contentType: false,
-		    	success: function (response) 
-		    	{
-		      		console.log(response);
-		    	},
-			    error: function () {
-		    	  console.log('Upload error');
-		    	}
-		  	});
-		  	
+			image = $("#image");
+			//console.log(image);
+			myCropper = new Cropper(image, {
+			  aspectRatio: 16 / 9,
+			  crop: function(e) {
+			    console.log(e.detail.x);
+			    console.log(e.detail.y);
+			    console.log(e.detail.width);
+			    console.log(e.detail.height);
+			    console.log(e.detail.rotate);
+			    console.log(e.detail.scaleX);
+			    console.log(e.detail.scaleY);
+			  }
+			});
+		}
 
-		});
+
+		function initCropper()
+		{
+			$("#loadImage").change(function(){
+			    readURL(this);
+			});
+			addCropper();
+
+		}
+
+
+
+		function cropImage()
+		{
+			myCropper.getCroppedCanvas().toBlob(function(blob)
+			{
+				console.log(blob);
+				var formData = new FormData();
+				formData.append('croppedImage', blob);
+		  		$.ajax('/crop/upload.php', {
+			    	method: "POST",
+			    	data: formData,
+			    	processData: false,
+			    	contentType: false,
+			    	success: function (response) 
+			    	{
+			      		console.log(response);
+			    	},
+				    error: function () {
+			    	  console.log('Upload error');
+			    	}
+			  	});
+			  	
+
+			});
+		}
+
+		function readURL(input) 
+		{
+
+		    if (input.files && input.files[0]) 
+		    {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            image.attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+		        addCropper();
+		    }
+		}
+
+
 	}
 
-	function readURL(input) 
-	{
-
-	    if (input.files && input.files[0]) 
-	    {
-	        var reader = new FileReader();
-
-	        reader.onload = function (e) {
-	            image.attr('src', e.target.result);
-	        }
-
-	        reader.readAsDataURL(input.files[0]);
-	        addCropper();
-	    }
-	}
 
 
-	}
 );
 
-function prevDay(day)
+function changeDay(day, city, country, unit)
 {
-	var url = removeParam("day", window.location.href);  
-
-	var prev = parseInt(day);
-	prev = (prev == 0)?0:prev-1;
-	if (url.indexOf('?') > -1)
-	{
-	   url += '&day=' + prev;
-	}
-	else
-	{
-	   url += '?day=' + prev;
-	}
-	window.location.href = url;
+	data = { day : day, city : city, country : country, unit : unit };
+	$.ajax('update-weather', {
+			type: 'POST',
+			data: data,
+			success:function(response)
+			{
+				updateDisplay(response);
+				
+			},
+			error:function(response)
+			{
+				console.log("error");
+				
+			}
+		});
 }
 
-
-function nextDay(day)
+function updateDisplay(data)
 {
-	var url = removeParam("day", window.location.href); 
+	console.log(data);
+	$("#welcome-section div div h1").text(data.date);
+	$("#welcome-section div div h2").text(data.city);
 
-	var next = parseInt(day);
-	next = (next < 5)?next+1:5;
-	if (url.indexOf('?') > -1)
-	{
-	   url += '&day=' + next;
-	}
-	else
-	{
-	   url += '?day=' + next;
-	}
-	window.location.href = url;	var url = window.location.href;  
-
-}
-
-function removeParam(key, sourceURL) {
-    var rtn = sourceURL.split("?")[0],
-        param,
-        params_arr = [],
-        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
-    if (queryString !== "") {
-        params_arr = queryString.split("&");
-        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
-            param = params_arr[i].split("=")[0];
-            if (param === key) {
-                params_arr.splice(i, 1);
-            }
-        }
-        rtn = rtn + "?" + params_arr.join("&");
-    }
-    return rtn;
 }

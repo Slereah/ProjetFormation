@@ -1,10 +1,7 @@
-<?php 
-
-$this->layout('layout', ['title' => 'Vêtement']);
-
-?>
+<?php $this->layout('layout', ['title' => 'Vêtement'])?>
 
 <?php $this->start('main_content') ?>
+
 	<div style="height: 80px;"></div>
 	<div class="container">
 		<h2> <?= $title ?> </h2>

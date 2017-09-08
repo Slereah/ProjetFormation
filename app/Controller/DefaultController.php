@@ -4,7 +4,6 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ClothesModel;
-use \Model\ContactModel;
 
 class DefaultController extends Controller
 {
@@ -52,23 +51,53 @@ class DefaultController extends Controller
 					$data["weather"]["maxTemp"], 
 					$data["weather"]["rain"], $id));
 
-			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants", "personal", $id);
-			$data["shoes"] = $this->clothesModel->getFromCategory("shoes", "personal", $id);
+			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
+				$this->clothesModel->getTemp(
+					"pants", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+
+			$data["shoes"] = $this->clothesModel->getTemp(
+					"shoes", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id);
 			
 		}
 		else
 		{
 			$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
-			$data["upperClothes"] = $this->clothesModel->getFromCategory("shirts");
-			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants");
-			$data["shoes"] = $this->clothesModel->getFromCategory("shoes");
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"shirts", "defaut", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"]));
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"coats", "default", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"]));
+			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
+				$this->clothesModel->getTemp(
+					"pants", "default", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"]));
+
+			$data["shoes"] = $this->clothesModel->getTemp(
+					"shoes", "default", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"]);
 		}
 
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];
 		if(isset($_GET))
 		{
-
 			$city = isset($_GET["city"])?$_GET["city"]:$data["city"];
 			$country = isset($_GET["country"])?$_GET["country"]:$data["country"];
 			$day = isset($_GET["day"])?$_GET["day"]:$data["day"];
@@ -115,10 +144,11 @@ class DefaultController extends Controller
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Récupération des données du formulaire
-		$lastname = trim(strip_tags( $_POST['lastname']));
-		$firstname = trim(strip_tags( $_POST['firstname']));
-		$email = trim(strip_tags( $_POST['email']));
-    	$message = trim(strip_tags( $_POST['message']));
+			$lastname = trim(strip_tags( $_POST['lastname']));
+			$firstname = trim(strip_tags( $_POST['firstname']));
+			$email = trim(strip_tags( $_POST['email']));
+	    	$message = trim(strip_tags( $_POST['message']));
+
 
         // Vérification des données
 
@@ -202,7 +232,59 @@ class DefaultController extends Controller
 
 	public function updateWeather()
 	{
+		header('Content-type: application/json');
+		$data = $_POST;
 		
+		$time = time() + ($data["day"] * 3600 * 24);
+		$data["date"] = date("Y-m-d", $time);
+
+		$data["upperClothes"] = [];
+		$data["lowerClothes"] = [];
+		$data["shoes"] = [];
+
+		
+		$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
+		if(is_null($data["weather"]))
+		{
+			$data["errors"]["weather"] = "Can't find the weather in the place indicated";
+		}
+		
+
+		if(isset($_SESSION["user"]))
+		{
+			$user = $_SESSION["user"];
+			$id = $user["id"];
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"shirts", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"coats", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+
+			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
+				$this->clothesModel->getTemp(
+					"pants", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+
+			$data["shoes"] = $this->clothesModel->getTemp(
+					"shoes", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id);
+		}
+		else
+		{
+
+		}
+		echo json_encode($data);
 	}
 
 	private static function fahrenheit_to_celsius($temp)

@@ -326,8 +326,8 @@
 									<option value="°F">Fahrenheit</option>
 								</select>
 							</div>
-							<div class="col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4">
-								<button type="submit" class="btn btn-pink">Je m'inscris</button>
+							<div class="col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4 text-center">
+								<button type="submit" class="btn btn-primary">Je m'inscris</button>
 							</div>
 							
 						</form>
