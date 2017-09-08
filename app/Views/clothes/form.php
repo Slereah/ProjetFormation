@@ -40,7 +40,7 @@
 
 		<div class="form-group">
 			<label>Upload image</label>
-			<input type="file" name="loadImage" id="loadImage">
+			<input type="file" name="loadImage" id="loadImage" onchange="loadCropper(this)">
 	  		<img id="image" src="" width="300px">
 	  		<button onclick="cropImage()">Crop</button>
   		</div>

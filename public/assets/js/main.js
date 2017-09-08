@@ -183,91 +183,6 @@ jQuery(function ($){
 	}());
 });
 
-$(document).ready(function()
-	{
-
-		var myCropper;
-		var image;
-		initCropper();
-
-		function addCropper()
-		{
-			image = $("#image");
-			//console.log(image);
-			myCropper = new Cropper(image, {
-			  aspectRatio: 16 / 9,
-			  crop: function(e) {
-			    console.log(e.detail.x);
-			    console.log(e.detail.y);
-			    console.log(e.detail.width);
-			    console.log(e.detail.height);
-			    console.log(e.detail.rotate);
-			    console.log(e.detail.scaleX);
-			    console.log(e.detail.scaleY);
-			  }
-			});
-		}
-
-
-		function initCropper()
-		{
-			$("#loadImage").change(function(){
-			    readURL(this);
-			});
-			addCropper();
-
-		}
-
-
-
-		function cropImage()
-		{
-			myCropper.getCroppedCanvas().toBlob(function(blob)
-			{
-				console.log(blob);
-				var formData = new FormData();
-				formData.append('croppedImage', blob);
-		  		$.ajax('/crop/upload.php', {
-			    	method: "POST",
-			    	data: formData,
-			    	processData: false,
-			    	contentType: false,
-			    	success: function (response) 
-			    	{
-			      		console.log(response);
-			    	},
-				    error: function () {
-			    	  console.log('Upload error');
-			    	}
-			  	});
-			  	
-
-			});
-		}
-
-		function readURL(input) 
-		{
-
-		    if (input.files && input.files[0]) 
-		    {
-		        var reader = new FileReader();
-
-		        reader.onload = function (e) {
-		            image.attr('src', e.target.result);
-		        }
-
-		        reader.readAsDataURL(input.files[0]);
-		        addCropper();
-		    }
-		}
-
-
-	}
-
-
-
-);
-
 function update(day, city, country, unit, source)
 {
 	if(source == "upButton")
@@ -292,11 +207,6 @@ function update(day, city, country, unit, source)
 		});
 }
 
-function centerButtons()
-{
-
-}
-
 function updateDisplay(data)
 {
 	$("#welcome-section div div h1").text(data.date);
@@ -312,15 +222,27 @@ function updateDisplay(data)
 	$("#mon-carrousel2 div").empty();
 	$("#mon-carrousel3 div").empty();
 
+	var div =  $("<div></div>");
+	div.addClass("carousel-caption");
+	var h3 = $("<h3></h3>");
+	h3.text("Haut");
+	div.append(h3);
 	for (var i = 0; i < data.upperClothes.length; i++) 
 	{
-		$("#mon-carrousel1 div").append(createCarouselElement(i, data.upperClothes[i]));
-		var div =  $("<div></div>");
-		div.addClass("carousel-caption");
-		var h3 = $("<h3></h3>");
-		h3.text("Haut");
-		div.append(h3);
-		$("#mon-carrousel1 div").append(div);
+		$("#mon-carrousel1>div").append(createCarouselElement(i, data.upperClothes[i]));
+		$("#mon-carrousel1>div").append(div);
+	}
+
+	for (var i = 0; i < data.lowerClothes.length; i++) 
+	{
+		$("#mon-carrousel2>div").append(createCarouselElement(i, data.lowerClothes[i]));
+		$("#mon-carrousel2>div").append(div);
+	}
+
+	for (var i = 0; i < data.shoes.length; i++) 
+	{
+		$("#mon-carrousel3>div").append(createCarouselElement(i, data.shoes[i]));
+		$("#mon-carrousel3>div").append(div);
 	}
 
 }
@@ -337,7 +259,70 @@ function createCarouselElement(key, clothes)
 	var img = $("<img></img>");
 	img.addClass("img-responsive");
 	img.addClass("imgClothes");
-	img.attr("href", clothes.picture);
+	img.attr("src", clothes.picture);
 	div.append(img);
 	return div;
 }
+
+	var myCropper;
+	var image;
+	if($(".carousel").length)
+	{
+		$(".carousel").pause();
+	}
+	function loadCropper()
+	{
+		readURL($("#loadImage")[0]);
+		image = $("#image");
+		//console.log(image);
+		myCropper = new Cropper(image, {
+		  aspectRatio: 16 / 9,
+		  crop: function(e) {
+		    console.log(e.detail.x);
+		    console.log(e.detail.y);
+		    console.log(e.detail.width);
+		    console.log(e.detail.height);
+		    console.log(e.detail.rotate);
+		    console.log(e.detail.scaleX);
+		    console.log(e.detail.scaleY);
+		  }
+		});
+		console.log(myCropper);
+	}
+
+
+	function cropImage()
+	{
+		myCropper.getCroppedCanvas().toBlob(function(blob)
+		{
+			console.log(blob);
+			var formData = new FormData();
+			formData.append('croppedImage', blob);
+	  		$.ajax('/crop/upload.php', {
+		    	method: "POST",
+		    	data: formData,
+		    	processData: false,
+		    	contentType: false,
+		    	success: function (response) 
+		    	{
+		      		console.log(response);
+		    	},
+			    error: function () {
+		    	  console.log('Upload error');
+		    	}
+		  	});
+		  	
+		});
+	}
+
+	function readURL(input) 
+	{
+	    if (input.files && input.files[0]) 
+	    {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	            image.attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}

@@ -147,7 +147,12 @@ class ClothesModel extends Model
 
 	public function getTemp($category, $type = "both", $weather, $id = null)
 	{
-		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp AND rain = :rain";
+
+		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp";
+		if($weather["rain"])
+		{
+			$sql .= " AND rain = 10";
+		}
 		switch ($type) 
 		{
 			case 'both':
@@ -169,8 +174,6 @@ class ClothesModel extends Model
 		$sth->bindParam(":cat", $category);
 		$sth->bindParam(":minTemp", $weather["minTemp"]);
 		$sth->bindParam(":maxTemp", $weather["maxTemp"]);
-		$rain = ($weather["rain"])?"10":"0";
-		$sth->bindParam(":rain", $rain);
 		$sth->execute();
 		return $sth->fetchAll();
 	}

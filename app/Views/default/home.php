@@ -68,7 +68,7 @@
 				</div>
 				<div class="recent-projects">
 					<div class="row"> 
-						<div class="carousel slides" id="mon-carrousel1">
+						<div class="carousel slide" id="mon-carrousel1">
 							<!-- Carrousel d'images -->
 							<div id="selectUpper" class="carousel-inner">
 								<?php
