@@ -268,8 +268,13 @@ $(document).ready(function()
 
 );
 
-function changeDay(day, city, country, unit)
+function update(day, city, country, unit, source)
 {
+	if(source == "upButton")
+	{
+		city = $("input#city").val();
+		country = $("input#country").val();
+	}
 	data = { day : day, city : city, country : country, unit : unit };
 	$.ajax('update-weather', {
 			type: 'POST',
@@ -287,10 +292,52 @@ function changeDay(day, city, country, unit)
 		});
 }
 
+function centerButtons()
+{
+
+}
+
 function updateDisplay(data)
 {
-	console.log(data);
 	$("#welcome-section div div h1").text(data.date);
-	$("#welcome-section div div h2").text(data.city);
+	$("#welcome-section div div h2").text("Prévisions météo pour " + data.city);
+	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
+	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);
+	$("#weatherIcon").html(data.weather.icon);
+	$("#datePicker h1").html(data.date);
+	var day = parseInt(data.day);
+	$("#prevButton").attr("onclick", "update(" + ((day == 0)?0:day-1).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'prevButton')");
+	$("#nextButton").attr("onclick", "update(" + ((day < 6)?day+1:6).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'nextButton')");
+	$("#mon-carrousel1 div").empty();
+	$("#mon-carrousel2 div").empty();
+	$("#mon-carrousel3 div").empty();
 
+	for (var i = 0; i < data.upperClothes.length; i++) 
+	{
+		$("#mon-carrousel1 div").append(createCarouselElement(i, data.upperClothes[i]));
+		var div =  $("<div></div>");
+		div.addClass("carousel-caption");
+		var h3 = $("<h3></h3>");
+		h3.text("Haut");
+		div.append(h3);
+		$("#mon-carrousel1 div").append(div);
+	}
+
+}
+
+function createCarouselElement(key, clothes)
+{
+	var div = $("<div></div>");
+	div.addClass("item");
+	if(key == 0)
+	{
+		div.addClass("active");
+	}
+
+	var img = $("<img></img>");
+	img.addClass("img-responsive");
+	img.addClass("imgClothes");
+	img.attr("href", clothes.picture);
+	div.append(img);
+	return div;
 }

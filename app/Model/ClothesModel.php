@@ -145,7 +145,7 @@ class ClothesModel extends Model
 
 	}
 
-	public function getTemp($category, $type = "both", $minTemp, $maxTemp, $rain, $id = null)
+	public function getTemp($category, $type = "both", $weather, $id = null)
 	{
 		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp AND rain = :rain";
 		switch ($type) 
@@ -167,9 +167,9 @@ class ClothesModel extends Model
 				break;
 		}
 		$sth->bindParam(":cat", $category);
-		$sth->bindParam(":minTemp", $minTemp);
-		$sth->bindParam(":maxTemp", $maxTemp);
-		$rain = ($rain)?"10":"0";
+		$sth->bindParam(":minTemp", $weather["minTemp"]);
+		$sth->bindParam(":maxTemp", $weather["maxTemp"]);
+		$rain = ($weather["rain"])?"10":"0";
 		$sth->bindParam(":rain", $rain);
 		$sth->execute();
 		return $sth->fetchAll();

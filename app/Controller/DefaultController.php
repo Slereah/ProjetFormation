@@ -38,95 +38,17 @@ class DefaultController extends Controller
 			$data["unit"] = $user["unit"];
 			$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
 			$id = $user["id"];
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"shirts", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"coats", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-
-			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
-				$this->clothesModel->getTemp(
-					"pants", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-
-			$data["shoes"] = $this->clothesModel->getTemp(
-					"shoes", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id);
-			
+			$data = array_merge($data, $this->generateClothes($data["weather"], $id));
 		}
 		else
 		{
 			$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"shirts", "defaut", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"]));
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"coats", "default", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"]));
-			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
-				$this->clothesModel->getTemp(
-					"pants", "default", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"]));
-
-			$data["shoes"] = $this->clothesModel->getTemp(
-					"shoes", "default", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"]);
+			$data = array_merge($data, $this->generateClothes($data["weather"], null));
 		}
 
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];
-		if(isset($_GET))
-		{
-			$city = isset($_GET["city"])?$_GET["city"]:$data["city"];
-			$country = isset($_GET["country"])?$_GET["country"]:$data["country"];
-			$day = isset($_GET["day"])?$_GET["day"]:$data["day"];
-
-			$data["cityInput"] = $city;
-			$data["countryInput"] = $country;
-
-
-			if(isset($_GET["city"]) && isset($_GET["country"]))
-			{
-				$city = $_GET["city"];
-				$country = $_GET["country"];
-			}
-			if(isset($_GET["day"]))
-			{
-				$day = $_GET["day"];
-			}
-			$weather = DefaultController::forecast($city, $country, $day, $data["unit"] == "°C");
-
-			if(!is_null($weather))
-			{
-				$data["weather"] = $weather;
-				$data["city"] = $city;
-				$data["country"] = $country;
-				$data["day"] = $day;
-			}
-		}
-
-		$data["time"] += ($data["day"] * 3600 * 24);
+		
 		$data["date"] = date("Y-m-d", $data["time"]);
 		$this->show('default/home', $data);
 	}
@@ -254,37 +176,33 @@ class DefaultController extends Controller
 		{
 			$user = $_SESSION["user"];
 			$id = $user["id"];
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"shirts", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-			$data["upperClothes"] = array_merge($data["upperClothes"], 
-				$this->clothesModel->getTemp(
-					"coats", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-
-			$data["lowerClothes"] = array_merge($data["lowerClothes"], 
-				$this->clothesModel->getTemp(
-					"pants", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id));
-
-			$data["shoes"] = $this->clothesModel->getTemp(
-					"shoes", "personal", 
-					$data["weather"]["minTemp"], 
-					$data["weather"]["maxTemp"], 
-					$data["weather"]["rain"], $id);
+			$data = array_merge($data, $this->generateClothes($data["weather"], $id));
 		}
 		else
 		{
-
+			$data = array_merge($data, $this->generateClothes($data["weather"], null));
 		}
 		echo json_encode($data);
+	}
+
+	public function generateClothes($weather, $id)
+	{
+		$upperClothes = ["shirts", "sweater", "coats"];
+		$lowerClothes = ["trousers", "shorts"];
+		$type = (is_null($id))?"default":"personal";
+		$data = ["upperClothes" => [], "lowerClothes" => []];
+
+		foreach ($upperClothes as $key => $value) 
+		{
+			$data["upperClothes"] = array_merge($data["upperClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
+		}
+		foreach ($lowerClothes as $key => $value) 
+		{
+			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
+		}
+		$data["shoes"] = $this->clothesModel->getTemp("shoes", $type, $weather, $id);
+
+		return $data;
 	}
 
 	private static function fahrenheit_to_celsius($temp)
@@ -323,6 +241,7 @@ class DefaultController extends Controller
 		    break;
 		    case '4': $icon  = '<i class="wi wi-thunderstorm"></i>';
 		    break;
+
 		    case '5': $icon  = '<i class="wi wi-snow"></i>';
 		    break;
 		    case '6': $icon  = '<i class="wi wi-rain-mix"></i>';

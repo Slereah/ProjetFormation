@@ -28,12 +28,12 @@
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">
-								<h3>Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
+								<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
 							</div>						
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">							
-								<h3>Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
+								<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
 							</div>
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" id="weatherIcon">
@@ -56,21 +56,21 @@
 						<label>Pays</label>
 						<input type="text" name="country" id="country" value="<?= $countryInput ?>">
 					</div>
-					<button type="submit">update</button>
+					<button id="upButton" type="button" onclick="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton')">update</button>
 				</div>
 
 
-				<div class="text-center section-title">
-						<button type="button" onclick="changeDay(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>')">prev</button>
+				<div id="datePicker" class="text-center section-title">
+						<button id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">prev</button>
 						<h1><?= $date ?></h1>
-						<button type="button" onclick="changeDay(<?= ($day<6)?$day+1:6 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>')">next</button>
+						<button id="nextButton" type="button" onclick="update(<?= ($day<6)?$day+1:6 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'nextButton')">next</button>
 					<h2>How to get dress today ?</h2>
 				</div>
 				<div class="recent-projects">
 					<div class="row"> 
-						<div class="carousel slides" id="mon-carrousel">
+						<div class="carousel slides" id="mon-carrousel1">
 							<!-- Carrousel d'images -->
-							<div class="carousel-inner">
+							<div id="selectUpper" class="carousel-inner">
 								<?php
 									foreach ($upperClothes as $key => $value) 
 									{
