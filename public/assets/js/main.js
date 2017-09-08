@@ -181,11 +181,11 @@ jQuery(function ($) {
 		});
 		
 	}());
-<<<<<<< HEAD
+
 
 	
-});
-=======
+	});
+
 	
 
 
@@ -269,4 +269,4 @@ jQuery(function ($) {
 
 
 });
->>>>>>> origin/develop
+

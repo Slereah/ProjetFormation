@@ -68,10 +68,12 @@ class DefaultController extends Controller
 
         $this->show('default/contact', [
 
+			"title" => " Contactez-nous ",
         	"lastname" => $lastname,
         	"firstname" => $firstname,
         	"email" => $email,
         	"message" => $message,
+        	"errors" => $errors
         ]);
 	}
 
