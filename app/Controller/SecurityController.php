@@ -70,6 +70,7 @@ class SecurityController extends Controller
 		$country = null;
 		$city = null;
 		$zipcode = null;
+		$unit = null;
 
 		// If method POST
 
@@ -88,6 +89,7 @@ class SecurityController extends Controller
 				$country 			= trim(strip_tags( $_POST['country']));
 				$city 				= trim(strip_tags( $_POST['city']));
 				$zipcode 			= trim(strip_tags( $_POST['zipcode']));
+				$unit 				= trim(strip_tags( $_POST['unit']));
 
 			//	Contrôle des données du POST
 				// Vérifie le nom d'utilisateur
@@ -182,6 +184,13 @@ class SecurityController extends Controller
 				}
 
 
+				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
+				{
+    				$save = false;
+    				array_push($errors, "Unit invalid.");
+    			}
+
+
 			if ($save) {
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
@@ -209,7 +218,8 @@ class SecurityController extends Controller
 				 	"lastname" 	=> $user['lastname'],
 					"country" 	=> $user['country'],
 					"city" 		=> $user['city'],
-					"zipcode" 	=> $user['zipcode']
+					"zipcode" 	=> $user['zipcode'], 
+					"unit"		=> $user['unit']
 			    );
 
 				// On redirige l'utilisateur vers sa page profil
@@ -261,7 +271,7 @@ class SecurityController extends Controller
     	if ($_SERVER['REQUEST_METHOD'] === "POST") {
     		
       		// Récupération des données du POST
-      		$email = strip_tags(trim($_POST['email']));
+      		$email = strip_tags(trim($_POST['user']['email']));
 
       		// Récupération de l'utilisateur dans la BDD (est ce que l'utilisateur existe ?)
       		if ($user = $this->usersModel->getUserByUsernameOrEmail($email)) {
@@ -322,76 +332,14 @@ class SecurityController extends Controller
 
   		$errors = [];
 
-  	// Recuperation du Token ( pour le transmettre dans le formulaire en champ caché)
-
-
-	    // If method POST
-	  	if ($_SERVER['REQUEST_METHOD'] === "POST") {
-	  
-	        // Récupération des données du POST
-	        $token 				= strip_tags(trim($_POST['token']));
-	        $password 			= strip_tags(trim($_POST['password']));
-	        $repeat_password 	= strip_tags(trim($_POST['repeat_password']));
-
-	        // Controle du Token + recup des données associées au token
-	        $tokensManager = new \Model\TokensModel;
-	        $token_data = $tokensManager->findByToken($token);
-
-	        if ($token_data) {
-	        	
-	        // Controle de la validité du token (timeout)
-	        	if ($token_data['timeout'] >= time()) {
-	        	
-		        // Controle des MDP
-	        		if (empty($password)) {
-	        			array_push($errors, "Le mot de passe ne doit pas être vide");
-	        		}
-
-	        		else if ($repeat_password !== $password) {
-	        		 	array_push($errors, "Les mots de passe doivent être identique");
-
-	        		} 
-
-	        		else {
-	        		// Cryptage du mot de passe
-	        			$password = password_hash($password, PASSWORD_DEFAULT);
-
-			        // M.A.J. du MDP dans la BDD
-	        			$this->usersModel->update([
-	        				"password" => $password,
-	        			], $token_data['user_id']);
-
-
-
-			        // Redirige l'utilisateur vers la page signIN
-	        		$this->redirectToRoute('security_signin');
-
-
-					}
-	        	}
-	        	// Le délai de la validité du token est dépassé
-
-	        	else {
-
-	        		array_push($errors, 'Le délai de validité du token est expiré.');
-	        		
-	        	}
-
-	        } 
-
-	        else {
-	        	// La requête  -> findByToken return FALSE
-	        	array_push($errors, "Le token est invalide");
-
-			}
-		
-		}
 	    	// Affichage du formulaire
 	    	$this->show('security/pwd/reset', [
 	    		"title" => " Changer le mot de passe ",
 	    		"token" => $token,
 	    		"errors" => $errors
 	    	]);
+
+	    $this->redirectToRoute('security_signin');
   	}
 }
 

@@ -1,132 +1,93 @@
-import $ from 'jquery';
-import * as utils from './utilities';
+  $.extend(prototype, {
+    initPreview: function () {
+      var crossOrigin = getCrossOrigin(this.crossOrigin);
+      var url = this.url;
 
-const DATA_PREVIEW = 'preview';
+      this.$preview = $(this.options.preview);
+      this.$viewBox.html('<img' + crossOrigin + ' src="' + url + '">');
+      this.$preview.each(function () {
+        var $this = $(this);
 
-export default {
-  initPreview() {
-    const self = this;
-    const crossOrigin = self.crossOrigin;
-    const url = crossOrigin ? self.crossOriginUrl : self.url;
-    const image = document.createElement('img');
+        // Save the original size for recover
+        $this.data(DATA_PREVIEW, {
+          width: $this.width(),
+          height: $this.height(),
+          original: $this.html()
+        });
 
-    if (crossOrigin) {
-      image.crossOrigin = crossOrigin;
-    }
+        /**
+         * Override img element styles
+         * Add `display:block` to avoid margin top issue
+         * (Occur only when margin-top <= -height)
+         */
+        $this.html(
+          '<img' + crossOrigin + ' src="' + url + '" style="' +
+          'display:block;width:100%;height:auto;' +
+          'min-width:0!important;min-height:0!important;' +
+          'max-width:none!important;max-height:none!important;' +
+          'image-orientation:0deg!important">'
+        );
+      });
+    },
 
-    image.src = url;
+    resetPreview: function () {
+      this.$preview.each(function () {
+        var $this = $(this);
 
-    const $clone2 = $(image);
+        $this.html($this.data(DATA_PREVIEW).original).removeData(DATA_PREVIEW);
+      });
+    },
 
-    self.$preview = $(self.options.preview);
-    self.$clone2 = $clone2;
-    self.$viewBox.html($clone2);
-    self.$preview.each((i, element) => {
-      const $this = $(element);
-      const img = document.createElement('img');
+    preview: function () {
+      var image = this.image;
+      var canvas = this.canvas;
+      var cropBox = this.cropBox;
+      var cropBoxWidth = cropBox.width;
+      var cropBoxHeight = cropBox.height;
+      var width = image.width;
+      var height = image.height;
+      var left = cropBox.left - canvas.left - image.left;
+      var top = cropBox.top - canvas.top - image.top;
 
-      // Save the original size for recover
-      $this.data(DATA_PREVIEW, {
-        width: $this.width(),
-        height: $this.height(),
-        html: $this.html(),
+      if (!this.cropped || this.disabled) {
+        return;
+      }
+
+      this.$viewBox.find('img').css({
+        width: width,
+        height: height,
+        marginLeft: -left,
+        marginTop: -top,
+        transform: getTransform(image)
       });
 
-      if (crossOrigin) {
-        img.crossOrigin = crossOrigin;
-      }
+      this.$preview.each(function () {
+        var $this = $(this);
+        var data = $this.data(DATA_PREVIEW);
+        var originalWidth = data.width;
+        var originalHeight = data.height;
+        var newWidth = originalWidth;
+        var newHeight = originalHeight;
+        var ratio = 1;
 
-      img.src = url;
+        if (cropBoxWidth) {
+          ratio = originalWidth / cropBoxWidth;
+          newHeight = cropBoxHeight * ratio;
+        }
 
-      /**
-       * Override img element styles
-       * Add `display:block` to avoid margin top issue
-       * Add `height:auto` to override `height` attribute on IE8
-       * (Occur only when margin-top <= -height)
-       */
-      img.style.cssText = (
-        'display:block;' +
-        'width:100%;' +
-        'height:auto;' +
-        'min-width:0!important;' +
-        'min-height:0!important;' +
-        'max-width:none!important;' +
-        'max-height:none!important;' +
-        'image-orientation:0deg!important;"'
-      );
+        if (cropBoxHeight && newHeight > originalHeight) {
+          ratio = originalHeight / cropBoxHeight;
+          newWidth = cropBoxWidth * ratio;
+          newHeight = originalHeight;
+        }
 
-      $this.html(img);
-    });
-  },
-
-  resetPreview() {
-    this.$preview.each((i, element) => {
-      const $this = $(element);
-      const data = $this.data(DATA_PREVIEW);
-
-      $this.css({
-        width: data.width,
-        height: data.height,
-      }).html(data.html).removeData(DATA_PREVIEW);
-    });
-  },
-
-  preview() {
-    const self = this;
-    const image = self.image;
-    const canvas = self.canvas;
-    const cropBox = self.cropBox;
-    const cropBoxWidth = cropBox.width;
-    const cropBoxHeight = cropBox.height;
-    const width = image.width;
-    const height = image.height;
-    const left = cropBox.left - canvas.left - image.left;
-    const top = cropBox.top - canvas.top - image.top;
-
-    if (!self.cropped || self.disabled) {
-      return;
-    }
-
-    self.$clone2.css({
-      width,
-      height,
-      transform: utils.getTransform($.extend({
-        translateX: -left,
-        translateY: -top,
-      }, image)),
-    });
-
-    self.$preview.each((i, element) => {
-      const $this = $(element);
-      const data = $this.data(DATA_PREVIEW);
-      const originalWidth = data.width;
-      const originalHeight = data.height;
-      let newWidth = originalWidth;
-      let newHeight = originalHeight;
-      let ratio = 1;
-
-      if (cropBoxWidth) {
-        ratio = originalWidth / cropBoxWidth;
-        newHeight = cropBoxHeight * ratio;
-      }
-
-      if (cropBoxHeight && newHeight > originalHeight) {
-        ratio = originalHeight / cropBoxHeight;
-        newWidth = cropBoxWidth * ratio;
-        newHeight = originalHeight;
-      }
-
-      $this.css({
-        width: newWidth,
-        height: newHeight,
-      }).find('img').css({
-        width: width * ratio,
-        height: height * ratio,
-        transform: utils.getTransform($.extend({
-          translateX: -left * ratio,
-          translateY: -top * ratio,
-        }, image)),
+        $this.width(newWidth).height(newHeight).find('img').css({
+          width: width * ratio,
+          height: height * ratio,
+          marginLeft: -left * ratio,
+          marginTop: -top * ratio,
+          transform: getTransform(image)
+        });
       });
-    });
-  },
-};
+    }
+  });

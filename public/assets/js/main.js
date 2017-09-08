@@ -1,4 +1,4 @@
-jQuery(function ($) {
+﻿jQuery(function ($){
 
     'use strict';
     /*==============================================================*/
@@ -182,91 +182,165 @@ jQuery(function ($) {
 		
 	}());
 
-
-	
-	});
-
-	
-
-
-
-	var cropper;
-	var image;
-	initCropper();
-
-	function addCropper()
-	{
-		image = $("#image");
-		
-		cropper = new Cropper(image, {
-		  aspectRatio: 16 / 9,
-		  crop: function(e) {
-		    console.log(e.detail.x);
-		    console.log(e.detail.y);
-		    console.log(e.detail.width);
-		    console.log(e.detail.height);
-		    console.log(e.detail.rotate);
-		    console.log(e.detail.scaleX);
-		    console.log(e.detail.scaleY);
-		  }
-		});
-		console.log(cropper);
-	}
-
-
-	function initCropper()
-	{
-		$("#loadImage").change(function(){
-		    readURL(this);
-		});
-		addCropper();
-
-	}
-
-
-
-	function cropImage()
-	{
-		cropper.getCroppedCanvas().toBlob(function(blob)
-		{
-			console.log(blob);
-			var formData = new FormData();
-			formData.append('croppedImage', blob);
-	  		$.ajax('/crop/upload.php', {
-		    	method: "POST",
-		    	data: formData,
-		    	processData: false,
-		    	contentType: false,
-		    	success: function (response) 
-		    	{
-		      		console.log(response);
-		    	},
-			    error: function () {
-		    	  console.log('Upload error');
-		    	}
-		  	});
-		  	
-
-		});
-	}
-
-	function readURL(input) 
-	{
-
-	    if (input.files && input.files[0]) 
-	    {
-	        var reader = new FileReader();
-
-	        reader.onload = function (e) {
-	            image.attr('src', e.target.result);
-	        }
-
-	        reader.readAsDataURL(input.files[0]);
-	        addCropper();
-	    }
-	}
-
-
-
 });
+
+
+$(document).ready(function()
+	{
+
+		var myCropper;
+		var image;
+		initCropper();
+
+		function addCropper()
+		{
+			image = $("#image");
+			//console.log(image);
+			myCropper = new Cropper(image, {
+			  aspectRatio: 16 / 9,
+			  crop: function(e) {
+			    console.log(e.detail.x);
+			    console.log(e.detail.y);
+			    console.log(e.detail.width);
+			    console.log(e.detail.height);
+			    console.log(e.detail.rotate);
+			    console.log(e.detail.scaleX);
+			    console.log(e.detail.scaleY);
+			  }
+			});
+		}
+
+
+		function initCropper()
+		{
+			$("#loadImage").change(function(){
+			    readURL(this);
+			});
+			addCropper();
+
+		}
+
+
+
+		function cropImage()
+		{
+			myCropper.getCroppedCanvas().toBlob(function(blob)
+			{
+				console.log(blob);
+				var formData = new FormData();
+				formData.append('croppedImage', blob);
+		  		$.ajax('/crop/upload.php', {
+			    	method: "POST",
+			    	data: formData,
+			    	processData: false,
+			    	contentType: false,
+			    	success: function (response) 
+			    	{
+			      		console.log(response);
+			    	},
+				    error: function () {
+			    	  console.log('Upload error');
+			    	}
+			  	});
+			  	
+
+			});
+		}
+
+		function readURL(input) 
+		{
+
+		    if (input.files && input.files[0]) 
+		    {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            image.attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+		        addCropper();
+		    }
+		}
+
+
+	}
+
+
+
+);
+
+function update(day, city, country, unit, source)
+{
+	if(source == "upButton")
+	{
+		city = $("input#city").val();
+		country = $("input#country").val();
+	}
+	data = { day : day, city : city, country : country, unit : unit };
+	$.ajax('update-weather', {
+			type: 'POST',
+			data: data,
+			success:function(response)
+			{
+				updateDisplay(response);
+				
+			},
+			error:function(response)
+			{
+				console.log("error");
+				
+			}
+		});
+}
+
+function centerButtons()
+{
+
+}
+
+function updateDisplay(data)
+{
+	$("#welcome-section div div h1").text(data.date);
+	$("#welcome-section div div h2").text("Prévisions météo pour " + data.city);
+	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
+	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);
+	$("#weatherIcon").html(data.weather.icon);
+	$("#datePicker h1").html(data.date);
+	var day = parseInt(data.day);
+	$("#prevButton").attr("onclick", "update(" + ((day == 0)?0:day-1).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'prevButton')");
+	$("#nextButton").attr("onclick", "update(" + ((day < 6)?day+1:6).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'nextButton')");
+	$("#mon-carrousel1 div").empty();
+	$("#mon-carrousel2 div").empty();
+	$("#mon-carrousel3 div").empty();
+
+	for (var i = 0; i < data.upperClothes.length; i++) 
+	{
+		$("#mon-carrousel1 div").append(createCarouselElement(i, data.upperClothes[i]));
+		var div =  $("<div></div>");
+		div.addClass("carousel-caption");
+		var h3 = $("<h3></h3>");
+		h3.text("Haut");
+		div.append(h3);
+		$("#mon-carrousel1 div").append(div);
+	}
+
+}
+
+function createCarouselElement(key, clothes)
+{
+	var div = $("<div></div>");
+	div.addClass("item");
+	if(key == 0)
+	{
+		div.addClass("active");
+	}
+
+	var img = $("<img></img>");
+	img.addClass("img-responsive");
+	img.addClass("imgClothes");
+	img.attr("href", clothes.picture);
+	div.append(img);
+	return div;
+}
 
