@@ -1,12 +1,13 @@
 <?php $this->layout('layout', ['title' => 'Weather & Wear']) ?>
 
 <?php $this->start('main_content') ?>	
+
 		<div id="home-section">
 			<div class="container">
 				<div class="home-content text-center">
-					<h1 id="typer">"THERE’S NO SUCH THING AS BAD WEATHER, ONLY BAD CLOTHES"</h1>
+					<h1 id="typer">"Des vêtements appropriés au temps"</h1>
 					<h2>Weather & Wear</h2>
-					<a href="#" class="btn btn-primary btn-animated">Lets Start</a>
+					<a href="#" class="btn btn-primary btn-animated">Commençons !</a>
 					<div class="scroll-arrow">
 						<div class="arrow-icon">
 							<a class="animated" href="#"><i class="fa fa-angle-down"></i></a>
@@ -21,18 +22,18 @@
 			<div class="container">
 				<div class="text-center section-title">
 					<h1><?= date("l, F d, Y", time())?></h1>
-					<h2>Prévisions météo pour "NOM DE LA VILLE"</h2>
+					<h2>Prévisions météo pour <?= $city ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">
-								<h3>Minimal temperature : <?= $weather["minTemp"] ?> °C</h3>
+								<h3>Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
 							</div>						
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 							<div class="welcome-image">							
-								<h3>Maximal temperature : <?= $weather["maxTemp"] ?> °C</h3>
+								<h3>Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
 							</div>
 						</div>
 						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" id="weatherIcon">
@@ -46,9 +47,22 @@
 
 		<div id="recent-projects" class="padding">
 			<div class="container">
+				<form class="">
+					<div>
+						<label>Ville</label>
+						<input type="text" name="city" id="city" value="<?= $cityInput ?>">
+					</div>
+					<div>
+						<label>Pays</label>
+						<input type="text" name="country" id="country" value="<?= $countryInput ?>">
+					</div>
+					<button type="submit">update</button>
+				</div>
+
+
 				<div class="text-center section-title">
-					<h1>Date</h1>
-					<h2>How to get dress today ?</h2>
+						<button type="button" onclick="prevDay(<?= $day ?>)" ?>"><</button><h1><?= $date ?></h1><button type="button" onclick="nextDay(<?= $day ?>)">></button>
+					<h2>Comment s'habiller aujourd'hui ?</h2>
 				</div>
 				<div class="recent-projects">
 					<div class="row"> 
@@ -63,7 +77,7 @@
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 										</div>
 										<div class="carousel-caption">
-								        	<h3>Top</h3>
+								        	<h3>Haut</h3>
 							      		</div>
 										<?php
 									}
@@ -86,7 +100,7 @@
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 										</div>
 										<div class="carousel-caption">
-								        	<h3>Bottom</h3>
+								        	<h3>Bas</h3>
 							      		</div>
 										<?php
 									}
@@ -109,7 +123,7 @@
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 										</div>
 										<div class="carousel-caption">
-								        	<h3>Shoes</h3>
+								        	<h3>Chaussures</h3>
 							      		</div>
 										<?php
 									}

@@ -1,4 +1,4 @@
-jQuery(function ($) {
+jQuery(function ($){
 
     'use strict';
     /*==============================================================*/
@@ -181,24 +181,20 @@ jQuery(function ($) {
 		});
 		
 	}());
-<<<<<<< HEAD
-
-	
 });
-=======
-	
 
+$(document).ready(function()
+	{
 
-
-	var cropper;
+	var myCropper;
 	var image;
 	initCropper();
 
 	function addCropper()
 	{
 		image = $("#image");
-		
-		cropper = new Cropper(image, {
+		//console.log(image);
+		myCropper = new Cropper(image, {
 		  aspectRatio: 16 / 9,
 		  crop: function(e) {
 		    console.log(e.detail.x);
@@ -210,7 +206,6 @@ jQuery(function ($) {
 		    console.log(e.detail.scaleY);
 		  }
 		});
-		console.log(cropper);
 	}
 
 
@@ -227,7 +222,7 @@ jQuery(function ($) {
 
 	function cropImage()
 	{
-		cropper.getCroppedCanvas().toBlob(function(blob)
+		myCropper.getCroppedCanvas().toBlob(function(blob)
 		{
 			console.log(blob);
 			var formData = new FormData();
@@ -267,6 +262,16 @@ jQuery(function ($) {
 	}
 
 
+	}
+);
 
-});
->>>>>>> origin/develop
+function prevDay(day)
+{
+	console.log(day);
+}
+
+
+function nextDay(day)
+{
+	console.log(day);
+}

@@ -6,6 +6,38 @@ use \W\Model\Model;
 
 class ClothesModel extends Model
 {
+
+	public function get($type = "both", $id = null, $perpage = null, $page = null)
+	{
+		$pagination = "";
+		if(!is_null($perpage))
+		{
+			$pagination = " LIMIT " . $perpage . " OFFSET " . ($page - 1) * $perpage;
+		}
+		
+		$sql = "SELECT * FROM clothes";
+		switch ($type) 
+		{
+			case 'both':
+				$sth = $this->dbh->prepare($sql . $pagination);
+				break;
+			case 'personal':
+				$sql = "SELECT * FROM clothes WHERE id in (SELECT idClothes FROM usersclothes WHERE idUsers = :id)" . $pagination;
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":id", $id);
+				break;
+			case 'default':
+				$sql .= " WHERE defaultClothes = true" . $pagination;
+				$sth = $this->dbh->prepare($sql);
+				break;
+			default:
+				return [];
+				break;
+		}
+		$sth->execute();
+		return $sth->fetchAll();
+	}
+
 	public function search($name, $order = "DESC")
 	{
 		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search ORDER BY name DESC";
@@ -16,7 +48,7 @@ class ClothesModel extends Model
 		return $sth->fetchAll();
 	}
 
-	public function getUserClothes($id)
+	public function getClothes($id)
 	{
 		$sql = "SELECT idClothes FROM usersclothes WHERE idUsers = :id";
 		$sth = $this->dbh->prepare($sql);
@@ -56,4 +88,91 @@ class ClothesModel extends Model
 
 		return $categories;
 	}	
+
+	public function getFromCategory($category, $type = "default", $id = null)
+	{
+		switch ($type) 
+		{
+			case 'both':
+				$sql = 'SELECT * FROM '.$this->getTable().' WHERE category=:cat';
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":cat", $category);
+				break;
+			case 'default':
+				$sql = 'SELECT * FROM '.$this->getTable().' WHERE category=:cat AND defaultClothes = true';
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":cat", $category);
+				break;
+			case 'personal':
+				$sql = 'SELECT * FROM '.$this->getTable().' WHERE category=:cat AND id IN (SELECT idClothes FROM usersclothes WHERE idUsers = :id)';
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":cat", $category);
+				$sth->bindParam(":id", $id);
+				break;
+
+			default:
+				return [];
+		}
+		$sth->execute();
+		$result = $sth->fetchAll();
+		$result = is_null($result)?[]:$result;
+		return $result;
+	}
+
+	public function count($type = "both", $id = null)
+	{
+		$sql = "SELECT COUNT(*) FROM clothes";
+		switch ($type) 
+		{
+			case 'both':
+				$sth = $this->dbh->prepare($sql);
+				break;
+			case 'personal':
+				$sql = "SELECT COUNT(*) FROM clothes WHERE id in (SELECT idClothes FROM usersclothes WHERE idUsers = :id)";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":id", $id);
+				break;
+			case 'default':
+				$sql .= " WHERE defaultClothes = true";
+				$sth = $this->dbh->prepare($sql);
+				break;
+			default:
+				return 0;
+				break;
+		}
+		$sth->execute();
+		return $sth->fetch();
+
+	}
+
+	public function getTemp($category, $type = "both", $minTemp, $maxTemp, $rain, $id = null)
+	{
+		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp AND rain = :rain";
+		switch ($type) 
+		{
+			case 'both':
+				$sth = $this->dbh->prepare($sql);
+				break;
+			case 'personal':
+				$sql .= " AND id in (SELECT idClothes FROM usersclothes WHERE idUsers = :id)";
+				$sth = $this->dbh->prepare($sql);
+				$sth->bindParam(":id", $id);
+				break;
+			case 'default':
+				$sql .= " AND defaultClothes = true";
+				$sth = $this->dbh->prepare($sql);
+				break;
+			default:
+				return [];
+				break;
+		}
+		$sth->bindParam(":cat", $category);
+		$sth->bindParam(":minTemp", $minTemp);
+		$sth->bindParam(":maxTemp", $maxTemp);
+		$rain = ($rain)?"10":"0";
+		$sth->bindParam(":rain", $rain);
+		$sth->execute();
+		return $sth->fetchAll();
+	}
+
 }

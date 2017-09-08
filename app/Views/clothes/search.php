@@ -1,12 +1,15 @@
 <?php
 	use \Controller\ClothesController;
-
 ?>
 
 <div class="row">
 	<div class="col-md-2">
 		<form method="POST">
-			<input type="text" name="search">
+			<input ype="text" name="search">
+			<h4>Types</h4>
+			<label>Shoes</label><input type="checkbox" name="shoes">
+			<label>Shirts</label><input type="checkbox" name="shirts">
+			<label>Pants</label><input type="checkbox" name="pants">
 			<button>Submit</button>
 		</form>
 	</div>

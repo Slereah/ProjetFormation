@@ -70,6 +70,7 @@ class SecurityController extends Controller
 		$country = null;
 		$city = null;
 		$zipcode = null;
+		$unit = null;
 
 		// If method POST
 
@@ -88,6 +89,7 @@ class SecurityController extends Controller
 				$country 			= trim(strip_tags( $_POST['country']));
 				$city 				= trim(strip_tags( $_POST['city']));
 				$zipcode 			= trim(strip_tags( $_POST['zipcode']));
+				$unit 				= trim(strip_tags( $_POST['unit']));
 
 			//	Contrôle des données du POST
 				// Vérifie le nom d'utilisateur
@@ -182,6 +184,13 @@ class SecurityController extends Controller
 				}
 
 
+				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
+				{
+    				$save = false;
+    				array_push($errors, "Unit invalid.");
+    			}
+
+
 			if ($save) {
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
@@ -209,7 +218,8 @@ class SecurityController extends Controller
 				 	"lastname" 	=> $user['lastname'],
 					"country" 	=> $user['country'],
 					"city" 		=> $user['city'],
-					"zipcode" 	=> $user['zipcode']
+					"zipcode" 	=> $user['zipcode'], 
+					"unit"		=> $user['unit']
 			    );
 
 				// On redirige l'utilisateur vers sa page profil

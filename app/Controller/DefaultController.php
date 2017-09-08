@@ -3,24 +3,98 @@
 namespace Controller;
 
 use \W\Controller\Controller;
-use \Model\ContactModel;
+use \Model\ClothesModel;
+
 
 class DefaultController extends Controller
 {
+	private $clothesModel;
 
+	public function __construct ()
+	{
+		$this->clothesModel = new ClothesModel;
+	}
 	/**
 	 * Page d'accueil par défaut
 	 */
 	public function home()
 	{
-		$data["weather"] = DefaultController::forecast();
-		$data["imghaut"] = [
-		"https://gloimg.rosewholesale.com/ROSE/pdm-product-pic/Clothing/2016/07/27/goods-img/1473012160372349548.jpg",
-		"https://images-eu.ssl-images-amazon.com/images/I/61hnenbaFDL._UL1500_.jpg",
-		"https://cdn.laredoute.com/products/310by310/6/a/1/6a10499b7eebbcd27ca96f9370b2c5f3.jpg"
-		];
-		$data["imgbas"] = [
-		"http://www.forcesenior.fr/images/ekjnoad/Nouveau%20Raffinement%20Homme%20V%C3%AAtements%20Jean%20Skinny%20Sid%20Bleu%20Vif%20Stretch%20Paris%20604.jpg"];
+		$data["time"] = time();
+		$data["day"] = 0;
+		$data["date"] = date("Y-m-d", time());
+		$data["city"] = "Paris";
+		$data["country"] = "fr";
+		$data["unit"] = "°C";
+
+		
+		
+		$data["upperClothes"] = [];
+		$data["lowerClothes"] = [];
+		$data["shoes"] = [];
+		if(isset($_SESSION["user"]))
+		{
+			$user = $_SESSION["user"];
+			$data["city"] = $user["city"];
+			$data["country"] = $user["country"];
+			$data["unit"] = $user["unit"];
+			$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
+			$id = $user["id"];
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"shirts", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+			$data["upperClothes"] = array_merge($data["upperClothes"], 
+				$this->clothesModel->getTemp(
+					"coats", "personal", 
+					$data["weather"]["minTemp"], 
+					$data["weather"]["maxTemp"], 
+					$data["weather"]["rain"], $id));
+
+			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants", "personal", $id);
+			$data["shoes"] = $this->clothesModel->getFromCategory("shoes", "personal", $id);
+			
+		}
+		else
+		{
+			$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
+			$data["upperClothes"] = $this->clothesModel->getFromCategory("shirts");
+			$data["lowerClothes"] = $this->clothesModel->getFromCategory("pants");
+			$data["shoes"] = $this->clothesModel->getFromCategory("shoes");
+		}
+
+		$data["cityInput"] = $data["city"];
+		$data["countryInput"] = $data["country"];
+		if(isset($_GET))
+		{
+			$city = "";
+			$country = "";
+			$day = "";
+
+			$data["cityInput"] = $city;
+			$data["countryInput"] = $country;
+
+
+			if(isset($_GET["city"]) && isset($_GET["country"]))
+			{
+				$city = $_GET["city"];
+				$country = $_GET["country"];
+			}
+			if(isset($_GET["day"]))
+			{
+				$day = $_GET["day"];
+			}
+			$weather = DefaultController::forecast($city, $country, $day, $data["unit"] == "°C");
+
+			if(!is_null($weather))
+			{
+				$data["weather"] = $weather;
+				$data["city"] = $city;
+				$data["country"] = $country;
+				$data["day"] = $day;
+			}
+		}
 		$this->show('default/home', $data);
 	}
 
@@ -37,10 +111,11 @@ class DefaultController extends Controller
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Récupération des données du formulaire
-		$lastname = trim(strip_tags( $_POST['lastname']));
-		$firstname = trim(strip_tags( $_POST['firstname']));
-		$email = trim(strip_tags( $_POST['email']));
-    	$message = trim(strip_tags( $_POST['message']));
+			$lastname = trim(strip_tags( $_POST['lastname']));
+			$firstname = trim(strip_tags( $_POST['firstname']));
+			$email = trim(strip_tags( $_POST['email']));
+	    	$message = trim(strip_tags( $_POST['message']));
+
 
         // Vérification des données
 
@@ -91,12 +166,21 @@ class DefaultController extends Controller
 		$request = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' . $city . ',' . $country . '")';
 		$url = "https://query.yahooapis.com/v1/public/yql?q=" . urlencode($request) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 		$response = json_decode(file_get_contents($url));
+		if(is_null($response->query->results))
+		{
+			return null;
+		}
 		return $response->query->results->channel;
 	}
 
 	private static function forecast($city = "Paris", $country = "fr", $day = 0, $celsius = true)
 	{
-		$data = DefaultController::getForecast($city, $country)->item; 
+		$data = DefaultController::getForecast($city, $country);
+		if(is_null($data))
+		{
+			return null;
+		}
+		$data = $data->item; 
 
 		$weather = ["minTemp" => null, "maxTemp" => null, "weather" => null];
 		$weather["minTemp"] = $data->forecast[$day]->low;
