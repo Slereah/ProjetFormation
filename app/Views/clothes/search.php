@@ -1,7 +1,3 @@
-<?php
-	use \Controller\ClothesController;
-?>
-
 <div class="row">
 	<div class="col-md-2">
 		<form method="POST">
@@ -31,7 +27,7 @@
 
 					if($connected)
 					{
-						if(ClothesController::clothesInWardrobe($result["id"], $userClothes))
+						if($result["inWardrobe"])
 						{
 							?>
 							| In profile | <a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>">Delete</a>

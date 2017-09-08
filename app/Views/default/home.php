@@ -20,7 +20,7 @@
 	    <div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h1><?= date("l, F d, Y", time())?></h1>
+					<h1><?= date("l, F d, Y", $time)?></h1>
 					<h2>Prévisions météo pour <?= $city ?></h2>
 				</div>
 				<div class="welcome-content">

@@ -200,6 +200,11 @@ class DefaultController extends Controller
 		return $weather;
 	}
 
+	public function updateWeather()
+	{
+		
+	}
+
 	private static function fahrenheit_to_celsius($temp)
 	{
 	    $celsius=5/9*($temp-32);

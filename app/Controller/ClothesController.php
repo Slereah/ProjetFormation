@@ -30,7 +30,14 @@ class ClothesController extends Controller
 			$picture = $_POST['picture'];
 			$minTemp = $_POST['minTemp'];
 			$maxTemp = $_POST['maxTemp'];
-			$rain = $_POST['rain'];
+			if(isset($_POST['rain']))
+			{
+				$rain = $_POST['rain'];
+			}
+			else
+			{
+				$rain = false;
+			}
 			// Vérification des données
 			// ...
 			if ($save) 
@@ -102,7 +109,14 @@ class ClothesController extends Controller
 			$picture = $_POST['picture'];
 			$minTemp = $_POST['minTemp'];
 			$maxTemp = $_POST['maxTemp'];
-			$rain = $_POST['rain'];
+			if(isset($_POST['rain']))
+			{
+				$rain = $_POST['rain'];
+			}
+			else
+			{
+				$rain = false;
+			}
 
 			// Vérification des données
 			// ...
@@ -200,6 +214,12 @@ class ClothesController extends Controller
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
 		}
 		$data["results"] = $this->clothesModel->search($search);
+
+		foreach ($data["results"] as $key => $result) 
+		{
+			
+			$data["results"][$key]["inWardrobe"] = ClothesController::clothesInWardrobe($result["id"], $data["userClothes"]);
+		}
 
 		$this->show('clothes/search', $data);
 	}
