@@ -43,11 +43,35 @@ class ClothesModel extends Model
 		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search";
 		if(!empty($options))
 		{
-			$sql .= " AND ";
+			$sql .= " AND (";
 			foreach ($options as $key => $option) 
 			{
-				
+				switch (variable) 
+				{
+					case 'tops':
+						$sql .= "category = tops";
+						break;
+					case 'shoes':
+						$sql .= "category = chaussures";
+						break;
+					case 'vest':
+						$sql .= "category = vestes";
+						break;
+					case 'pants':
+						$sql .= "category = pantalons";
+						break;
+					case 'sweater':
+						$sql .= "category = pulls";
+						break;
+					default:
+						break;
+				}
+				if($key != count($options) - 1)
+				{
+					$sql .= " OR ";
+				}
 			}
+			$sql .= ")";
 		}
 		$sql .= " ORDER BY name DESC";
 		$sth = $this->dbh->prepare($sql);
