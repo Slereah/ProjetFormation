@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform:uppercase;
 	color:#e71647;
 	font-weight:900;
-	margin-top:0;
+	margin-top: -25px;
 	line-height:46px;
 } 
 
@@ -3547,7 +3547,7 @@ span.profileData {
 }
 
 #indexTitle {
-    padding-top: 23px;
+    padding-top: 47px;
 }
 
 .indexButton {
@@ -3604,6 +3604,16 @@ span.profileData {
 	.personalData {
 		margin-top: 22px;
 	}
+
+  	form.userData {
+	    width: 60%;
+        margin-left: 20%;  	
+	}
+
+	#persDataTitle {
+		margin-top: 6%;
+	}
+
 }
 
 @media (min-width:768px) and (max-width: 991px) {
@@ -3899,14 +3909,60 @@ div#thumbnail-clothes-index {
 =====  page Home =======
 ====================================*/
 
+#prevButton {
+    margin-right: 5px;
+}
+
+
 @media (max-width: 768px) {
 	#cityLabel, #countryLabel {
 		width: 50%;
 	    margin-left: 25%;
 	}
+
 	#dateTitle {
     	margin-top: 20%;
+	    margin-top: 4%;
 	}
+
+	#maxTempHome {
+	   	width: 66%;
+	    margin-left: 17%;
+	    margin-top: 0;
+	}
+
+	#minTempHome {
+		width: 66%;
+	    margin-left: 17%;
+        margin-top: 5%;
+	}
+
+	#weatherIcon {
+		font-size: 65%;
+	}
+
+	#datePicker {
+		margin-top: 4%;
+	}
+
+	#prevButton, #nextButton {
+		font-size: 11px;
+	    width: 22%;
+	    padding: 6px 8px;
+	}
+	
+   	#prevButton i {
+	    margin-right: 5px;
+	    margin-left: -3px;
+	}
+
+	#prevButton {
+    	margin-right: 5px;
+	}
+
+	#partnersTitle {
+		margin-top: 12%;
+	}
+	
 }
 
-	

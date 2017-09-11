@@ -10,23 +10,24 @@
 							<h2 id="clothes-read-Title"><?= $title ?></h2>
 						</div>
 
-						<?php 
-
-							if(isset($_SESSION["ValidForm"]) && $_SESSION["ValidForm"] == true ) { 
-								$_SESSION["ValidForm"] = false;
-						?>	
-
-							<div class="alert alert-success">
-								<p>Votre vêtement à bien été modifié</p>
-							</div>
-
-						<?php
-
-							}
-
-						?>
-
+						
 						<div class="col-md-4 col-md-offset-4">
+							<?php 
+
+								if(isset($_SESSION["ValidForm"]) && $_SESSION["ValidForm"] == true ) { 
+									$_SESSION["ValidForm"] = false;
+							?>	
+
+								<div class="alert alert-success text-center">
+									<p>Votre vêtement a bien été modifié.</p>
+								</div>
+
+							<?php
+
+								}
+
+							?>
+
 							<div class="thumbnail" id="clothes-read-Thumbnail">
 								<dl>
 									<dt>Nom :</dt>
