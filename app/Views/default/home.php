@@ -57,7 +57,7 @@
 						<!-- Prévisions météo -->
 						<div class="col-md-8 col-md-offset-2">
 							<div class="text-center section-title">
-								<h1 id="dateTitle">Le <?= date("Y-m-d", $time)?></h1>
+								<h1 id="dateTitle">Le <?= $date ?></h1>
 								<h2 id="weatherTitle">Prévisions météo pour <?= $city ?></h2>
 							</div>
 							<div class="row">
