@@ -30,7 +30,7 @@ class DefaultController extends Controller
 		
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
-		$data["shoes"] = [];
+		$data["chaussures"] = [];
 		if(isset($_SESSION["user"]))
 		{
 			$user = $_SESSION["user"];
@@ -50,7 +50,7 @@ class DefaultController extends Controller
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];		
 		$data["date"] = date("d-m-Y", $data["time"]);
-
+		var_dump($data);
 		$this->show('default/home', $data);
 	}
 
@@ -167,7 +167,7 @@ class DefaultController extends Controller
 
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
-		$data["shoes"] = [];
+		$data["chaussures"] = [];
 		$data["errors"] = [];
 
 		
@@ -194,8 +194,8 @@ class DefaultController extends Controller
 
 	public function generateClothes($weather, $id)
 	{
-		$upperClothes = ["shirts", "sweater", "coats"];
-		$lowerClothes = ["trousers", "shorts"];
+		$upperClothes = ["tops", "pulls", "manteaux", "vestes"];
+		$lowerClothes = ["pantalons", "shorts"];
 		$type = (is_null($id))?"default":"personal";
 		$data = ["upperClothes" => [], "lowerClothes" => []];
 
@@ -207,7 +207,7 @@ class DefaultController extends Controller
 		{
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
-		$data["shoes"] = $this->clothesModel->getTemp("shoes", $type, $weather, $id);
+		$data["chaussures"] = $this->clothesModel->getTemp("chaussures", $type, $weather, $id);
 
 		return $data;
 	}

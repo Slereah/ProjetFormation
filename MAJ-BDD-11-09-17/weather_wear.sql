@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 08 Septembre 2017 à 11:12
+-- Généré le :  Lun 11 Septembre 2017 à 09:48
 -- Version du serveur :  10.1.21-MariaDB
 -- Version de PHP :  5.6.30
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `clothes` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `category` enum('shoes','shirts','coats','pants','sweater','jacket','trousers','shorts') NOT NULL,
+  `category` enum('chaussures','tops','manteaux','pulls','vestes','pantalons','shorts') NOT NULL,
   `picture` varchar(255) NOT NULL,
   `minTemperature` int(3) NOT NULL,
   `maxTemperature` int(3) NOT NULL,
@@ -42,28 +42,26 @@ CREATE TABLE `clothes` (
 --
 
 INSERT INTO `clothes` (`id`, `name`, `category`, `picture`, `minTemperature`, `maxTemperature`, `rain`, `defaultClothes`) VALUES
-(1, 'manteau rouge test', 'coats', 'https://static.galerieslafayette.com/media/441/44103142/G_44103142_360_VPP_1.jpg', 0, 10, 0, 0),
-(2, 'chaussures fermées', 'shoes', 'https://images-na.ssl-images-amazon.com/images/I/817DmsOCi1L._UL1500_.jpg', -30, 15, 10, 1),
-(3, 'T-shirt', 'shirts', 'https://openclipart.org/image/2400px/svg_to_png/77599/t-shirt.png', 18, 43, 0, 1),
-(4, 'Sweat', 'sweater', 'https://openclipart.org/image/2400px/svg_to_png/77683/blue-hoodie.png', 0, 15, 10, 1),
-(5, 'blouson', 'jacket', 'https://openclipart.org/image/2400px/svg_to_png/192065/AlanSpeak-Jacket.png', 10, 20, 0, 1),
-(6, 'jeans', 'trousers', 'https://openclipart.org/image/2400px/svg_to_png/263802/1476281241.png', -30, 22, 10, 1),
-(7, 'pantalon noir', 'trousers', 'https://openclipart.org/image/2400px/svg_to_png/168770/Basic-Black-Pants.png', -30, 22, 10, 1),
-(8, 'polo', 'shirts', 'https://openclipart.org/image/2400px/svg_to_png/177398/Blue-Polo-Shirt-Remix-by-Merlin2525.png', 20, 42, 0, 1),
-(9, 'chemise blanche', 'shirts', 'https://openclipart.org/image/2400px/svg_to_png/219971/1433315645.png', 15, 25, 0, 1),
-(10, 'pantalon bleu', 'trousers', 'https://openclipart.org/image/2400px/svg_to_png/213788/Hose.png', -30, 18, 10, 1),
-(11, 'chaussures mi-saison', 'shoes', 'https://openclipart.org/image/2400px/svg_to_png/173952/shoe.png', 10, 22, 10, 1),
-(12, 'chaussures saison chaude', 'shoes', 'https://openclipart.org/image/2400px/svg_to_png/191770/havaianas32.png', 22, 42, 0, 1),
-(13, 'pullover', 'sweater', 'https://openclipart.org/image/2400px/svg_to_png/213608/Pullover.png', -30, 10, 0, 1),
-(14, 'pull col roulé', 'sweater', 'http://diysolarpanelsv.com/images/striped-sweater-clipart-9.jpg', -30, 8, 0, 1),
-(15, 'blouson', 'jacket', 'https://www.freeclipartnow.com/d/16959-1/jacket.png', 15, 22, 0, 1),
-(16, 'veste', 'jacket', 'http://clipartsign.com/upload/2016/02/18/top-blue-jacket-clip-art-images-for.png', 15, 22, 0, 1),
+(1, 'manteau rouge test', '', 'https://static.galerieslafayette.com/media/441/44103142/G_44103142_360_VPP_1.jpg', 0, 10, 0, 0),
+(2, 'chaussures fermées', 'chaussures', 'https://images-na.ssl-images-amazon.com/images/I/817DmsOCi1L._UL1500_.jpg', -30, 15, 10, 1),
+(4, 'Sweatshirt', 'pulls', 'https://openclipart.org/image/2400px/svg_to_png/77683/blue-hoodie.png', 0, 10, 10, 1),
+(5, 'blouson', 'vestes', 'https://openclipart.org/image/2400px/svg_to_png/192065/AlanSpeak-Jacket.png', 10, 20, 10, 1),
+(6, 'jeans', 'pantalons', 'https://openclipart.org/image/2400px/svg_to_png/263802/1476281241.png', -30, 22, 10, 1),
+(7, 'pantalon noir', 'pantalons', 'https://openclipart.org/image/2400px/svg_to_png/168770/Basic-Black-Pants.png', -30, 22, 10, 1),
+(9, 'chemise blanche', 'tops', 'https://openclipart.org/image/2400px/svg_to_png/219971/1433315645.png', 15, 25, 10, 1),
+(10, 'pantalon bleu', 'pantalons', 'https://openclipart.org/image/2400px/svg_to_png/213788/Hose.png', -30, 18, 10, 1),
+(11, 'chaussures mi-saison', 'chaussures', 'https://openclipart.org/image/2400px/svg_to_png/173952/shoe.png', 10, 22, 10, 1),
+(12, 'chaussures saison chaude', 'chaussures', 'https://openclipart.org/image/2400px/svg_to_png/191770/havaianas32.png', 22, 42, 10, 1),
+(13, 'pullover', 'pulls', 'https://openclipart.org/image/2400px/svg_to_png/213608/Pullover.png', -30, 10, 0, 1),
+(14, 'pull col roulé', 'pulls', 'http://diysolarpanelsv.com/images/striped-sweater-clipart-9.jpg', 0, 10, 0, 1),
+(15, 'blouson', '', 'https://www.freeclipartnow.com/d/16959-1/jacket.png', 15, 22, 0, 1),
 (17, 'short beige', 'shorts', 'http://www.artvex.com/content/Clip_Art/Clothing/Pants_and_Shorts/0011403.gif', 25, 42, 0, 1),
 (18, 'short vert', 'shorts', 'http://images.clipartlogo.com/files/images/47/479136/childs-shorts-1_f.jpg', 25, 42, 0, 1),
 (19, 'short bleu', 'shorts', 'http://images.clipartpanda.com/shorts-clipart-Shorts_4.png', 25, 42, 0, 1),
-(20, 'manteau marron', 'coats', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdVYj75TW8Mx6APP5jWYbkYe9ePTNS0Ak_VkuOsTjxeMD2YRSe', -30, 10, 0, 1),
-(21, 'manteau long', 'coats', 'https://101clipart.com/wp-content/uploads/01/Winter%20Coat%20Clipart%2008.png', -30, 10, 10, 1),
-(22, 'blouson hiver', 'coats', 'http://images.clipartpanda.com/jacket-clipart-jacket-clipart-cliparts-of-jacket-free-download-wmf-emf.png', -5, 10, 0, 1);
+(20, 'manteau marron', '', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdVYj75TW8Mx6APP5jWYbkYe9ePTNS0Ak_VkuOsTjxeMD2YRSe', -30, 10, 0, 1),
+(21, 'manteau long', '', 'https://101clipart.com/wp-content/uploads/01/Winter%20Coat%20Clipart%2008.png', -30, 10, 10, 1),
+(22, 'blouson hiver', '', 'http://images.clipartpanda.com/jacket-clipart-jacket-clipart-cliparts-of-jacket-free-download-wmf-emf.png', -5, 10, 0, 1),
+(23, '', '', '', 0, 10, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -80,6 +78,13 @@ CREATE TABLE `contact` (
   `date` datetime NOT NULL,
   `is read` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `contact`
+--
+
+INSERT INTO `contact` (`id`, `firstname`, `lastname`, `email`, `message`, `date`, `is read`) VALUES
+(1, 'Delphine', 'martinet', 'd-martinet@hotmail.fr', 'Test', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +105,9 @@ CREATE TABLE `tokens` (
 
 INSERT INTO `tokens` (`id`, `token`, `timeout`, `user_id`) VALUES
 (1, '538bdf7a8ea31ef877496fb274b516c1', 1504798237, 4),
-(2, '1f3bc7e446692858e1145fc9462e9ff5', 1504798662, 4);
+(2, '1f3bc7e446692858e1145fc9462e9ff5', 1504798662, 4),
+(3, 'cca9b485587551bef50eb18560194592', 1504877722, 4),
+(4, '18f07c673d633adef7b938cfcdf68d15', 1504949866, 4);
 
 -- --------------------------------------------------------
 
@@ -149,7 +156,15 @@ CREATE TABLE `usersclothes` (
 --
 
 INSERT INTO `usersclothes` (`id`, `idClothes`, `idUsers`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(4, 4, 4),
+(5, 18, 4),
+(6, 19, 4),
+(7, 14, 4),
+(9, 23, 4),
+(10, 4, 4),
+(11, 12, 4),
+(12, 17, 4);
 
 --
 -- Index pour les tables exportées
@@ -196,17 +211,17 @@ ALTER TABLE `usersclothes`
 -- AUTO_INCREMENT pour la table `clothes`
 --
 ALTER TABLE `clothes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
@@ -216,7 +231,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `usersclothes`
 --
 ALTER TABLE `usersclothes`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Contraintes pour les tables exportées
 --
