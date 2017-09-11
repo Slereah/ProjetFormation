@@ -5,7 +5,8 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2 id="signupTitle"><?= $title ?></h2>
+					<h1 id="signupTitle">Etape 1 :</h1>
+					<h2><?= $title ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
@@ -44,7 +45,7 @@
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="password" class="control-label">Mot de passe</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  value="<?= $password ?>">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  value="">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
@@ -321,7 +322,7 @@
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="unit" class="control-label">Unité</label>
 								<select id="unit" name="unit">
-									<option value="">Sélectionner votre unités :</option>
+									<option value="">Sélectionner l'unité de degrés :</option>
 									<option value="°C">Celsius</option>
 									<option value="°F">Fahrenheit</option>
 								</select>

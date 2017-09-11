@@ -159,7 +159,7 @@ class ClothesController extends Controller
 			$this->redirectToRoute('profile');
 		}
 		$this->show('clothes/delete',[
-			"title" => " Supprimer le vêtement : ".$clothes['name'],
+			"title" => " Voulez-vous supprimer le vêtement : ".$clothes['name'] ." ?",
 			"clothes" => $clothes
 		]);
 	}
@@ -202,7 +202,7 @@ class ClothesController extends Controller
 	public function search()
 	{
 		$search = "";
-		$data["title"] = "Search";
+		$data["title"] = "Recherche";
 		$data["userClothes"] = [];
 		if(isset($_SESSION["user"]) && !empty($_SESSION["user"]))
 		{

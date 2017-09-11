@@ -336,7 +336,7 @@ textarea.form-control {
 
 .navbar-fixed-top .top-bar, 
 #page  .top-bar{
-	top:25px;
+	top:24px;
 }
 
 .navbar-fixed-top .top-bar .social-icons, 
@@ -1400,6 +1400,7 @@ a.navbar-brand {
 
 #weatherIcon {
     text-align: center;
+    margin-top: -40px;
 }
 
 .wi {
@@ -1410,6 +1411,27 @@ a.navbar-brand {
     border-radius: 8px !important;
 }
 
+#country, #city {
+	height: 30px;
+}
+
+#locationTitle {
+	margin-top: 20px;
+}
+
+#section-title-Home {
+    margin-bottom: 13px;
+}
+
+#minTempHome {
+    margin-top: -16px;
+    margin-right: 56px;
+}
+
+#maxTempHome {
+    margin-top: -60px;
+    margin-right: 56px;
+}
 
 /*==============================
 =========Recent-projects=========
@@ -1527,6 +1549,29 @@ a.navbar-brand {
 .fa-refresh {
 	color: #302e2e !important;
 }
+
+#dateTitle {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#prevButton i, #nextButton i {
+	margin-right: 5px;
+    margin-left: 5px;
+}
+
+#nextButton i {
+    padding-left: 25px;
+}
+
+@media (min-width: 1200px) {
+	#homeContainer-recent-Projects {
+	    width: 1170px;
+	    margin-top: 20px;
+	}
+}
+
+
 
 /*==============================
 =========Amazing Features=========
@@ -3460,14 +3505,14 @@ div#password {
 }
 
 #signinTitle {
-	margin-top: 80px;
+	margin-top: 168px;
 }
 
 
 /*=========================
 ===== Signup CSS =======
 ===========================*/
-#signupTitle {
+#signupTitle, #contactTitle, #clothes-index-Title, #clothes-read-Title, #searchTitle {
     margin-top: 80px;
 }
 
@@ -3590,23 +3635,77 @@ span.profileData {
     margin-right: 10px;
 }
 
-@media () and () {
+@media (min-width: 1095px) and (max-width: 1199px) {
+	#navigation .navbar-right li a {
+	    font-size: 12px;
+	    padding: 10px 16px;
+	}
 
+	#navigation .navbar .navbar-fixed-top {
+	    top: 3px;
+	    position: relative;
+	    margin-right: 33px;
+	}
+
+	.top-bar .login-section i {
+	    margin-right: 2px;
+	}
+
+	.top-bar {
+	    position: absolute;
+	    right: -56px;
+	    top: 20px;
+	}
+
+	#navigation .navbar-fixed-top .navbar-right {
+	    margin-top: 0;
+	    margin-right: 129px;
+	}
+
+	.navbar-fixed-top span.login-section.leftSection {
+    	margin-right: -21px;
+	} 
+
+	.navbar-fixed-top span.login-section.rightSection {
+	    margin-left: 5px;
+	}
 }
 
+	
 @media (max-width: 768px){
 	.rightSection {
     	margin-right: 70px;
 	}
-	.leftSection {
-		margin-left: 28px;
+	.navbar .leftSection {
+		margin-left: 9px;
 	}
+
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     	margin-left: -80px;
 	}
+}
+
+
+
+
+
+
+
+
+
+
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: -10px;
+}
+
+#navigation .navbar-nav {
+    top: 2px;
+    position: relative;
+    margin-right: -55px;
 }
 
 
@@ -3617,9 +3716,110 @@ span.profileData {
 	margin-right: 23px;
 }
 
-/*=========================
+/*=================================
 =====  page Clothes (index) =======
-===========================*/
-.imgClothesIndex {
-	max-width: 50% !important;
+=================================*/
+#imgClothesIndex {
+	max-width: 50%;
+}
+
+#thumbnail-clothes-index {
+    height: 370px;
+}
+
+#clothes-read-Thumbnail dl {
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-bottom: 0px;
+}
+
+#clothes-read-Thumbnail dd {
+	margin-bottom: 6px;
+}
+ 
+
+#clothes-read-buttons {
+	margin-top: 27px;	
+}
+
+#updateBtn {
+	margin-right: 8px;
+}
+
+
+/*===================================
+=====  page clothes/create =======
+====================================*/
+#cropButton {
+	margin-top: 8px;
+}
+
+
+
+
+/*===================================
+=====  page search =======
+====================================*/
+#search {
+    position: relative;
+    font-size: 18px;
+    padding-top: 40px;
+    margin: -20px auto 0;
+}
+
+#search label {
+    position: absolute;
+    left: 17px;
+    top: 51px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+
+}
+
+#search #search-input {
+    padding-left: 43px;
+    padding-right: 43px;
+    border-radius: 23px;
+    font-size: 14px;
+    width: 277px;
+}
+
+#search-input {
+    border: 1px solid #fff;
+}
+
+#searchTitle {
+	margin-top: 122px;
+}
+
+#searchButton {
+	position: relative;
+    margin-top: -77px;
+    margin-left: 282px;
+}
+   
+#categorySearchTitle {
+	margin-bottom: 33px;	
+}  
+
+.categorySearch {
+	margin-right: -45px;
+    margin-left: -17px;	
+}
+
+#section-title-search {
+	margin-bottom: unset;
+}
+
+#searchRow {
+    margin-bottom: 55px;
+}
+
+#add-search-btn {
+	margin-top: 30px;
 }

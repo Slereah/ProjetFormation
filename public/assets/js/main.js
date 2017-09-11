@@ -209,8 +209,8 @@ function update(day, city, country, unit, source)
 
 function updateDisplay(data)
 {
-	$("#welcome-section div div h1").text(data.date);
-	$("#welcome-section div div h2").text("Prévisions météo pour " + data.city);
+	$("#dateTitle").text(data.date);
+	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
 	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);
 	$("#weatherIcon").html(data.weather.icon);
@@ -273,23 +273,21 @@ function createCarouselElement(key, clothes)
 	function loadCropper()
 	{
 		readURL($("#loadImage")[0]);
-		image = $("#image");
-		//console.log(image);
+		image = $("#image").eq(0);
+		
+		//myCropper.build();
+	}
+
+
+	function cropperstuff()
+	{
+		console.log("enter");
 		myCropper = new Cropper(image, {
 		  aspectRatio: 16 / 9,
-		  crop: function(e) {
-		    console.log(e.detail.x);
-		    console.log(e.detail.y);
-		    console.log(e.detail.width);
-		    console.log(e.detail.height);
-		    console.log(e.detail.rotate);
-		    console.log(e.detail.scaleX);
-		    console.log(e.detail.scaleY);
-		  }
+		  crop: function(e) {}
 		});
 		console.log(myCropper);
 	}
-
 
 	function cropImage()
 	{
