@@ -39,7 +39,9 @@
 								</div>
 							</form>
 							<div class="text-center">
-								<button type="submit" class="btn btn-primary indexButton">Modifier mon profil</button>
+								<button type="submit" class="btn btn-primary indexButton">
+								<a href="<?= $this->url('user_update', ['id' => $user['id']]) ?>">Modifier mon profil</a>
+								</button>
 							</div>
 						</div>
 
