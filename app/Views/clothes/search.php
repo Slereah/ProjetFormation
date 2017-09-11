@@ -26,34 +26,34 @@
 								<div class="col-xs-6 categorySearch" id="categorySearchTops">
 									<div class="text-right">
 										<label for="tops">Tops</label>
-										<input type="checkbox" name="tops">
+										<input type="checkbox" name="tops" value="true" <?= ($tops)?"checked='checked'":null ?>">
 									</div>
 									<div class="text-right">
 										<label for="sweater">Pulls</label>
-										<input type="checkbox" name="sweater">
+										<input type="checkbox" name="sweater" value="true" <?= ($sweater)?"checked='checked'":null ?>">
 									</div>
 									<div class="text-right">
 										<label for="vest">Vestes</label>
-										<input type="checkbox" name="vest">
+										<input type="checkbox" name="vest" value="true" <?= ($vest)?"checked='checked'":null ?>">
 									</div>
 									<div class="text-right">
-										<label for="coats">Manteaux</label>
-										<input type="checkbox" name="coats">
+										<label for="coat">Manteaux</label>
+										<input type="checkbox" name="coat" value="true" <?= ($coat)?"checked='checked'":null ?>">
 									</div>	
 								</div>
 								
 								<div class="col-xs-6 categorySearch" id="categorySearchBottoms">
 									<div class="text-right">
 										<label for="pants">Pantalons</label>
-										<input type="checkbox" name="pants">
+										<input type="checkbox" name="pants" value="true" <?= ($pants)?"checked='checked'":null ?>">
 									</div>
 									<div class="text-right">
 										<label for="shorts">Shorts</label>
-										<input type="checkbox" name="shorts">
+										<input type="checkbox" name="shorts" value="true" <?= ($shorts)?"checked='checked'":null ?>">
 									</div>
 									<div class="text-right">
-										<label>Chaussures</label>
-										<input type="checkbox" name="shoes">
+										<label for="shoes">Chaussures</label>
+										<input type="checkbox" name="shoes" value="true" <?= ($shoes)?"checked='checked'":null ?>">
 									</div>
 								</div>
 							</div>

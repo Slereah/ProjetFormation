@@ -38,9 +38,65 @@ class ClothesModel extends Model
 		return $sth->fetchAll();
 	}
 
-	public function search($name, $order = "DESC")
+	public function search($name, $options, $order = "DESC")
 	{
-		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search ORDER BY name DESC";
+		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search";
+
+		$max = 0;
+		foreach ($options as $key => $value) 
+		{
+			if($value)
+			{
+				$max++;
+			}
+		}
+
+		if(!empty($options) && in_array(true, $options))
+		{
+			$sql .= " AND (";
+			$i = 0;
+			foreach ($options as $key => $option) 
+			{
+				if($option)
+				{
+					switch ($key) 
+					{
+						case 'tops':
+							$sql .= "category = 'tops'";
+							break;
+						case 'shoes':
+							$sql .= "category = 'chaussures'";
+							break;
+						case 'vest':
+							$sql .= "category = 'vestes'";
+							break;
+						case 'pants':
+							$sql .= "category = 'pantalons'";
+							break;
+						case 'sweater':
+							$sql .= "category = 'pulls'";
+							break;
+						case 'coat':
+							$sql .= "category = 'manteaux'";
+							break;
+						case 'shorts':
+							$sql .= "category = 'shorts'";
+							break;
+						default:
+							break;
+					}
+					if($i != $max - 1)
+					{
+						$sql .= " OR ";
+					}
+					$i++;
+				}
+				
+				
+			}
+			$sql .= ")";
+		}
+		$sql .= " ORDER BY name DESC";
 		$sth = $this->dbh->prepare($sql);
 		$tmp = '%' . $name . '%';
 		$sth->bindParam(":search", $tmp);
@@ -66,12 +122,29 @@ class ClothesModel extends Model
 		$sth->execute();
 	}
 
+	public function findClothesUser($idClothe)
+	{
+		$sql = "SELECT idUsers FROM usersclothes WHERE idClothes = :idclothe";
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindParam(":idclothe", $idClothe);
+		$sth->execute();
+		return $sth->fetch();
+	}
+
 	public function deleteClothesUser($idClothe, $idUser)
 	{
 		$sql = "DELETE FROM usersclothes WHERE idUsers = :iduser AND idClothes = :idclothe";
 		$sth = $this->dbh->prepare($sql);
 		$sth->bindParam(":iduser", $idUser);
 		$sth->bindParam(":idclothe", $idClothe);
+		$sth->execute();
+	}
+
+	public function deleteAllClothesUser($idUser)
+	{
+		$sql = "DELETE FROM usersclothes WHERE idUsers = :iduser";
+		$sth = $this->dbh->prepare($sql);
+		$sth->bindParam(":iduser", $idUser);
 		$sth->execute();
 	}
 

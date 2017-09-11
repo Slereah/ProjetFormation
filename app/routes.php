@@ -18,6 +18,7 @@
         *-- Users
         */
         ['GET', '/profile', 'Users#index', 'profile'],
+        ['GET|POST', '/user-list', 'Users#userList', "userlist"],
         ['GET|POST', '/[i:id]/user-update', 'Users#update', 'user_update'],
       	['GET|POST', '/[i:id]/user-delete', 'Users#delete', 'user_delete'],
 
