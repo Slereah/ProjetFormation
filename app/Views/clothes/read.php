@@ -4,28 +4,37 @@
 
 		<div id="recent-projects" class="padding">
 			<div class="container">
-				<div class="text-center section-title">
-					<h1 id="indexTitle"><?= $title ?></h1>
-				</div>
-				<div class="row"> 
-					<div class="recent-projects">
-						<dl>
+				
+					<div class="row">
+						<div class="text-center section-title">
+							<h2 id="clothes-read-Title"><?= $title ?></h2>
+						</div>
 
-							<dt>Nom :</dt>
-							<dd> <?= $clothes['name'] ?> </dd>
-							<br>
+						<div class="col-md-4 col-md-offset-4">
+							<div class="thumbnail" id="clothes-read-Thumbnail">
+								<dl>
+									<dt>Nom :</dt>
+									<dd> <?= $clothes['name'] ?> </dd>
 
-							<dt>Description :</dt>
-							<dd> <?= $clothes['category'] ?> </dd>
-							<br>
-
-							<dt>Image :</dt>
-							<dd> <img src="<?= $clothes['picture'] ?>"> </dd>
-							<br>
-
-						</dl>
-
-						// <a href="<?= $this->url('clothes_update', ['id' => $clothes['id']]) ?>">Modifier</a>
-						|| <a href="<?= $this->url('clothes_delete', ['id' => $clothes['id']]) ?>">Supprimer</a>
-						\\
+									<dt>Catégorie :</dt>
+									<dd> <?= $clothes['category'] ?> </dd>
+								</dl>
+							
+								<img src="<?= $clothes['picture'] ?>" class="img-responsive imgClothes imgWardrobe">
+							
+							 	<div class="caption">
+							    	<h3 class="text-center"><?= $clothes ['name'] ?></h3>
+							    	<div class="text-center" id="clothes-read-buttons">
+							    		<a href="<?= $this->url('clothes_update', ['id' => $clothes['id']]) ?>" class="btn btn-primary indexButton" id="updateBtn">Modifier</a>
+					 					<a href="<?= $this->url('clothes_delete', ['id' => $clothes['id']]) ?>"  class="btn btn-primary indexButton">Supprimer</a>
+							    	</div>
+							    </div>
+							    
+							</div><!-- Fin thumbnail -->
+						</div><!-- Fin col -->
+					</div><!-- Fin row -->
+					
+			</div><!-- Fin container -->			
+		</div><!-- Fin recent-projects -->
+						
 <?php $this->stop('main_content'); ?>

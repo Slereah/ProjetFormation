@@ -20,54 +20,85 @@
 
 	    <div id="welcome-section" class="padding">
 			<div class="container">
-				<div class="text-center section-title">
-					<h1><?= date("Y-m-d", $time)?></h1>
-					<h2>Prévisions météo pour <?= $city ?></h2>
-				</div>
 				<div class="welcome-content">
 					<div class="row">
-						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-							<div class="welcome-image">
-								<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
-							</div>						
+					
+						<?php if (!empty($errors)): ?>
+								
+									<?php foreach ($errors as $error) : ?>
+										<div class="alert alert-danger">
+										<?= $error ?>
+										</div>
+									<?php endforeach; ?>
+								
+							<?php endif; ?>
+
+
+						<!-- Localité -->
+						<div class="col-md-2">
+							<div class="text-center section-title" id="section-title-Home">
+								<h1 id="locationTitle">Localité</h1>
+							</div>
+							<form method="post">
+								<div class="form-group welcome-image form-sign">
+									<label>Ville</label>
+									<input class="form-control" id="city" type="text" name="city" value="<?= $cityInput ?>">
+								</div>
+								<div class="form-group welcome-image form-sign">
+									<label>Pays</label>
+									<input class="form-control" id="country" type="text" name="country" value="<?= $countryInput ?>">
+								</div>
+								<div class="text-center">
+									<button class="btn btn-primary" id="upButton" type="button" onclick="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton')">OK</button>
+								</div>
+							</form>
 						</div>
-						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-							<div class="welcome-image">							
-								<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
+
+						<!-- Prévisions météo -->
+						<div class="col-md-8 col-md-offset-2">
+							<div class="text-center section-title">
+								<h1 id="dateTitle">Le <?= date("Y-m-d", $time)?></h1>
+								<h2 id="weatherTitle">Prévisions météo pour <?= $city ?></h2>
+							</div>
+							<div class="row">
+								<div class="col-md-2 col-md-offset-2" id="weatherIcon">
+									<?= $weather["icon"] ?>
+								</div>
+								<div class="col-md-7 col-md-offset-1 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+									<div class="welcome-image" id="minTempHome">
+										<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
+									</div>						
+								</div>
+								<div class="col-md-7 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+									<div class="welcome-image" id="maxTempHome">							
+										<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4" id="weatherIcon">
-							<?= $weather["icon"] ?>
-						</div>
-					</div>
-				</div>
-			</div>
+
+					</div><!-- Fin div row -->
+				</div><!-- Fin div welcome-content -->
+			</div><!-- Fin div container -->
 	    </div><!--/#welcome-section-->
 		
 
-		<div id="recent-projects" class="padding">
-			<div class="container">
-				<form class="">
-					<div>
-						<label>Ville</label>
-						<input type="text" name="city" id="city" value="<?= $cityInput ?>">
-					</div>
-					<div>
-						<label>Pays</label>
-						<input type="text" name="country" id="country" value="<?= $countryInput ?>">
-					</div>
-					<button id="upButton" type="button" onclick="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton')">update</button>
-				</div>
 
-
-				<div id="datePicker" class="text-center section-title">
-						<button id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">prev</button>
-						<h1><?= $date ?></h1>
-						<button id="nextButton" type="button" onclick="update(<?= ($day<6)?$day+1:6 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'nextButton')">next</button>
-					<h2>How to get dress today ?</h2>
-				</div>
+	    <div id="recent-projects" class="padding">
+			<div class="container" id="homeContainer-recent-Projects">
 				<div class="recent-projects">
 					<div class="row"> 
+							
+						<div id="datePicker" class="text-center section-title">
+							<h2>Exemple de tenue</h2>
+							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
+								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
+							</button>
+							<h1 id="dateTitle">Date : <?= $date ?></h1>
+							<button class="btn btn-primary" id="nextButton" type="button" onclick="update(<?= ($day<6)?$day+1:6 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'nextButton')">Jour suivant
+								<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+							</button>
+						</div>
 						<div class="carousel slide" id="mon-carrousel1">
 							<!-- Carrousel d'images -->
 							<div id="selectUpper" class="carousel-inner">
@@ -102,7 +133,7 @@
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 										</div>
 										<div class="carousel-caption">
-								        	<h3>Bas</h3>
+							        	<h3>Bas</h3>
 							      		</div>
 										<?php
 									}
@@ -138,9 +169,9 @@
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
-					</div>
-				</div>
-			</div>
+						
+					</div><!-- Fin div row -->
+				</div><!-- Fin div recent-projects -->
 						
 	    </div><!--/#Recent projects-->
 <?php $this->stop('main_content') ?>

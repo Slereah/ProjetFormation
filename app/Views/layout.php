@@ -155,7 +155,6 @@
 		<script type="text/javascript" src="<?= $this->assetUrl('magnific-popup/jquery.magnific-popup.min.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.nav.js') ?>"></script>
 		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.typer.js') ?>"></script>
-		<script type="text/javascript" src="<?= $this->assetUrl('js/jquery.event.move.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('twentytwenty/twentytwenty.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.countTo.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 

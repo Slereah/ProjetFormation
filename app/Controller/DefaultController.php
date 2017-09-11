@@ -21,7 +21,7 @@ class DefaultController extends Controller
 	{
 		$data["time"] = time();
 		$data["day"] = 0;
-		$data["date"] = date("Y-m-d", time());
+		$data["date"] = date("d-m-Y", time());
 		$data["city"] = "Paris";
 		$data["country"] = "fr";
 		$data["unit"] = "°C";
@@ -49,7 +49,7 @@ class DefaultController extends Controller
 
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];		
-		$data["date"] = date("Y-m-d", $data["time"]);
+		$data["date"] = date("d-m-Y", $data["time"]);
 
 		$this->show('default/home', $data);
 	}
@@ -63,6 +63,7 @@ class DefaultController extends Controller
     	$message = null;
 
     	$save =true;
+    	$_SESSION['contactSubmit'] = false;
 
 		$_SESSION['contactSubmit'] = false;
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -92,6 +93,7 @@ class DefaultController extends Controller
 				]);
 
 				$_SESSION['contactSubmit'] = true;
+
 
 			}
         }
@@ -161,17 +163,18 @@ class DefaultController extends Controller
 		$data = $_POST;
 		
 		$time = time() + ($data["day"] * 3600 * 24);
-		$data["date"] = date("Y-m-d", $time);
+		$data["date"] = date("d-m-Y", $time);
 
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
 		$data["shoes"] = [];
+		$data["errors"] = [];
 
 		
 		$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
 		if(is_null($data["weather"]))
 		{
-			$data["errors"]["weather"] = "Can't find the weather in the place indicated";
+			$data["errors"]["weather"] = "La météo n'a pas été trouvée dans la localité indiquée.";
 		}
 		
 
@@ -186,6 +189,7 @@ class DefaultController extends Controller
 			$data = array_merge($data, $this->generateClothes($data["weather"], null));
 		}
 		echo json_encode($data);
+		
 	}
 
 	public function generateClothes($weather, $id)
