@@ -25,31 +25,31 @@
 							<div class="row">
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
-										<label>Tops</label>
-										<input type="checkbox" name="shirts">
+										<label for="tops">Tops</label>
+										<input type="checkbox" name="tops">
 									</div>
 									<div class="text-right">
-										<label>Pulls</label>
-										<input type="checkbox" name="XXXXXXX">
+										<label for="sweater">Pulls</label>
+										<input type="checkbox" name="sweater">
 									</div>
 									<div class="text-right">
-										<label>Vestes</label>
-										<input type="checkbox" name="XXXXXXX">
+										<label for="vest">Vestes</label>
+										<input type="checkbox" name="vest">
 									</div>
 									<div class="text-right">
-										<label>Manteaux</label>
-										<input type="checkbox" name="XXXXXXX">
+										<label for="coats">Manteaux</label>
+										<input type="checkbox" name="coats">
 									</div>	
 								</div>
 								
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
-										<label>Pantalons</label>
+										<label for="pants">Pantalons</label>
 										<input type="checkbox" name="pants">
 									</div>
 									<div class="text-right">
-										<label>Shorts</label>
-										<input type="checkbox" name="XXXXXXX">
+										<label for="shorts">Shorts</label>
+										<input type="checkbox" name="shorts">
 									</div>
 									<div class="text-right">
 										<label>Chaussures</label>
