@@ -19,7 +19,7 @@
 							<button class="btn btn-primary" id="searchButton">OK</button>
 						</form>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 col-md-offset-4">
 						<form method="POST">
 							<h1 id="categorySearchTitle">Afficher par catégorie</h1>
 							<div class="row">
@@ -78,21 +78,21 @@
 						if($key % 4 == 0)
 						{
 							?>
-								<div class="row">
+				<div class="row">
 							<?php
 						}
 						?>
 					
-						<div class="col-md-3">		
-							<div class="thumbnail" id="thumbnail-clothes-index">
-								<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-							      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
-							    </a>
-								<div class="caption">
-									<div class="text-center">
-										<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-						      				<h3><?= $result["name"] ?></h3>
-						    			</a>	
+					<div class="col-md-3">		
+						<div class="thumbnail" id="thumbnail-clothes-index">
+							<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+						      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
+						    </a>
+							<div class="caption">
+								<div class="text-center">
+									<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+					      				<h3><?= $result["name"] ?></h3>
+					    			</a>	
 							<?php
 
 							if($connected)
@@ -101,10 +101,8 @@
 								{
 									?>
 									
-										<p>Déjà ajouté à ma garde-robe</p>
-										<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
-									</div>
-								</div>
+									<p>Déjà ajouté à ma garde-robe</p>
+									<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
 
 									<?php
 
@@ -113,18 +111,17 @@
 								{
 									?>
 									
-										<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 
-									</div>
-								</div>
-										
+									<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 										
 
 									<?php
 								}
 							}
 
 							?>
-							</div><!-- Fin div thumbnail -->
-						</div><!-- Fin div col -->
+								</div><!-- Fin div text-center -->
+							</div><!-- Fin div caption -->
+						</div><!-- Fin div thumbnail -->
+					</div><!-- Fin div col -->
 						<?php
 						if($key % 4 == 3)
 						{
@@ -135,8 +132,9 @@
 					}
 
 				?>
-			</div>					
-		</div>
+				</div><!-- Fin div row -->					
+			</div><!-- Fin div container -->
+		</div><!-- Fin div recent-projects -->
 
 <?php $this->stop('main_content'); ?>
 

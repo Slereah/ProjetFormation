@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Weather & Wear']) ?>
+<?php $this->layout('layout', ['title' => $title ]) ?>
 
 <?php $this->start('main_content') ?>	
 
@@ -57,7 +57,7 @@
 						<!-- Prévisions météo -->
 						<div class="col-md-8 col-md-offset-2">
 							<div class="text-center section-title">
-								<h1 id="dateTitle">Le <?= date("Y-m-d", $time)?></h1>
+								<h1 id="dateTitle">Le <?= $date ?></h1>
 								<h2 id="weatherTitle">Prévisions météo pour <?= $city ?></h2>
 							</div>
 							<div class="row">

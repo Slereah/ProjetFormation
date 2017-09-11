@@ -86,7 +86,6 @@ class ClothesController extends Controller
 	public function read($id)
 	{
 		$clothes = $this->clothesModel->find($id);
-		var_dump($clothes);
 		$this->show('clothes/read', [
 			"title" => $clothes['name'],
 			"clothes" => $clothes
@@ -132,7 +131,11 @@ class ClothesController extends Controller
 					'rain' => $rain
 				], $clothes['id']);
 
+				$_SESSION["ValidForm"] = true;
+
 				$this->redirectToRoute('clothes_read', [id => $clothes['id']]);
+
+
 			}
 
 		}
@@ -215,13 +218,13 @@ class ClothesController extends Controller
 		{
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
 
-			$options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true");
-			$options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true");
-			$options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true");
-			$options["coat"] = isset($_POST["coat"]) && $_POST["coat"] == "true");
-			$options["pants"] = isset($_POST["pants"]) && $_POST["pants"] == "true");
-			$options["shorts"] = isset($_POST["shorts"]) && $_POST["shorts"] == "true");
-			$options["shoes"] = isset($_POST["shoes"]) && $_POST["shoes"] == "true");
+			$options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true";
+			$options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true";
+			$options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true";
+			$options["coat"] = isset($_POST["coat"]) && $_POST["coat"] == "true";
+			$options["pants"] = isset($_POST["pants"]) && $_POST["pants"] == "true";
+			$options["shorts"] = isset($_POST["shorts"]) && $_POST["shorts"] == "true";
+			$options["shoes"] = isset($_POST["shoes"]) && $_POST["shoes"] == "true";
 		}
 		$data["results"] = $this->clothesModel->search($search, $options);
 
