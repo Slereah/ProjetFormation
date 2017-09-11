@@ -116,7 +116,7 @@
 			<div class="container">
 				<div class="padding">
 					<div class="row">
-						<div class="col-md-4 col-sm-4">
+						<div class="col-md-4">
 							<div class="footer-widget">
 								<h2>Nos coordonnées</h2>
 								<address>
@@ -128,7 +128,7 @@
 								</address>
 							</div>
 						</div>
-						<div class="col-md-4 col-md-offset-4 col-sm-3 col-sm-offset-1 col-xs-4 col-xs-offset-4">
+						<div class="col-md-4 col-md-offset-4" id="partnersTitle">
 							<div class="footer-widget">
 								<h2>Partenaires</h2>
 								<ul>

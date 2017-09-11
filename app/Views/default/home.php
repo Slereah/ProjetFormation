@@ -64,12 +64,12 @@
 								<div class="col-md-2 col-md-offset-2" id="weatherIcon">
 									<?= $weather["icon"] ?>
 								</div>
-								<div class="col-md-7 col-md-offset-1 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+								<div class="col-md-7 col-md-offset-1">
 									<div class="welcome-image" id="minTempHome">
 										<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
 									</div>						
 								</div>
-								<div class="col-md-7 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
+								<div class="col-md-7 col-md-offset-5">
 									<div class="welcome-image" id="maxTempHome">							
 										<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
 									</div>
@@ -91,10 +91,10 @@
 							
 						<div id="datePicker" class="text-center section-title">
 							<h2>Exemple de tenue</h2>
+							<h1 id="dateTitle">Pour le <?= $date ?></h1>
 							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
 							</button>
-							<h1 id="dateTitle">Date : <?= $date ?></h1>
 							<button class="btn btn-primary" id="nextButton" type="button" onclick="update(<?= ($day<6)?$day+1:6 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'nextButton')">Jour suivant
 								<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
 							</button>

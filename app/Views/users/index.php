@@ -13,7 +13,7 @@
 						<!-- Infos persos -->
 						<div class="col-md-4 personalData">
 							<div class="text-center section-title">
-								<h2>Mes infos persos</h2>
+								<h2 id="persDataTitle">Mes infos persos</h2>
 							</div>
 							<form class="userData">
 								<div>
