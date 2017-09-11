@@ -207,6 +207,8 @@ class SecurityController extends Controller
 				  "country" 	=> $country,
 				  "city"	 	=> $city,
 				  "zipcode" 	=> $zipcode,
+				  "unit"		=> $unit,
+				  "role"		=> "user"
 		        ]);
 			    
 				// Ajouter l'utilisateur a la SESSION
@@ -219,7 +221,8 @@ class SecurityController extends Controller
 					"country" 	=> $user['country'],
 					"city" 		=> $user['city'],
 					"zipcode" 	=> $user['zipcode'], 
-					"unit"		=> $user['unit']
+					"unit"		=> $user['unit'],
+					"role"		=> "user"
 			    );
 
 				// On redirige l'utilisateur vers sa page profil

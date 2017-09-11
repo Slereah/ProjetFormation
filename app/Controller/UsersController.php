@@ -52,4 +52,37 @@ class UsersController extends Controller
 		// Affichage de la vue du profil
 		$this->show('users/index',$data);
 	}
+
+	public function update($id)
+	{
+		if(!isset($_SESSION["user"]) || ($_SESSION["user"]["id"] != $id && $_SESSION["user"]["role"] != "admin"))
+		{
+			$this->showForbidden();
+		}
+		else
+		{
+			$data["users"] = $this->usersModel->findAll();
+			$this->show('users/list', $data);
+		}
+	}
+
+	public function delete($id)
+	{
+		$this->clothesModel->deleteAllClothesUser($id);
+		$this->usersModel->delete($id);
+		$this->redirectToRoute("home");
+	}
+
+	public function userList()
+	{
+		if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] != "admin")
+		{
+			$this->showForbidden();
+		}
+		else
+		{
+			$data["users"] = $this->usersModel->findAll();
+			$this->show('users/list', $data);
+		}
+	}
 }
