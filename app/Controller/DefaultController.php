@@ -4,6 +4,7 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ClothesModel;
+use \Model\ContactModel;
 
 class DefaultController extends Controller
 {
@@ -63,6 +64,7 @@ class DefaultController extends Controller
 
     	$save =true;
 
+		$_SESSION['contactSubmit'] = false;
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Récupération des données du formulaire

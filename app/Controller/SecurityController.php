@@ -240,6 +240,7 @@ class SecurityController extends Controller
 			"title" 	=> " Inscription ",
 			"username" 	=> $username,
       		"email" 	=> $email,
+      		"password" 	=> $password,
       		"firstname" => $firstname,
 			"lastname" 	=> $lastname,
 			"country" 	=> $country,

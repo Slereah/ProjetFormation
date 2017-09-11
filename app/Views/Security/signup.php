@@ -321,7 +321,7 @@
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="unit" class="control-label">Unité</label>
 								<select id="unit" name="unit">
-									<option value="">Sélectionner votre pays :</option>
+									<option value="">Sélectionner votre unités :</option>
 									<option value="°C">Celsius</option>
 									<option value="°F">Fahrenheit</option>
 								</select>
