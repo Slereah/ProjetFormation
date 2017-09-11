@@ -84,15 +84,15 @@
 						?>
 					
 						<div class="col-md-3">		
-										<div class="thumbnail" id="thumbnail-clothes-index">
-											<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-										      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
-										    </a>
-											<div class="caption">
-												<div class="text-center">
-													<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-									      				<h3><?= $result["name"] ?></h3>
-									    			</a>	
+							<div class="thumbnail" id="thumbnail-clothes-index">
+								<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+							      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
+							    </a>
+								<div class="caption">
+									<div class="text-center">
+										<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+						      				<h3><?= $result["name"] ?></h3>
+						    			</a>	
 							<?php
 
 							if($connected)
@@ -101,12 +101,10 @@
 								{
 									?>
 									
-													<p>Déjà ajouté à ma garde-robe</p>
-													<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
-												</div>
-											</div>
-										</div><!-- Fin div thumbnail -->
-									</div><!-- Fin div col -->
+										<p>Déjà ajouté à ma garde-robe</p>
+										<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
+									</div>
+								</div>
 
 									<?php
 
@@ -115,16 +113,18 @@
 								{
 									?>
 									
-													<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 
-												</div>
-											</div>
-										</div><!-- Fin div thumbnail -->
-									</div><!-- Fin div col -->
+										<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 
+									</div>
+								</div>
+										
 
 									<?php
 								}
 							}
+
 							?>
+							</div><!-- Fin div thumbnail -->
+						</div><!-- Fin div col -->
 						<?php
 						if($key % 4 == 3)
 						{
