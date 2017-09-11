@@ -89,8 +89,7 @@ class ClothesController extends Controller
 	}
 	public function read($id)
 	{
-		$clothes = $this->clothesModel->find($id);
-		
+		$clothes = $this->clothesModel->find($id);		
 		if(!$clothes["defaultClothes"])
 		{
 			$idUser = $this->clothesModel->findClothesUser($id)["idUsers"];
@@ -100,7 +99,6 @@ class ClothesController extends Controller
 			}
 		}
 		
-
 		$this->show('clothes/read', [
 			"title" => $clothes['name'],
 			"clothes" => $clothes
@@ -151,7 +149,11 @@ class ClothesController extends Controller
 					'rain' => $rain
 				], $clothes['id']);
 
+				$_SESSION["ValidForm"] = true;
+
 				$this->redirectToRoute('clothes_read', [id => $clothes['id']]);
+
+
 			}
 
 		}

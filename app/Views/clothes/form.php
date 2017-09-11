@@ -4,6 +4,7 @@
 			<h2 id="signupTitle"><?= $title ?></h2>
 		</div>
 		<div class="welcome-content">
+
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<form method="post">
@@ -48,14 +49,13 @@
 						<div class="form-group welcome-image form-sign">
 							<label>Télécharger une image</label>
 							<input type="file" class="form-control" id="loadImage" name="loadImage" onchange="loadCropper(this)">
-					  		<img id="image" src="" width="300px">
-					  		<button class="btn btn-secondary" id="cropButton" onclick="cropImage()">Redimensionner</button>
-				  		</div>
+						  	<img id="image" src="" width="300px">
+						  	<button class="btn btn-secondary" id="cropButton" onclick="cropImage()">Redimensionner</button>
+					  	</div>
 
-				  		<div class="text-center">
-				  			<button type="submit" class="btn btn-primary">Enregistrer</button>
-				  		</div>
-						
+					  	<div class="text-center">
+					  		<button type="submit" class="btn btn-primary">Enregistrer</button>
+					  	</div>
 					</form>
 				</div>
 			</div><!-- Fin row -->

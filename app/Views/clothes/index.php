@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Vêtement'])?>
+<?php $this->layout('layout', ['title' => $title ])?>
 
 <?php $this->start('main_content') ?>
 		
@@ -45,7 +45,7 @@
 						<?php else: ?>
 
 							<p>Il n'y a aucun vêtement dans la BDD</p>
-							<a href="<?= $this->url('clothes_create') ?>">Ajouter un vêtement</a>
+							<a href="<?= $this->url('clothes_create', ["id" => $_SESSION["user"]["id"]]) ?>">Ajouter un vêtement</a>
 
 						<?php endif; ?>
 					</div>
