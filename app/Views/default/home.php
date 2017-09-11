@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="welcome-content">
 					<div class="row">
-					
+
 						<?php if (!empty($errors)): ?>
 								
 									<?php foreach ($errors as $error) : ?>
@@ -149,7 +149,7 @@
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
 								<?php
-									foreach ($shoes as $key => $value) 
+									foreach ($chaussures as $key => $value) 
 									{
 										?>
 										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
