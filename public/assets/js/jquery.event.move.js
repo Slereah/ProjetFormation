@@ -1,1 +1,0 @@
-C:/xampp/htdocs/ProjetFormation/vendor/bower_components/jquery.event.move/js/jquery.event.move.js

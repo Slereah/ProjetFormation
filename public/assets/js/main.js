@@ -209,8 +209,8 @@ function update(day, city, country, unit, source)
 
 function updateDisplay(data)
 {
-	$("#welcome-section div div h1").text(data.date);
-	$("#welcome-section div div h2").text("Prévisions météo pour " + data.city);
+	$("#dateTitle").text(data.date);
+	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
 	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);
 	$("#weatherIcon").html(data.weather.icon);
