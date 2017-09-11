@@ -103,6 +103,10 @@
 							<!-- Carrousel d'images -->
 							<div id="selectUpper" class="carousel-inner">
 								<?php
+									if($error["upperClothes"])
+									{
+										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png')]];
+									}
 									foreach ($upperClothes as $key => $value) 
 									{
 										?>
@@ -126,6 +130,10 @@
 						<div class="carousel slide" id="mon-carrousel2">
 							<div class="carousel-inner">
 								<?php
+									if($error["lowerClothes"])
+									{
+										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png')]];
+									}
 									foreach ($lowerClothes as $key => $value) 
 									{
 										?>
@@ -149,6 +157,10 @@
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
 								<?php
+									if($error["shoes"])
+									{
+										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg')]];
+									}
 									foreach ($chaussures as $key => $value) 
 									{
 										?>
