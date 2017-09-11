@@ -40,11 +40,11 @@
 								<h1 id="locationTitle">Localité</h1>
 							</div>
 							<form method="post">
-								<div class="form-group welcome-image form-sign">
+								<div class="form-group welcome-image form-sign" id="cityLabel">
 									<label>Ville</label>
 									<input class="form-control" id="city" type="text" name="city" value="<?= $cityInput ?>">
 								</div>
-								<div class="form-group welcome-image form-sign">
+								<div class="form-group welcome-image form-sign" id="countryLabel">
 									<label>Pays</label>
 									<input class="form-control" id="country" type="text" name="country" value="<?= $countryInput ?>">
 								</div>
