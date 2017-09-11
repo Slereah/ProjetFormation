@@ -26,34 +26,34 @@
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
 										<label for="tops">Tops</label>
-										<input type="checkbox" name="tops">
+										<input type="checkbox" name="tops" value="true">
 									</div>
 									<div class="text-right">
 										<label for="sweater">Pulls</label>
-										<input type="checkbox" name="sweater">
+										<input type="checkbox" name="sweater" value="true">
 									</div>
 									<div class="text-right">
 										<label for="vest">Vestes</label>
-										<input type="checkbox" name="vest">
+										<input type="checkbox" name="vest" value="true">
 									</div>
 									<div class="text-right">
-										<label for="coats">Manteaux</label>
-										<input type="checkbox" name="coats">
+										<label for="coat">Manteaux</label>
+										<input type="checkbox" name="coat" value="true">
 									</div>	
 								</div>
 								
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
 										<label for="pants">Pantalons</label>
-										<input type="checkbox" name="pants">
+										<input type="checkbox" name="pants" value="true">
 									</div>
 									<div class="text-right">
 										<label for="shorts">Shorts</label>
-										<input type="checkbox" name="shorts">
+										<input type="checkbox" name="shorts" value="true">
 									</div>
 									<div class="text-right">
-										<label>Chaussures</label>
-										<input type="checkbox" name="shoes">
+										<label for="shoes">Chaussures</label>
+										<input type="checkbox" name="shoes" value="true">
 									</div>
 								</div>
 							</div>
@@ -84,15 +84,15 @@
 						?>
 					
 						<div class="col-md-3">		
-										<div class="thumbnail" id="thumbnail-clothes-index">
-											<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-										      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
-										    </a>
-											<div class="caption">
-												<div class="text-center">
-													<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
-									      				<h3><?= $result["name"] ?></h3>
-									    			</a>	
+							<div class="thumbnail" id="thumbnail-clothes-index">
+								<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+							      <img src="<?= $result["picture"]?>" alt="<?= $result["name"]?>"" class="img-responsive imgClothes imgWardrobe" id="imgClothesIndex">
+							    </a>
+								<div class="caption">
+									<div class="text-center">
+										<a href="<?= $this->url('clothes_read', ["id" => $result["id"]]) ?>">
+						      				<h3><?= $result["name"] ?></h3>
+						    			</a>	
 							<?php
 
 							if($connected)
@@ -101,12 +101,10 @@
 								{
 									?>
 									
-													<p>Déjà ajouté à ma garde-robe</p>
-													<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
-												</div>
-											</div>
-										</div><!-- Fin div thumbnail -->
-									</div><!-- Fin div col -->
+										<p>Déjà ajouté à ma garde-robe</p>
+										<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
+									</div>
+								</div>
 
 									<?php
 
@@ -115,16 +113,18 @@
 								{
 									?>
 									
-													<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 
-												</div>
-											</div>
-										</div><!-- Fin div thumbnail -->
-									</div><!-- Fin div col -->
+										<a href="<?= $this->url('clothes_addW', ["id" => $result["id"], "idUser" => $idUser]) ?>" class="btn btn-primary" id="add-search-btn">Ajouter à ma garde-robe</a> 
+									</div>
+								</div>
+										
 
 									<?php
 								}
 							}
+
 							?>
+							</div><!-- Fin div thumbnail -->
+						</div><!-- Fin div col -->
 						<?php
 						if($key % 4 == 3)
 						{

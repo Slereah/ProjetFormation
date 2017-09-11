@@ -38,9 +38,18 @@ class ClothesModel extends Model
 		return $sth->fetchAll();
 	}
 
-	public function search($name, $order = "DESC")
+	public function search($name, $options, $order = "DESC")
 	{
-		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search ORDER BY name DESC";
+		$sql = "SELECT * FROM " . $this->table . " WHERE defaultClothes = true AND name LIKE :search";
+		if(!empty($options))
+		{
+			$sql .= " AND ";
+			foreach ($options as $key => $option) 
+			{
+				
+			}
+		}
+		$sql .= " ORDER BY name DESC";
 		$sth = $this->dbh->prepare($sql);
 		$tmp = '%' . $name . '%';
 		$sth->bindParam(":search", $tmp);
