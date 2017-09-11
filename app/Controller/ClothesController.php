@@ -209,11 +209,21 @@ class ClothesController extends Controller
 			$data["userClothes"] = $this->clothesModel->get("personal", $_SESSION["user"]["id"]);
 		}
 
+		$options = [];
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
+
+			$options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true");
+			$options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true");
+			$options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true");
+			$options["coat"] = isset($_POST["coat"]) && $_POST["coat"] == "true");
+			$options["pants"] = isset($_POST["pants"]) && $_POST["pants"] == "true");
+			$options["shorts"] = isset($_POST["shorts"]) && $_POST["shorts"] == "true");
+			$options["shoes"] = isset($_POST["shoes"]) && $_POST["shoes"] == "true");
 		}
-		$data["results"] = $this->clothesModel->search($search);
+		$data["results"] = $this->clothesModel->search($search, $options);
 
 		foreach ($data["results"] as $key => $result) 
 		{

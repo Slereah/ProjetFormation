@@ -209,12 +209,12 @@ function update(day, city, country, unit, source)
 
 function updateDisplay(data)
 {
-	$("#dateTitle").text(data.date);
+	$("#dateTitle").text("Le " + data.date);
 	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
 	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);
 	$("#weatherIcon").html(data.weather.icon);
-	$("#datePicker h1").html(data.date);
+	$("#datePicker h1").html("Le " + data.date);
 	var day = parseInt(data.day);
 	$("#prevButton").attr("onclick", "update(" + ((day == 0)?0:day-1).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'prevButton')");
 	$("#nextButton").attr("onclick", "update(" + ((day < 6)?day+1:6).toString() + ", '" + data.city + "', '" + data.country + "', '" + data.unit + "', 'nextButton')");

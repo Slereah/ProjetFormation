@@ -26,34 +26,34 @@
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
 										<label for="tops">Tops</label>
-										<input type="checkbox" name="tops">
+										<input type="checkbox" name="tops" value="true">
 									</div>
 									<div class="text-right">
 										<label for="sweater">Pulls</label>
-										<input type="checkbox" name="sweater">
+										<input type="checkbox" name="sweater" value="true">
 									</div>
 									<div class="text-right">
 										<label for="vest">Vestes</label>
-										<input type="checkbox" name="vest">
+										<input type="checkbox" name="vest" value="true">
 									</div>
 									<div class="text-right">
-										<label for="coats">Manteaux</label>
-										<input type="checkbox" name="coats">
+										<label for="coat">Manteaux</label>
+										<input type="checkbox" name="coat" value="true">
 									</div>	
 								</div>
 								
 								<div class="col-md-6 categorySearch">
 									<div class="text-right">
 										<label for="pants">Pantalons</label>
-										<input type="checkbox" name="pants">
+										<input type="checkbox" name="pants" value="true">
 									</div>
 									<div class="text-right">
 										<label for="shorts">Shorts</label>
-										<input type="checkbox" name="shorts">
+										<input type="checkbox" name="shorts" value="true">
 									</div>
 									<div class="text-right">
-										<label>Chaussures</label>
-										<input type="checkbox" name="shoes">
+										<label for="shoes">Chaussures</label>
+										<input type="checkbox" name="shoes" value="true">
 									</div>
 								</div>
 							</div>
