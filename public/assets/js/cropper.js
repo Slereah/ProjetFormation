@@ -465,7 +465,7 @@ function getData$1(element, name) {
     return element.dataset[name];
   }
 
-  return element.getAttribute('data-' + hyphenate(name));
+  return element.attr('data-' + hyphenate(name));
 }
 
 function setData$1(element, name, data) {
@@ -3177,8 +3177,9 @@ var Cropper = function () {
     key: 'init',
     value: function init() {
       var self = this;
+
       var element = self.element;
-      var tagName = element.tagName.toLowerCase();
+      var tagName = element.prop("tagName").toLowerCase();
       var url = void 0;
 
       if (getData$1(element, NAMESPACE)) {
@@ -3191,13 +3192,11 @@ var Cropper = function () {
         self.isImg = true;
 
         // e.g.: "img/picture.jpg"
-        self.originalUrl = url = element.getAttribute('src');
-
+        self.originalUrl = url = element.attr('src');
         // Stop when it's a blank image
         if (!url) {
           return;
         }
-
         // e.g.: "http://example.com/img/picture.jpg"
         url = element.src;
       } else if (tagName === 'canvas' && window.HTMLCanvasElement) {

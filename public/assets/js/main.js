@@ -273,23 +273,21 @@ function createCarouselElement(key, clothes)
 	function loadCropper()
 	{
 		readURL($("#loadImage")[0]);
-		image = $("#image");
-		//console.log(image);
+		image = $("#image").eq(0);
+		
+		//myCropper.build();
+	}
+
+
+	function cropperstuff()
+	{
+		console.log("enter");
 		myCropper = new Cropper(image, {
 		  aspectRatio: 16 / 9,
-		  crop: function(e) {
-		    console.log(e.detail.x);
-		    console.log(e.detail.y);
-		    console.log(e.detail.width);
-		    console.log(e.detail.height);
-		    console.log(e.detail.rotate);
-		    console.log(e.detail.scaleX);
-		    console.log(e.detail.scaleY);
-		  }
+		  crop: function(e) {}
 		});
 		console.log(myCropper);
 	}
-
 
 	function cropImage()
 	{
