@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Weather & Wear']) ?>
+<?php $this->layout('layout', ['title' => $title ]) ?>
 
 <?php $this->start('main_content') ?>	
 

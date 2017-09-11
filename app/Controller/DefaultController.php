@@ -50,6 +50,7 @@ class DefaultController extends Controller
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];		
 		$data["date"] = date("d-m-Y", $data["time"]);
+
 		$this->show('default/home', $data);
 	}
 
@@ -65,6 +66,7 @@ class DefaultController extends Controller
     	$_SESSION['contactSubmit'] = false;
 
 		$_SESSION['contactSubmit'] = false;
+
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Récupération des données du formulaire
 			$lastname = trim(strip_tags( $_POST['lastname']));

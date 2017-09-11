@@ -1,5 +1,5 @@
 <?php 
-$this->layout( 'layout', ['title' => 'Ajouter un produit'] );
+$this->layout( 'layout', ['title' => $title ] );
 ?>
 
 <?php $this->start('main_content') ?>
