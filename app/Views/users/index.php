@@ -6,6 +6,21 @@
 			<div class="container">
 				<div class="text-center section-title">
 					<h1 id="indexTitle"><?= $title ?></h1>
+
+					<!-- Accéder à la liste des utilisateurs si rôle=admin -->
+					<?php
+						if($_SESSION["user"]["role"] = "admin")
+						{
+							?>
+								<span class="login-section text-center" id="onlyAdminAccess">
+									<a href="<?= $this->url('userlist') ?>">
+										<i class="fa fa-users" aria-hidden="true"></i>Gestion des utilisateurs
+									</a>
+								</span>
+							<?php
+						}
+					?>
+
 				</div>
 				<div class="row"> 
 					<div class="recent-projects">

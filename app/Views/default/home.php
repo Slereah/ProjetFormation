@@ -101,7 +101,7 @@
 							
 						<div id="datePicker" class="text-center section-title">
 							<h2 id="exampleTitle">Exemple de tenue</h2>
-							<h1 id="dateTitle">Pour le <?= $date ?></h1>
+							<h1 id="dateTitle">Le <?= $date ?></h1>
 							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
 							</button>
@@ -120,12 +120,13 @@
 									foreach ($upperClothes as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<div class="carousel-caption">
+								        		<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+							      			</div>
 										</div>
-										<div class="carousel-caption">
-								        	<h3>Haut</h3>
-							      		</div>
+										
 										<?php
 									}
 								?>
@@ -147,12 +148,12 @@
 									foreach ($lowerClothes as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<div class="carousel-caption">
+								        		<h3 class="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+								      		</div>
 										</div>
-										<div class="carousel-caption">
-							        	<h3>Bas</h3>
-							      		</div>
 										<?php
 									}
 								?>
@@ -174,12 +175,12 @@
 									foreach ($chaussures as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
+										<div class="item <?= ($key == 0) ? "active":"" ?>  carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<div class="carousel-caption">
+								        		<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+							      			</div>
 										</div>
-										<div class="carousel-caption">
-								        	<h3>Chaussures</h3>
-							      		</div>
 										<?php
 									}
 								?>

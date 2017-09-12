@@ -2,28 +2,7 @@
 
     'use strict';
 
-	/*==============================================================*/
-    // Home
-    /*==============================================================*/
-   
-    /*console.log(date);
-    var dateArray = date.split("-");
-    console.log(dateArray);
-    var dateArray = [2]+"-"+[1]+"-"+[0];
-    console.log(dateArray);*/
-    /*$(function homeButton () {
-    	$date = $("#dateTitle").attr("$date");
-    	$now =
-    	if ($date = ) {
-    		$('#nextButton').show();
-    	} else {
-			$("#dateTitle").css({
-				"margin-right": "20px"
-			});
-    	}
 
-	home Button();
-    });*/
 
     /*==============================================================*/
     // Contact
@@ -213,6 +192,9 @@ $(function()
 		{		
 			$(".carousel").carousel("pause");
 		}
+
+		homeButton(date);
+
 	});
 
 function update(day, city, country, unit, source)
@@ -228,7 +210,7 @@ function update(day, city, country, unit, source)
 			data: data,
 			success:function(response)
 			{
-				console.log(response);
+				
 				if($("#locationError"))
 					{
 						$("#locationError").remove();
@@ -258,7 +240,7 @@ function update(day, city, country, unit, source)
 }
 
 function updateDisplay(data)
-{
+{	
 	$("#dateTitle").text("Le " + data.date);
 	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
@@ -289,6 +271,7 @@ function updateDisplay(data)
 	{
 		data.chaussures = [{picture : "/ProjetFormation/Public/assets/img/shoes.jpg"}];
 	}
+
 	for (var i = 0; i < data.upperClothes.length; i++) 
 	{
 		$("#mon-carrousel1>div").append(createCarouselElement(i, data.upperClothes[i]));
@@ -306,6 +289,7 @@ function updateDisplay(data)
 		$("#mon-carrousel3>div").append(createCarouselElement(i, data.chaussures[i]));
 		$("#mon-carrousel3>div").append(div);
 	}
+	homeButton(data.date);
 
 
 
@@ -328,3 +312,24 @@ function createCarouselElement(key, clothes)
 	return div;
 }
 
+function homeButton (theDate) {
+
+	    var dateArray = theDate.split("-");
+	    var dateTitle = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
+	    
+
+		var now = new Date;
+	    var month = (now.getMonth()+1);
+	    if (month < 10) { 
+	    	month = '0' + month.toString(); 
+	    }
+
+		var nowDate = now.getFullYear()+"-"+month+"-"+now.getDate();
+	    	
+	    	if (dateTitle == nowDate) {
+	    		$('#prevButton').hide();
+	    	} else {
+	    		$('#prevButton').show();
+	    	}
+
+    }

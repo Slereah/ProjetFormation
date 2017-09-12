@@ -253,7 +253,7 @@ class ClothesController extends Controller
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
-
+			$data["search"] = $search;
 			$data["tops"] = $options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true";
 			$data["sweater"] = $options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true";
 			$data["vest"] = $options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true";

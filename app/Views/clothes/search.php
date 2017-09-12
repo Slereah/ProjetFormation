@@ -15,7 +15,7 @@
 			        			<i class="fa fa-search" aria-hidden="true"></i>
 			        			<span class="sr-only">Search icons</span>
 			        		</label>
-			        		<input id="search-input" class="form-control" name="search" placeholder="Un vêtement, une catégorie...">
+			        		<input id="search-input" class="form-control" name="search" placeholder="Un vêtement, une catégorie..." value="<?= isset($search)?$search:null ?>">
 							<button class="btn btn-primary" id="searchButton">OK</button>
 						</div>
 						<div class="col-sm-4">
