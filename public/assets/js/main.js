@@ -5,25 +5,31 @@
 	/*==============================================================*/
     // Home
     /*==============================================================*/
-   
-    /*console.log(date);
-    var dateArray = date.split("-");
-    console.log(dateArray);
-    var dateArray = [2]+"-"+[1]+"-"+[0];
-    console.log(dateArray);*/
-    /*$(function homeButton () {
-    	$date = $("#dateTitle").attr("$date");
-    	$now =
-    	if ($date = ) {
-    		$('#nextButton').show();
-    	} else {
-			$("#dateTitle").css({
-				"margin-right": "20px"
-			});
-    	}
+   	function homeButton () {
 
-	home Button();
-    });*/
+   		console.log('aa');
+
+	    var dateArray = date.split("-");
+	    var dateTitle = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
+	    
+
+		var now = new Date;
+	    var month = (now.getMonth()+1);
+	    if (month < 10) { 
+	    	month = '0' + month.toString(); 
+	    }
+
+		var nowDate = now.getFullYear()+"-"+month+"-"+now.getDate();
+	    	
+	    	if (dateTitle == nowDate) {
+	    		$('#prevButton').hide();
+	    	} else {
+	    		$('#prevButton').show();
+	    	}
+
+    }
+    homeButton();
+
 
     /*==============================================================*/
     // Contact
@@ -232,7 +238,7 @@ function update(day, city, country, unit, source)
 }
 
 function updateDisplay(data)
-{
+{	
 	$("#dateTitle").text("Le " + data.date);
 	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
@@ -268,6 +274,7 @@ function updateDisplay(data)
 		$("#mon-carrousel3>div").append(createCarouselElement(i, data.shoes[i]));
 		$("#mon-carrousel3>div").append(div);
 	}
+	homeButton();
 
 }
 
