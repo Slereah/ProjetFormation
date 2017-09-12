@@ -45,7 +45,6 @@
 							<label for="picture">Image</label>
 							<input type="text" class="form-control" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>">
 						</div>
-
 					  	<div class="text-center">
 					  		<button type="submit" class="btn btn-primary">
 					  			Enregistrer

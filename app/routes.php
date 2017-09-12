@@ -8,6 +8,10 @@
 		['GET', '/', 'Default#home', 'home'],
         ['GET|POST', '/update-weather', 'Default#updateWeather', 'update_weather'],
 
+        /* 
+        *-- Tutoriel
+        */
+        ['GET', '/comment-ca-marche', 'Default#tuto', 'tuto'],
 
 		/* 
         *-- Contact 

@@ -42,13 +42,10 @@
 								</tr>
 							<?php
 						}
-
-
 					?>
 					</table>
 					
 				</div>
 			</div>
 		</div>
-				
 <?php $this->stop('main_content') ?>

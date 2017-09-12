@@ -72,7 +72,7 @@ class UsersController extends Controller
 			$data["users"] = $this->usersModel->findAll();
 			$this->show('users/list', $data);
 		}
-
+	}
 	public function update()
 	{
 		if(!isset($_SESSION["user"]))

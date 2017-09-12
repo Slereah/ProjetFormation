@@ -374,4 +374,9 @@ class DefaultController extends Controller
 
 	}
 
+	public function tuto()
+	{
+		$this->show('default/tuto', ['title'=> "Comment ça marche ?"]);
+	}
+
 }

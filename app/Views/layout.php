@@ -85,7 +85,7 @@
 	                        	</a>
                         	</li>
 		
-							<li><a href="javascript:void(0);">
+							<li><a href="<?= $this->url('tuto') ?>">
 								Comment ça marche ?
 								</a>
 							</li>						
