@@ -103,7 +103,7 @@
 							<!-- Carrousel d'images -->
 							<div id="selectUpper" class="carousel-inner">
 								<?php
-									if($error["upperClothes"])
+									if(isset($error["upperClothes"]) && $error["upperClothes"])
 									{
 										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png')]];
 									}
@@ -130,7 +130,7 @@
 						<div class="carousel slide" id="mon-carrousel2">
 							<div class="carousel-inner">
 								<?php
-									if($error["lowerClothes"])
+									if(isset($error["lowerClothes"]) && $error["lowerClothes"])
 									{
 										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png')]];
 									}
@@ -157,7 +157,7 @@
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
 								<?php
-									if($error["shoes"])
+									if(isset($error["shoes"]) && $error["shoes"])
 									{
 										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg')]];
 									}
