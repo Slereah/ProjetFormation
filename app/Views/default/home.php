@@ -72,16 +72,16 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2 col-md-offset-2" id="weatherIcon">
-									<?= $weather["icon"] ?>
+									<?= (isset($weather["icon"]) && !empty($weather["icon"]))? $weather["icon"] : "<i class='wi wi-alien'></i>" ?>
 								</div>
 								<div class="col-md-7 col-md-offset-1">
 									<div class="welcome-image" id="minTempHome">
-										<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
+										<h3 id="tmpMin">Température minimale : <?= (isset($weather["minTemp"]))?$weather["minTemp"]:"?" ?> <?= $unit?></h3>
 									</div>						
 								</div>
 								<div class="col-md-7 col-md-offset-5">
 									<div class="welcome-image" id="maxTempHome">							
-										<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
+										<h3 id="tmpMax">Température maximale : <?= (isset($weather["maxTemp"]))?$weather["maxTemp"]:"?" ?> <?= $unit?></h3>
 									</div>
 								</div>
 							</div>
@@ -123,7 +123,21 @@
 										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 											<div class="carousel-caption">
-								        		<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+											<?php
+												if(isset($value["id"]))
+												{
+													?>
+													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+													<?php
+												}
+												else
+												{
+													?>
+													<h3 id="clothesTitle">Haut par défaut</h3>
+													<?php
+												}
+								        		
+								        	?>
 							      			</div>
 										</div>
 										
@@ -151,7 +165,21 @@
 										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 											<div class="carousel-caption">
-								        		<h3 class="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+								        	<?php
+												if(isset($value["id"]))
+												{
+													?>
+													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+													<?php
+												}
+												else
+												{
+													?>
+													<h3 id="clothesTitle">Bas par défaut</h3>
+													<?php
+												}
+								        		
+								        	?>
 								      		</div>
 										</div>
 										<?php
@@ -178,7 +206,21 @@
 										<div class="item <?= ($key == 0) ? "active":"" ?>  carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
 											<div class="carousel-caption">
-								        		<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+								        	<?php
+												if(isset($value["id"]))
+												{
+													?>
+													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
+													<?php
+												}
+												else
+												{
+													?>
+													<h3 id="clothesTitle">Chaussures par défaut</h3>
+													<?php
+												}
+								        		
+								        	?>
 							      			</div>
 										</div>
 										<?php

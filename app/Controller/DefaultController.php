@@ -129,7 +129,17 @@ class DefaultController extends Controller
 	{
 		$request = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' . $city . ',' . $country . '")';
 		$url = "https://query.yahooapis.com/v1/public/yql?q=" . urlencode($request) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-		$response = json_decode(file_get_contents($url));
+		$file = @file_get_contents($url);
+		if($file)
+		{
+			$response = json_decode();
+		}
+		else
+		{
+			return null;
+		}
+		
+
 		if(is_null($response->query->results))
 		{
 			return null;
