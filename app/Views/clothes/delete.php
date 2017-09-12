@@ -9,7 +9,7 @@
 				<div class="welcome-content">
 					<div class="row">
 						<div class="text-center">
-							<form method="post">
+							<form method="post" id="deleteForm">
 								<button type="submit" class="btn btn-secondary text-center" id="yesButton">Oui</button>
 								<a href="<?= $this->url('clothes_read', ['id' => $clothes['id']]) ?>">Non</a>
 							</form>

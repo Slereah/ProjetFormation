@@ -100,7 +100,7 @@
 					<div class="row"> 
 							
 						<div id="datePicker" class="text-center section-title">
-							<h2>Exemple de tenue</h2>
+							<h2 id="exampleTitle">Exemple de tenue</h2>
 							<h1 id="dateTitle">Pour le <?= $date ?></h1>
 							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
@@ -196,4 +196,7 @@
 				</div><!-- Fin div recent-projects -->
 						
 	    </div><!--/#Recent projects-->
+	    <script type="text/javascript">
+	    	var date = "<?= $date ?>";
+	    </script>
 <?php $this->stop('main_content') ?>

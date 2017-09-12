@@ -50,6 +50,11 @@
 
         ['POST', '/upload', 'Default#uploadImage', 'upload'],
 
+         /* 
+        *-- Erreurs
+        */
+        ['GET', '/404', 'Security#signin', '404_error'],
+        ['GET', '/403', 'Security#signin', '403_error'],
 
 
 	);

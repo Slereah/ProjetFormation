@@ -18,7 +18,7 @@
 									$_SESSION["ValidForm"] = false;
 							?>	
 
-								<div class="alert alert-success text-center">
+								<div class="alert alert-success text-center" id="success-updateClothes">
 									<p>Votre vêtement a bien été modifié.</p>
 								</div>
 
