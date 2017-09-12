@@ -28,17 +28,17 @@
 
 						<div class="form-group welcome-image form-sign">
 							<label for="minTemp">Température minimale : </label>
-							<input type="number" class="form-control" id="minTemp" name="minTemp" value="0">
+							<input type="number" class="form-control" id="minTemp" name="minTemp" value="<?= isset($minTemp)?$minTemp:0?>">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="maxTemp">Température maximale : </label>
-							<input type="number" class="form-control" id="maxTemp" name="maxTemp" value="10">
+							<input type="number" class="form-control" id="maxTemp" name="maxTemp" value="<?= isset($maxTemp)?$maxTemp:20 ?>">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="rain">Peut être porté en cas de pluie : </label>
-							<input type="checkbox" id="rain" name="rain" value="10">
+							<input type="checkbox" id="rain" name="rain" value="10" <?= (isset($rain) && $rain)?"checked":null ?>>
 						</div>
 
 						<div class="form-group welcome-image form-sign">

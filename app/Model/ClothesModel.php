@@ -64,7 +64,7 @@ class ClothesModel extends Model
 						case 'tops':
 							$sql .= "category = 'tops'";
 							break;
-						case 'shoes':
+						case 'chaussures':
 							$sql .= "category = 'chaussures'";
 							break;
 						case 'vest':
@@ -220,7 +220,7 @@ class ClothesModel extends Model
 
 	public function getTemp($category, $type = "both", $weather, $id = null)
 	{
-
+		
 		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp";
 
 		if($weather["rain"])

@@ -223,7 +223,6 @@ function update(day, city, country, unit, source)
 		country = $("select#country").val();
 	}
 	data = { day : day, city : city, country : country, unit : unit };
-	console.log(data);
 	$.ajax('update-weather', {
 			type: 'POST',
 			data: data,
@@ -247,7 +246,11 @@ function update(day, city, country, unit, source)
 			},
 			error:function(response)
 			{
-				console.log("error");
+				if($("#locationError"))
+					{
+						$("#locationError").remove();
+					}
+				$("#locationDiv").prepend("<p id='locationError'>Connection error</p>");
 				
 			}
 		});
@@ -286,7 +289,6 @@ function updateDisplay(data)
 	{
 		data.chaussures = [{picture : "/ProjetFormation/Public/assets/img/shoes.jpg"}];
 	}
-	console.log(data);
 	for (var i = 0; i < data.upperClothes.length; i++) 
 	{
 		$("#mon-carrousel1>div").append(createCarouselElement(i, data.upperClothes[i]));

@@ -164,6 +164,9 @@ class ClothesController extends Controller
 			"name" => $clothes['name'],
 			"categories" => $categories,
 			"picture" => $clothes['picture'],
+			"minTemp" => $clothes["minTemperature"],
+			"maxTemp" => $clothes["maxTemperature"],
+			"rain"	=> ($clothes["rain"] == "10"),
 			"selected_category" => $clothes['category'],
 		]);
 	}
