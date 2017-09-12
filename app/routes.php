@@ -46,6 +46,7 @@
         ['GET|POST', '/logout', 'Security#logout', 'security_logout'],
         ['GET|POST', '/lost-password', 'Security#lostpwd', 'security_lost_pwd'],
         ['GET|POST', '/reset-password/[a:token]', 'Security#resetPwd', 'security_reset_pwd'],
+        ['GET|POST', '/activate/[a:token]', 'Security#activate', 'security_activate'],
 
         ['POST', '/upload', 'Default#uploadImage', 'upload'],
 

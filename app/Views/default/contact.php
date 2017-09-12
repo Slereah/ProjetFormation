@@ -2,14 +2,6 @@
 
 <?php $this->start('main_content') ?>	
 
-	<?php
-
-		if ($_SESSION['contactSubmit'] == true) {
-			echo "Votre demande a bien été prise en compte";
-			$_SESSION['contactSubmit'] = false;
-		} 
-
-	?>
 
 	<div id="welcome-section" class="padding">
 			<div class="container">
@@ -18,6 +10,14 @@
 				</div>
 				<div class="welcome-content">
 					<div class="rows">
+
+						<?php if ($_SESSION['contactSubmit'] == true): ?>
+							<div class="alert alert-success col-md-4 col-md-offset-4 text-center">
+								Votre demande a bien été prise en compte
+							</div>
+							<?php $_SESSION['contactSubmit'] = false; ?>
+						<?php endif; ?>
+
 						<div class="col-md-4 col-md-offset-4">
 							<form action="<?= $this->url('contact') ?>" method ="post" >
 								<div class="form-group welcome-image form-sign">

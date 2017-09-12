@@ -65,7 +65,7 @@ class DefaultController extends Controller
     	$save =true;
     	$_SESSION['contactSubmit'] = false;
 
-		$_SESSION['contactSubmit'] = false;
+		
 
 		if ($_SERVER['REQUEST_METHOD'] === "POST") {
         // Récupération des données du formulaire

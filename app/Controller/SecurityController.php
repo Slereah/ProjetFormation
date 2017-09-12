@@ -61,6 +61,7 @@ class SecurityController extends Controller
 	{
 
 		$errors = [];
+		$user = null;
 		$username = null;
 		$email = null;
 		$password = null;
@@ -190,7 +191,6 @@ class SecurityController extends Controller
     				array_push($errors, "Unit invalid.");
     			}
 
-
 			if ($save) {
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
@@ -221,6 +221,7 @@ class SecurityController extends Controller
 					"zipcode" 	=> $user['zipcode'], 
 					"unit"		=> $user['unit']
 			    );
+          		
 
 				// On redirige l'utilisateur vers sa page profil
 				 $this->redirectToRoute('profile');
