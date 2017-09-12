@@ -2,33 +2,6 @@
 
     'use strict';
 
-	/*==============================================================*/
-    // Home
-    /*==============================================================*/
-   	function homeButton () {
-
-   		console.log('aa');
-
-	    var dateArray = date.split("-");
-	    var dateTitle = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
-	    
-
-		var now = new Date;
-	    var month = (now.getMonth()+1);
-	    if (month < 10) { 
-	    	month = '0' + month.toString(); 
-	    }
-
-		var nowDate = now.getFullYear()+"-"+month+"-"+now.getDate();
-	    	
-	    	if (dateTitle == nowDate) {
-	    		$('#prevButton').hide();
-	    	} else {
-	    		$('#prevButton').show();
-	    	}
-
-    }
-    homeButton();
 
 
     /*==============================================================*/
@@ -219,6 +192,7 @@ $(function()
 		{		
 			$(".carousel").carousel("pause");
 		}
+		homeButton(date);
 		/*
 		if($("#homeForm"))
 		{
@@ -236,13 +210,13 @@ function update(day, city, country, unit, source)
 		country = $("select#country").val();
 	}
 	data = { day : day, city : city, country : country, unit : unit };
-	console.log(data);
+	
 	$.ajax('update-weather', {
 			type: 'POST',
 			data: data,
 			success:function(response)
 			{
-				console.log(response);
+				
 				if($("#locationError"))
 					{
 						$("#locationError").remove();
@@ -260,7 +234,7 @@ function update(day, city, country, unit, source)
 			},
 			error:function(response)
 			{
-				console.log("error");
+				
 				
 			}
 		});
@@ -299,7 +273,7 @@ function updateDisplay(data)
 	{
 		data.chaussures = [{picture : "/ProjetFormation/Public/assets/img/shoes.jpg"}];
 	}
-	console.log(data);
+	
 	for (var i = 0; i < data.upperClothes.length; i++) 
 	{
 		$("#mon-carrousel1>div").append(createCarouselElement(i, data.upperClothes[i]));
@@ -317,7 +291,7 @@ function updateDisplay(data)
 		$("#mon-carrousel3>div").append(createCarouselElement(i, data.chaussures[i]));
 		$("#mon-carrousel3>div").append(div);
 	}
-	homeButton();
+	homeButton(data.date);
 
 
 
@@ -340,3 +314,24 @@ function createCarouselElement(key, clothes)
 	return div;
 }
 
+function homeButton (theDate) {
+
+	    var dateArray = theDate.split("-");
+	    var dateTitle = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
+	    
+
+		var now = new Date;
+	    var month = (now.getMonth()+1);
+	    if (month < 10) { 
+	    	month = '0' + month.toString(); 
+	    }
+
+		var nowDate = now.getFullYear()+"-"+month+"-"+now.getDate();
+	    	
+	    	if (dateTitle == nowDate) {
+	    		$('#prevButton').hide();
+	    	} else {
+	    		$('#prevButton').show();
+	    	}
+
+    }

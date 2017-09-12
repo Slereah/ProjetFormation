@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 	
-	<div id="welcome-section" class="padding">
+		<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
 					<h1 id="signupTitle">Etape 1 :</h1>
@@ -16,7 +16,7 @@
 							<?php if (!empty($errors)): ?>
 								
 									<?php foreach ($errors as $error) : ?>
-										<div class="alert alert-danger">
+										<div class="alert alert-danger col-sm-4 col-sm-offset-4 text-center">
 										<?= $error ?>
 										</div>
 									<?php endforeach; ?>
@@ -86,12 +86,15 @@
 									<option value="°F">Fahrenheit</option>
 								</select>
 							</div>
-							<div class="text-center">
+							<div class="text-center col-sm-2 col-sm-offset-5">
 								<button type="submit" class="btn btn-primary">Je m'inscris</button>
 							</div>
 							
 						</form>
-
+					</div>
+				</div>
+			</div>
+		</div>
 
 <?php $this->stop('main_content') ?>
 

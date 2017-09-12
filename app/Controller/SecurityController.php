@@ -187,7 +187,7 @@ class SecurityController extends Controller
 				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
 				{
     				$save = false;
-    				array_push($errors, "Unit invalid.");
+    				array_push($errors, "L'unité de degrés est incorrecte.");
     			}
 
 
