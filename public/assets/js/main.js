@@ -2,6 +2,28 @@
 
     'use strict';
 
+	/*==============================================================*/
+    // Home
+    /*==============================================================*/
+   
+    /*console.log(date);
+    var dateArray = date.split("-");
+    console.log(dateArray);
+    var dateArray = [2]+"-"+[1]+"-"+[0];
+    console.log(dateArray);*/
+    /*$(function homeButton () {
+    	$date = $("#dateTitle").attr("$date");
+    	$now =
+    	if ($date = ) {
+    		$('#nextButton').show();
+    	} else {
+			$("#dateTitle").css({
+				"margin-right": "20px"
+			});
+    	}
+
+	home Button();
+    });*/
 
     /*==============================================================*/
     // Contact

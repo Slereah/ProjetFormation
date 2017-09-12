@@ -44,9 +44,9 @@
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-1 myWardrobe">
+						<div class="col-md-6 col-md-offset-2 myWardrobe">
 							<div class="text-center section-title">
-								<h2>Ma garde-robe</h2>
+								<h2 id="wardrobeTitle">Ma garde-robe</h2>
 							</div>
 
 								<!-- Thumbnails -->
@@ -61,12 +61,14 @@
 										<?php
 									}
 									?>
-									<div class="col-sm-6 col-md-4" id="wardrobeThumbnail">
-								    	<div class="thumbnail">
+									<div class="col-md-4" id="wardrobeThumbnail">
+								    	<div class="thumbnail" id="thumbnailIndex">
 								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="vêtement">
 								      		<div class="caption">
-								        		<h3><?= $value["category"] ?></h3>
-								        		<p><?= $value["name"] ?></p>
+								      			<div class="text-center">
+									        		<h3><?= $value["category"] ?></h3>
+									        		<p><?= $value["name"] ?></p>
+								        		</div>
 								        		<div class="text-center">
 								        			<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
 								        			<a href="<?= $this->url('clothes_update_user', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Modifier</a>

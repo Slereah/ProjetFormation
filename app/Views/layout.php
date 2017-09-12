@@ -91,7 +91,7 @@
 								</a>
 							</li>						
 							
-	                        <li><a href="">Comment s'habiller aujourd'hui ?</a></li>
+	                        <li><a href="#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         

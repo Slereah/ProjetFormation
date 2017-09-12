@@ -12,7 +12,7 @@
 	<th>Ville</th>
 	<th>Pays</th>
 	<th>Code postal</th>
-	<th>Role</th>
+	<th>Rôle</th>
 	<th>Unité</th>
 	<th>Modifier</th>
 	<th>Supprimer</th>
