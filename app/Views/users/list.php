@@ -21,7 +21,6 @@
 							<th>Code postal</th>
 							<th>Rôle</th>
 							<th>Unité</th>
-							<th>Modifier</th>
 							<th>Supprimer</th>
 						</tr>
 					<?php
@@ -39,7 +38,6 @@
 									<td><?=$user["zipcode"]?></td>
 									<td><?=$user["role"]?></td>
 									<td><?=$user["unit"]?></td>
-									<td><a href="<?= $this->url('user_update', ["id" => $user["id"]]) ?>">modifier</a></td>
 									<td><a href="<?= $this->url('user_delete', ["id" => $user["id"]]) ?>">supprimer</a></td>
 								</tr>
 							<?php
@@ -52,4 +50,5 @@
 			</div>
 		</div>
 				
+
 <?php $this->stop('main_content') ?>

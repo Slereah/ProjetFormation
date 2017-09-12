@@ -222,6 +222,7 @@ class ClothesModel extends Model
 	{
 
 		$sql = "SELECT * FROM clothes WHERE category = :cat AND minTemperature <= :minTemp AND maxTemperature >= :maxTemp";
+
 		if($weather["rain"])
 		{
 			$sql .= " AND rain = 10";

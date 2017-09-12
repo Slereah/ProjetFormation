@@ -45,15 +45,6 @@
 							<label for="picture">Image</label>
 							<input type="text" class="form-control" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>">
 						</div>
-
-						<div class="form-group welcome-image form-sign">
-							<label>Télécharger une image</label>
-							<input type="file" class="form-control" id="loadImage" name="loadImage" onchange="loadCropper(this)">
-						  	<img id="image" src="" width="300px">
-						  	<button class="btn btn-secondary" id="cropButton" onclick="cropImage()">		Redimensionner
-						  	</button>
-					  	</div>
-
 					  	<div class="text-center">
 					  		<button type="submit" class="btn btn-primary">
 					  			Enregistrer
