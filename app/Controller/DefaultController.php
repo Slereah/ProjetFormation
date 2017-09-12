@@ -30,7 +30,7 @@ class DefaultController extends Controller
 		$data["countryList"] = $countryList;
 		$data["unit"] = "°C";
 
-		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
+		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "chaussures" => []];
 		
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
@@ -210,7 +210,10 @@ class DefaultController extends Controller
 		{
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
-		$data["chaussures"] = array_merge($data["chaussures"], $this->clothesModel->getTemp($value, $type, $weather, $id));
+		$data["chaussures"] = array_merge($data["chaussures"], $this->clothesModel->getTemp("chaussures", $type, $weather, $id));
+
+
+
 
 		if(empty($data["upperClothes"]))
 		{
@@ -220,9 +223,9 @@ class DefaultController extends Controller
 		{
 			$data["error"]["lowerClothes"] = "Pas de vêtement du bas trouvé";
 		}
-		if(empty($data["shoes"]))
+		if(empty($data["chaussures"]))
 		{
-			$data["error"]["shoes"] = "Pas de chaussures trouvé";
+			$data["error"]["chaussures"] = "Pas de chaussures trouvé";
 		}
 
 		return $data;

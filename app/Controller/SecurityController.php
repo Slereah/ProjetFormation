@@ -59,7 +59,7 @@ class SecurityController extends Controller
 
 	public function signup()
 	{
-
+		include_once "../app/constants.php";
 		$errors = [];
 		$username = null;
 		$email = null;
@@ -250,6 +250,7 @@ class SecurityController extends Controller
 			"city" 		=> $city,
 			"zipcode" 	=> $zipcode,
       		"errors" 	=> $errors,
+      		"countryList" => $countryList
       	]);
 		
 	}

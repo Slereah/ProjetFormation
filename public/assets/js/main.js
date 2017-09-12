@@ -191,13 +191,6 @@ $(function()
 		{		
 			$(".carousel").carousel("pause");
 		}
-		/*
-		if($("#homeForm"))
-		{
-			$("#homeForm input").submit(
-				$("upButton").onclick);
-		}
-		*/
 	});
 
 function update(day, city, country, unit, source)

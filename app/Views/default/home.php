@@ -132,7 +132,7 @@
 							</div>
 
 							<!-- Contrôleurs -->
-							<a class="carousel-control right" href="#mon-carrousel" data-slide="next">
+							<a class="carousel-control right" href="#mon-carrousel1" data-slide="next">
 								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
 								<span class="sr-only">Change</span>
 							</a>
@@ -167,7 +167,7 @@
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
 								<?php
-									if(isset($error["shoes"]) && $error["shoes"])
+									if(isset($error["chaussures"]) && $error["chaussures"])
 									{
 										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg')]];
 									}
