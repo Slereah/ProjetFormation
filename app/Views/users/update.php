@@ -43,16 +43,6 @@
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-								<label for="password" class="control-label">Mot de passe</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe"  value="">
-							</div>
-
-							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-								<label for="repeat_password" class="control-label">Répéter le mot de passe</label>
-								<input type="password" class="form-control" id="repeat_password" name="repeat_password" placeholder=" Répéter le mot de passe">
-							</div>
-
-							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
 								<label for="country" class="control-label">Pays</label>
 								<select id="country" name="country">
 									<option value="">Sélectionner votre pays :</option>
@@ -327,9 +317,9 @@
 								</select>
 							</div>
 							<div class="col-md-offset-5 col-sm-2 col-sm-offset-5 col-xs-4 col-xs-offset-4 text-center">
-								<button type="submit" class="btn btn-primary">
-								<a href="<?= $this->url('profile', ['id' => $user['id']]) ?>">Enregistrer</a>
-								</button>
+							<button type="submit" class="btn btn-primary"> Enregistrer
+							</button>
+								
 							</div>
 							
 						</form>
