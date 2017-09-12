@@ -35,18 +35,28 @@
 
 
 						<!-- Localité -->
-						<div class="col-md-2">
+						<div class="col-md-2" id="locationDiv">
 							<div class="text-center section-title" id="section-title-Home">
 								<h1 id="locationTitle">Localité</h1>
 							</div>
-							<form method="post">
+							<form id="homeForm" method="post" onsubmit="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton'); return false;">
 								<div class="form-group welcome-image form-sign" id="cityLabel">
 									<label>Ville</label>
 									<input class="form-control" id="city" type="text" name="city" value="<?= $cityInput ?>">
 								</div>
 								<div class="form-group welcome-image form-sign" id="countryLabel">
 									<label>Pays</label>
-									<input class="form-control" id="country" type="text" name="country" value="<?= $countryInput ?>">
+									<select id="country" name="country">
+									<option value="">Sélectionner votre pays :</option>
+									<?php
+										foreach ($countryList as $key => $value) 
+										{
+											?>
+												<option value="<?= $key ?>" <?= ($country == $key)?"selected":null ?>><?= $value ?></option>
+											<?php
+										}
+									?>
+								</select>
 								</div>
 								<div class="text-center">
 									<button class="btn btn-primary" id="upButton" type="button" onclick="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton')">OK</button>

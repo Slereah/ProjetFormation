@@ -19,11 +19,15 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
+		include_once "../app/constants.php";
+
 		$data["time"] = time();
 		$data["day"] = 0;
 		$data["date"] = date("d-m-Y", time());
 		$data["city"] = "Paris";
-		$data["country"] = "fr";
+
+		$data["country"] = "FR";
+		$data["countryList"] = $countryList;
 		$data["unit"] = "°C";
 
 		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
@@ -170,7 +174,6 @@ class DefaultController extends Controller
 		$data["chaussures"] = [];
 		$data["errors"] = [];
 
-		
 		$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
 		if(is_null($data["weather"]))
 		{
@@ -197,7 +200,7 @@ class DefaultController extends Controller
 		$upperClothes = ["tops", "pulls", "manteaux", "vestes"];
 		$lowerClothes = ["pantalons", "shorts"];
 		$type = (is_null($id))?"default":"personal";
-		$data = ["upperClothes" => [], "lowerClothes" => []];
+		$data = ["upperClothes" => [], "lowerClothes" => [], "chaussures" => []];
 
 		foreach ($upperClothes as $key => $value) 
 		{
@@ -207,7 +210,7 @@ class DefaultController extends Controller
 		{
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
-		$data["chaussures"] = $this->clothesModel->getTemp("chaussures", $type, $weather, $id);
+		$data["chaussures"] = array_merge($data["chaussures"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 
 		if(empty($data["upperClothes"]))
 		{
@@ -215,11 +218,11 @@ class DefaultController extends Controller
 		}
 		if(empty($data["lowerClothes"]))
 		{
-			$data["error"]["lowerClothes"] = "Pas de vêtement du haut trouvé";
+			$data["error"]["lowerClothes"] = "Pas de vêtement du bas trouvé";
 		}
 		if(empty($data["shoes"]))
 		{
-			$data["error"]["shoes"] = "Pas de vêtement du haut trouvé";
+			$data["error"]["shoes"] = "Pas de chaussures trouvé";
 		}
 
 		return $data;
