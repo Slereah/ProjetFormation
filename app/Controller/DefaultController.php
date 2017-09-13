@@ -210,6 +210,7 @@ class DefaultController extends Controller
 		$upperClothes = ["tops", "pulls", "manteaux", "vestes"];
 		$lowerClothes = ["pantalons", "shorts"];
 		$type = (is_null($id))?"default":"personal";
+
 		$data = ["upperClothes" => [], "lowerClothes" => [], "chaussures" => []];
 
 		foreach ($upperClothes as $key => $value) 

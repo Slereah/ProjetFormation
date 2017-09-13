@@ -54,6 +54,7 @@ class UsersController extends Controller
 	}
 
 
+
 	public function delete($id)
 	{
 		$this->clothesModel->deleteAllClothesUser($id);
@@ -73,6 +74,7 @@ class UsersController extends Controller
 			$this->show('users/list', $data);
 		}
 	}
+
 	public function update()
 	{
 		if(!isset($_SESSION["user"]))
@@ -230,6 +232,5 @@ class UsersController extends Controller
       		"errors" 	=> $errors,
 
       	]);
-		
 	}
 }
