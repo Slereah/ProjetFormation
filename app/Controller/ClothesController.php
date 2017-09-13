@@ -28,25 +28,31 @@ class ClothesController extends Controller
 			$this->showForbidden();
 		}
 
+
 		if($id != null && empty($this->usersModel->find($id)))
 		{
 			$this->showNotFound();
 		}
+
 		$name = null;
 		$categories = $this->clothesModel->getCategories();
+		$categories = (is_null($categories))?["Failed to load categories"]:$categories;
 		$picture = null;
+		$minTemp = null;
+		$maxTemp = null;
+
 		if ($_SERVER['REQUEST_METHOD'] === "POST")
 		{
 			$save = true;
 			// Récupération du $_POST
-			$name = $_POST['name'];
-			$category = $_POST['category'];
-			$picture = $_POST['picture'];
-			$minTemp = $_POST['minTemp'];
-			$maxTemp = $_POST['maxTemp'];
+			$name 		= trim(strip_tags( $_POST['name']));
+			$category 	= trim(strip_tags( $_POST['category']));
+			$picture 	= trim(strip_tags( $_POST['picture']));
+			$minTemp 	= trim(strip_tags( $_POST['minTemp']));
+			$maxTemp 	= trim(strip_tags( $_POST['maxTemp']));
 			if(isset($_POST['rain']))
 			{
-				$rain = $_POST['rain'];
+				$rain = trim(strip_tags( $_POST['rain']));
 			}
 			else
 			{
@@ -54,6 +60,28 @@ class ClothesController extends Controller
 			}
 			// Vérification des données
 			// ...
+			if (empty($name)) {
+					$save = false;
+					array_push($errors, "Le nom du vêtement doit être rempli.");
+			}
+			if (empty($category)) {
+					$save = false;
+					array_push($errors, "La catégorie doit être sélectionnée.");
+			}
+			if (empty($picture)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une image pour votre vêtement.");
+			}
+			if (empty($minTemp)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une température minimale.");
+				}
+			if (empty($maxTemp)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une température maximale.");
+				}
+
+
 			if ($save) 
 			{
 				// Enregistre en BDD

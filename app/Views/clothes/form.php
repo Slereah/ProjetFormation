@@ -8,15 +8,26 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<form method="post">
+
+						<?php if (!empty($errors)): ?>
+								
+							<?php foreach ($errors as $error) : ?>
+								<div class="alert alert-danger">
+									<?= $error ?>
+								</div>
+							<?php endforeach; ?>
+								
+						<?php endif; ?>
+
 						<div class="form-group welcome-image form-sign">
 							<label for="name">Nom</label>
-							<input type="text" id="name" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
+							<input type="text" id="name" required="required" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
 						</div> 
 
 						<div class="form-group welcome-image form-sign">
 							<label for="category">Catégorie</label>
-							<select class="form-control" id="category" name="category" rows="8" cols="80">
-								<option value="">Sélectionner une catégorie :</option>
+							<select class="form-control" required="required" id="category" name="category" rows="8" cols="80">
+								<option required="required" value="">Sélectionner une catégorie :</option>
 								<?php foreach ($categories as $category): ?>
 									<option value="<?= $category ?>" alt="<?= $category ?>"
 										<?php echo $selected_category == $category ? " selected" : null;
@@ -43,8 +54,9 @@
 
 						<div class="form-group welcome-image form-sign">
 							<label for="picture">Image</label>
-							<input type="text" class="form-control" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>">
+							<input type="url"  class="form-control" id="picture" name="picture" placeholder="Veuillez indiquer l'Url de l'image du vêtement" value="<?= $picture ?>">
 						</div>
+
 					  	<div class="text-center">
 					  		<button type="submit" class="btn btn-primary">
 					  			Enregistrer
