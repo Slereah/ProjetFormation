@@ -233,8 +233,7 @@ class SecurityController extends Controller
 				} else {
         	// On affiche un message d'erreur
         	// message dans un flashbag
-      			$errors = "Un utilisateur existe déjà avec l'adresse email : $email";
-
+      			array_push($errors, "Un utilisateur existe déjà avec l'adresse email : $email");
     			}
     		}
 		}

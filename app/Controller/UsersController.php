@@ -205,6 +205,7 @@ class UsersController extends Controller
 					"country" 	=> $user['country'],
 					"city" 		=> $user['city'],
 					"zipcode" 	=> $user['zipcode'], 
+					"role"		=> $user['role'],
 					"unit"		=> $user['unit']
 			    );
 
