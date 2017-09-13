@@ -460,9 +460,15 @@ a.navbar-brand {
 }
 
 .navbar {
-    border-radius: 4px;
     background-color: #0096ca;
 }
+
+@media (min-width: 768px) {
+	.navbar {
+	    border-radius: 0px !important;
+	}
+}
+
 
 /*Dropdown Menu CSS*/
 .dropdown-menu {
@@ -3820,7 +3826,7 @@ span.profileData {
 	}
 
 	span.login-section.rightSection {
-	    margin-right: 10%;
+	    margin-right: 71px;
 	}
 
 	#navigation .navbar-nav {
