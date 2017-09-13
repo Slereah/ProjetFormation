@@ -67,7 +67,7 @@
 						<!-- Prévisions météo -->
 						<div class="col-md-8 col-md-offset-2">
 							<div class="text-center section-title">
-								<h1 id="dateTitle">Le <?= $date ?></h1>
+								<h1 class="dateTitle">Le <?= $date ?></h1>
 								<h2 id="weatherTitle">Prévisions météo pour <?= $city ?></h2>
 							</div>
 							<div class="row">
@@ -101,7 +101,7 @@
 							
 						<div id="datePicker" class="text-center section-title">
 							<h2 id="exampleTitle">Exemple de tenue</h2>
-							<h1 id="dateTitle">Le <?= $date ?></h1>
+							<h1 class="dateTitle">Le <?= $date ?></h1>
 							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
 							</button>
@@ -123,7 +123,7 @@
 										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
 											<div class="carousel-caption">
-								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
+								        		<h3 class="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
 							      			</div>
 										</div>
 										
@@ -134,7 +134,7 @@
 
 							<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel1" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
+								<i class="fa fa-refresh" aria-hidden="true"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
@@ -161,7 +161,7 @@
 
 			 				<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel2" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
+								<i class="fa fa-refresh" aria-hidden="true"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
@@ -178,7 +178,7 @@
 										<div class="item <?= ($key == 0) ? "active":"" ?>  carouselClothes"> 
 											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
 											<div class="carousel-caption">
-								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
+								        		<h3 class="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
 							      			</div>
 										</div>
 
@@ -189,7 +189,7 @@
 
 							<!-- Contrôleurs -->
 							<a class="carousel-control right" href="#mon-carrousel3" data-slide="next">
-								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
+								<i class="fa fa-refresh" aria-hidden="true"></i>
 								<span class="sr-only">Change</span>
 							</a>
 						</div>
