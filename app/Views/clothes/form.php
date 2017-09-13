@@ -10,31 +10,30 @@
 					<form method="post">
 						<div class="form-group welcome-image form-sign">
 							<label for="name">Nom</label>
-							<input type="text" id="name" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
+							<input type="text" id="name" required="required" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
 						</div> 
 
 						<div class="form-group welcome-image form-sign">
 							<label for="category">Catégorie</label>
-							<select class="form-control" id="category" name="category" rows="8" cols="80">
-								<option value="">Sélectionner une catégorie :</option>
+							<select class="form-control" required="required" id="category" name="category" rows="8" cols="80">
+								<option required="required" value="">Sélectionner une catégorie :</option>
 								<?php foreach ($categories as $category): ?>
 									<option value="<?= $category ?>" 
-									<?php
-										echo $selected_category == $category ? "selected" : null;
-										 ?>><?= $category ?>
-									</option>
+										<?php echo $selected_category == $category ? " selected" : null;
+									 	?>><?= $category ?>
+									 </option>
 								<?php endforeach; ?>
 							</select>
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="minTemp">Température minimale : </label>
-							<input type="number" class="form-control" id="minTemp" name="minTemp" value="0">
+							<input type="number" required="required" class="form-control" id="minTemp" name="minTemp" value="0">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="maxTemp">Température maximale : </label>
-							<input type="number" class="form-control" id="maxTemp" name="maxTemp" value="10">
+							<input type="number" required="required" class="form-control" id="maxTemp" name="maxTemp" value="10">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
@@ -44,15 +43,8 @@
 
 						<div class="form-group welcome-image form-sign">
 							<label for="picture">Image</label>
-							<input type="text" class="form-control" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>">
+							<input type="url"  class="form-control" id="picture" name="picture" placeholder="Veuillez indiquer l'Url de l'image du vêtement" value="<?= $picture ?>">
 						</div>
-
-						<div class="form-group welcome-image form-sign">
-							<label>Télécharger une image</label>
-							<input type="file" class="form-control" id="loadImage" name="loadImage" onchange="loadCropper(this)">
-						  	<img id="image" src="" width="300px">
-						  	<button class="btn btn-secondary" id="cropButton" onclick="cropImage()">Redimensionner</button>
-					  	</div>
 
 					  	<div class="text-center">
 					  		<button type="submit" class="btn btn-primary">Enregistrer</button>

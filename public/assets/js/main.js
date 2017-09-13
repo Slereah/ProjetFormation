@@ -270,7 +270,7 @@ function createCarouselElement(key, clothes)
 	var image;
 	if($(".carousel").length)
 	{
-		$(".carousel").pause();
+		$(".carousel").carousel("pause");
 	}
 	function loadCropper()
 	{

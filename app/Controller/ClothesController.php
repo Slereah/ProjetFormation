@@ -18,21 +18,31 @@ class ClothesController extends Controller
 	
 	public function create($id = null)
 	{
+		if(!isset($_SESSION["user"]) || (is_null($id) || ($id != $_SESSION["user"]["id"])) && $_SESSION["user"]["role"] != "admin")
+		{
+			$this->showForbidden();
+		}
+
+		$errors 	= [];
 		$name = null;
 		$categories = $this->clothesModel->getCategories();
+		$categories = (is_null($categories))?["Failed to load categories"]:$categories;
 		$picture = null;
+		$minTemp = null;
+		$maxTemp = null;
+
 		if ($_SERVER['REQUEST_METHOD'] === "POST")
 		{
 			$save = true;
 			// Récupération du $_POST
-			$name = $_POST['name'];
-			$category = $_POST['category'];
-			$picture = $_POST['picture'];
-			$minTemp = $_POST['minTemp'];
-			$maxTemp = $_POST['maxTemp'];
+			$name 		= trim(strip_tags( $_POST['name']));
+			$category 	= trim(strip_tags( $_POST['category']));
+			$picture 	= trim(strip_tags( $_POST['picture']));
+			$minTemp 	= trim(strip_tags( $_POST['minTemp']));
+			$maxTemp 	= trim(strip_tags( $_POST['maxTemp']));
 			if(isset($_POST['rain']))
 			{
-				$rain = $_POST['rain'];
+				$rain = trim(strip_tags( $_POST['rain']));
 			}
 			else
 			{
@@ -40,6 +50,28 @@ class ClothesController extends Controller
 			}
 			// Vérification des données
 			// ...
+			if (empty($name)) {
+					$save = false;
+					array_push($errors, "Le nom du vêtement doit être rempli.");
+			}
+			if (empty($category)) {
+					$save = false;
+					array_push($errors, "La catégorie doit être sélectionnée.");
+			}
+			if (empty($picture)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une image pour votre vêtement.");
+			}
+			if (empty($minTemp)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une température minimale.");
+				}
+			if (empty($maxTemp)) {
+					$save = false;
+					array_push($errors, "Veuillez indiquez une température maximale.");
+				}
+
+
 			if ($save) 
 			{
 				// Enregistre en BDD
@@ -85,7 +117,16 @@ class ClothesController extends Controller
 	}
 	public function read($id)
 	{
-		$clothes = $this->clothesModel->find($id);
+		$clothes = $this->clothesModel->find($id);		
+		if(!$clothes["defaultClothes"])
+		{
+			$idUser = $this->clothesModel->findClothesUser($id)["idUsers"];
+			if(!isset($_SESSION["user"]) || ((is_null($id) || ($idUser != $_SESSION["user"]["id"])) && $_SESSION["user"]["role"] != "admin"))
+			{
+				$this->showForbidden();
+			}
+		}
+		
 		$this->show('clothes/read', [
 			"title" => $clothes['name'],
 			"clothes" => $clothes
@@ -93,6 +134,11 @@ class ClothesController extends Controller
 	}
 	public function update($id, $idUser = null)
 	{
+		$idClotheUser = $this->clothesModel->findClothesUser($id)["idUsers"];
+		if(!isset($_SESSION["user"]) || ((is_null($id) || ($idClotheUser != $_SESSION["user"]["id"])) && $_SESSION["user"]["role"] != "admin"))
+		{
+			$this->showForbidden();
+		}
 		// Get product from BDD
 		$clothes = $this->clothesModel->find($id);
 		$categories = $this->clothesModel->getCategories();
@@ -151,6 +197,11 @@ class ClothesController extends Controller
 	}
 	public function delete($id, $idUser = null)
 	{
+		$idClotheUser = $this->clothesModel->findClothesUser($id)["idUsers"];
+		if(!isset($_SESSION["user"]) || ((is_null($id) || ($idClotheUser != $_SESSION["user"]["id"])) && $_SESSION["user"]["role"] != "admin"))
+		{
+			$this->showForbidden();
+		}
 		$clothes = $this->clothesModel->find($id);
 		if ($_SERVER['REQUEST_METHOD'] === "POST") 
 		{
@@ -175,6 +226,10 @@ class ClothesController extends Controller
 		switch ($type) 
 		{
 			case 'both':
+				if($_SESSION["user"]["role"] != "admin")
+				{
+					$this->showForbidden();
+				}
 				$clothes = $this->clothesModel->get("both");
 				break;
 			case 'personal':
@@ -213,18 +268,24 @@ class ClothesController extends Controller
 		}
 
 		$options = [];
-
+		$data["tops"] = false;
+		$data["sweater"] = false;
+		$data["vest"] = false;
+		$data["coat"] = false;
+		$data["pants"] = false;
+		$data["shorts"] = false;
+		$data["shoes"] = false;
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
 
-			$options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true";
-			$options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true";
-			$options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true";
-			$options["coat"] = isset($_POST["coat"]) && $_POST["coat"] == "true";
-			$options["pants"] = isset($_POST["pants"]) && $_POST["pants"] == "true";
-			$options["shorts"] = isset($_POST["shorts"]) && $_POST["shorts"] == "true";
-			$options["shoes"] = isset($_POST["shoes"]) && $_POST["shoes"] == "true";
+			$data["tops"] = $options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true";
+			$data["sweater"] = $options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true";
+			$data["vest"] = $options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true";
+			$data["coat"] = $options["coat"] = isset($_POST["coat"]) && $_POST["coat"] == "true";
+			$data["pants"] = $options["pants"] = isset($_POST["pants"]) && $_POST["pants"] == "true";
+			$data["shorts"] = $options["shorts"] = isset($_POST["shorts"]) && $_POST["shorts"] == "true";
+			$data["shoes"] = $options["shoes"] = isset($_POST["shoes"]) && $_POST["shoes"] == "true";
 		}
 		$data["results"] = $this->clothesModel->search($search, $options);
 

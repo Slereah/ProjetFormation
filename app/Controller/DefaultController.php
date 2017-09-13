@@ -26,7 +26,7 @@ class DefaultController extends Controller
 		$data["country"] = "fr";
 		$data["unit"] = "°C";
 
-		
+		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
 		
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
@@ -50,7 +50,6 @@ class DefaultController extends Controller
 		$data["cityInput"] = $data["city"];
 		$data["countryInput"] = $data["country"];		
 		$data["date"] = date("d-m-Y", $data["time"]);
-
 		$this->show('default/home', $data);
 	}
 
@@ -199,7 +198,7 @@ class DefaultController extends Controller
 		$lowerClothes = ["pantalons", "shorts"];
 		$type = (is_null($id))?"default":"personal";
 		$data = ["upperClothes" => [], "lowerClothes" => []];
-
+		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
 		foreach ($upperClothes as $key => $value) 
 		{
 			$data["upperClothes"] = array_merge($data["upperClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
@@ -209,6 +208,19 @@ class DefaultController extends Controller
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
 		$data["chaussures"] = $this->clothesModel->getTemp("chaussures", $type, $weather, $id);
+
+		if(empty($data["upperClothes"]))
+		{
+			$data["error"]["upperClothes"] = "Pas de vêtement du haut trouvé";
+		}
+		if(empty($data["lowerClothes"]))
+		{
+			$data["error"]["lowerClothes"] = "Pas de vêtement du haut trouvé";
+		}
+		if(empty($data["shoes"]))
+		{
+			$data["error"]["shoes"] = "Pas de vêtement du haut trouvé";
+		}
 
 		return $data;
 	}

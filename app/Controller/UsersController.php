@@ -53,6 +53,7 @@ class UsersController extends Controller
 		$this->show('users/index',$data);
 	}
 
+
 	public function update()
 	{
 		$user = $this->getUser();
@@ -204,6 +205,26 @@ class UsersController extends Controller
       		"errors" 	=> $errors,
 
       	]);
-		
+	}
+
+	public function delete($id)
+	{
+		$this->clothesModel->deleteAllClothesUser($id);
+		$this->usersModel->delete($id);
+		$this->redirectToRoute("home");
+	}
+
+	public function userList()
+	{
+		if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] != "admin")
+		{
+			$this->showForbidden();
+		}
+		else
+		{
+			$data["users"] = $this->usersModel->findAll();
+			$this->show('users/list', $data);
+		}
+
 	}
 }
