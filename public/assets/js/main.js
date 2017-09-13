@@ -192,7 +192,10 @@ $(function()
 		{		
 			$(".carousel").carousel("pause");
 		}
-		homeButton(date);
+		if(typeof date != 'undefined')
+		{
+			homeButton(date);
+		}
 	});
 
 function update(day, city, country, unit, source)
