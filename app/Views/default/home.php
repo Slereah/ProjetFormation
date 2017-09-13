@@ -7,7 +7,7 @@
 				<div class="home-content text-center">
 					<h1 id="typer">"Des vêtements appropriés au temps"</h1>
 					<h2>Weather & Wear</h2>
-					<a href="#" class="btn btn-primary btn-animated">Commençons !</a>
+					<a href="<?= $this->url('tuto')?>" class="btn btn-primary btn-animated">Commençons !</a>
 					<div class="scroll-arrow">
 						<div class="arrow-icon">
 							<a class="animated" href="#"><i class="fa fa-angle-down"></i></a>
@@ -35,18 +35,28 @@
 
 
 						<!-- Localité -->
-						<div class="col-md-2">
+						<div class="col-md-2" id="locationDiv">
 							<div class="text-center section-title" id="section-title-Home">
 								<h1 id="locationTitle">Localité</h1>
 							</div>
-							<form method="post">
+							<form id="homeForm" method="post" onsubmit="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton'); return false;">
 								<div class="form-group welcome-image form-sign" id="cityLabel">
 									<label>Ville</label>
 									<input class="form-control" id="city" type="text" name="city" value="<?= $cityInput ?>">
 								</div>
 								<div class="form-group welcome-image form-sign" id="countryLabel">
 									<label>Pays</label>
-									<input class="form-control" id="country" type="text" name="country" value="<?= $countryInput ?>">
+									<select id="country" name="country">
+									<option value="">Sélectionner votre pays :</option>
+									<?php
+										foreach ($countryList as $key => $value) 
+										{
+											?>
+												<option value="<?= $key ?>" <?= ($country == $key)?"selected":null ?>><?= $value ?></option>
+											<?php
+										}
+									?>
+								</select>
 								</div>
 								<div class="text-center">
 									<button class="btn btn-primary" id="upButton" type="button" onclick="update(<?= $day ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'upButton')">OK</button>
@@ -62,16 +72,16 @@
 							</div>
 							<div class="row">
 								<div class="col-md-2 col-md-offset-2" id="weatherIcon">
-									<?= $weather["icon"] ?>
+									<?= (isset($weather["icon"]) && !empty($weather["icon"]))? $weather["icon"] : "<i class='wi wi-alien'></i>" ?>
 								</div>
 								<div class="col-md-7 col-md-offset-1">
 									<div class="welcome-image" id="minTempHome">
-										<h3 id="tmpMin">Température minimale : <?= $weather["minTemp"] ?> <?= $unit?></h3>
+										<h3 id="tmpMin">Température minimale : <?= (isset($weather["minTemp"]))?$weather["minTemp"]:"?" ?> <?= $unit?></h3>
 									</div>						
 								</div>
 								<div class="col-md-7 col-md-offset-5">
 									<div class="welcome-image" id="maxTempHome">							
-										<h3 id="tmpMax">Température maximale : <?= $weather["maxTemp"] ?> <?= $unit?></h3>
+										<h3 id="tmpMax">Température maximale : <?= (isset($weather["maxTemp"]))?$weather["maxTemp"]:"?" ?> <?= $unit?></h3>
 									</div>
 								</div>
 							</div>
@@ -90,8 +100,8 @@
 					<div class="row"> 
 							
 						<div id="datePicker" class="text-center section-title">
-							<h2>Exemple de tenue</h2>
-							<h1 id="dateTitle">Pour le <?= $date ?></h1>
+							<h2 id="exampleTitle">Exemple de tenue</h2>
+							<h1 id="dateTitle">Le <?= $date ?></h1>
 							<button class="btn btn-primary" id="prevButton" type="button" onclick="update(<?= ($day==0)?0:$day-1 ?>, '<?= $city ?>', '<?= $country ?>', '<?= $unit ?>', 'prevButton')">
 								<i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Jour précédent
 							</button>
@@ -103,26 +113,27 @@
 							<!-- Carrousel d'images -->
 							<div id="selectUpper" class="carousel-inner">
 								<?php
-									if($error["upperClothes"])
+									if(isset($error["upperClothes"]) && $error["upperClothes"])
 									{
-										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png')]];
+										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png'), "name" => "Vêtement du bas par défaut"]];
 									}
 									foreach ($upperClothes as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
+											<div class="carousel-caption">
+								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
+							      			</div>
 										</div>
-										<div class="carousel-caption">
-								        	<h3>Haut</h3>
-							      		</div>
+										
 										<?php
 									}
 								?>
 							</div>
 
 							<!-- Contrôleurs -->
-							<a class="carousel-control right" href="#mon-carrousel" data-slide="next">
+							<a class="carousel-control right" href="#mon-carrousel1" data-slide="next">
 								<i class="fa fa-refresh" aria-hidden="true" alt="flèche"></i>
 								<span class="sr-only">Change</span>
 							</a>
@@ -130,19 +141,19 @@
 						<div class="carousel slide" id="mon-carrousel2">
 							<div class="carousel-inner">
 								<?php
-									if($error["lowerClothes"])
+									if(isset($error["lowerClothes"]) && $error["lowerClothes"])
 									{
-										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png')]];
+										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png'), "name" => "Vêtement du bas par défaut"]];
 									}
 									foreach ($lowerClothes as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
+											<div class="carousel-caption">
+								        		<h3 class="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
+								      		</div>
 										</div>
-										<div class="carousel-caption">
-							        	<h3>Bas</h3>
-							      		</div>
 										<?php
 									}
 								?>
@@ -157,19 +168,20 @@
 						<div class="carousel slide" id="mon-carrousel3">
 							<div class="carousel-inner">
 								<?php
-									if($error["shoes"])
+									if(isset($error["chaussures"]) && $error["chaussures"])
 									{
-										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg')]];
+										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg'), "name" => "Chaussures par défaut"]];
 									}
 									foreach ($chaussures as $key => $value) 
 									{
 										?>
-										<div class="item <?= ($key == 0) ? "active":"" ?>"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+										<div class="item <?= ($key == 0) ? "active":"" ?>  carouselClothes"> 
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
+											<div class="carousel-caption">
+								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
+							      			</div>
 										</div>
-										<div class="carousel-caption">
-								        	<h3>Chaussures</h3>
-							      		</div>
+
 										<?php
 									}
 								?>
@@ -186,4 +198,7 @@
 				</div><!-- Fin div recent-projects -->
 						
 	    </div><!--/#Recent projects-->
+	    <script type="text/javascript">
+	    	var date = "<?= $date ?>";
+	    </script>
 <?php $this->stop('main_content') ?>

@@ -17,7 +17,6 @@
 		<link href="<?= $this->assetUrl('css/tr-animation.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/blue.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/responsive.css') ?>" rel="stylesheet">	
-		<link href="<?= $this->assetUrl('css/cropper.css') ?>" rel="stylesheet">
 		<link href="<?= $this->assetUrl('css/weather-icons.css') ?>" rel="stylesheet">			
 		
 		<!--Google Fonts-->
@@ -28,7 +27,7 @@
 		    <script src="js/html5shiv.js"></script>
 		    <script src="js/respond.min.js"></script>
 	    <![endif]-->       
-	    <link rel="shortcut icon" href="https://themeregion.com/demo/arki/default-images/ico/favicon.ico">
+	    <link rel="shortcut icon" href="<?= $this->assetUrl('favicon/shining-sun-152-193454.png') ?>">
 	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-144-precomposed.png">
 	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-114-precomposed.png">
 	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-72-precomposed.png">
@@ -47,7 +46,7 @@
 	                        <span class="icon-bar"></span>
 	                    </button>
 	                    
-	                    <a class="navbar-brand">
+	                    <a class="navbar-brand" href="<?= $this->url('home') ?>" title="retour à l'accueil">
 	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>" alt="">
 	                    </a> 
 
@@ -86,12 +85,12 @@
 	                        	</a>
                         	</li>
 		
-							<li><a href="javascript:void(0);">
+							<li><a href="<?= $this->url('tuto') ?>">
 								Comment ça marche ?
 								</a>
 							</li>						
 							
-	                        <li><a href="">Comment s'habiller aujourd'hui ?</a></li>
+	                        <li><a href="<?= $this->url('home')?>#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
@@ -122,8 +121,8 @@
 								<address>
 									<ul>
 										<li><span>Adresse :</span>URBILOG - 31 Rue Denis Papin, 59650 Villeneuve-d'Ascq - France</li>
-										<li><span>Téléphone :</span>+33 1 23 45 67 89</li>
-										<li><span>Mail:</span><a href="#">weather&wear@gmail.com</a></li>
+										<li><span>Téléphone :</span><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+										<li><span>Mail:</span><a href="mailto:weather&wear@gmail.com">weather&wear@gmail.com</a></li>
 									</ul>
 								</address>
 							</div>
@@ -158,17 +157,6 @@
 	    <script type="text/javascript" src="<?= $this->assetUrl('twentytwenty/twentytwenty.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.countTo.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/jquery.inview.min.js') ?>"></script> 
-	    <script type="text/javascript" src="<?= $this->assetUrl('js/cropper.js') ?>"></script>
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
 	</body>
 </html>
-
-
-
-<!-- 								*********
-								CORRECTIONS A FAIRE
-     								*********
-	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
-	ne fonctionnent pas.
-	
- -->

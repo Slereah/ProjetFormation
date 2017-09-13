@@ -1,12 +1,3 @@
-/*
-  Theme Name: Arki
-  Theme URL: http://demo.themeregion.com/arki
-  Author: ThemeRegion
-  Author URI: http://www.themeregion.com
-  Description: Arki - Responsive HTML Template
-  Version: 1.0
-*/
-
 /*=======================================================================
 [Table of contents]
 =========================================================================
@@ -149,7 +140,8 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform:uppercase;
 	color:#e71647;
 	font-weight:900;
-	margin-top: -25px;
+	margin-top: -25
+	px;
 	line-height:46px;
 } 
 
@@ -348,7 +340,7 @@ textarea.form-control {
 #page .top-bar .login-section a{
     color: #fff;
     background-color: #ea0f42;
-    padding: 10px 15px;
+    padding: 10px 0px;
     border-radius: 4px;
 }
 
@@ -452,7 +444,7 @@ a.navbar-brand {
 	color:#fff;
 	font-size:14px;
 	text-transform:uppercase;
-	padding:10px 24px;
+	padding:10px 30px;
 	font-weight:400;
 	background-color:transparent;
 }
@@ -468,9 +460,15 @@ a.navbar-brand {
 }
 
 .navbar {
-    border-radius: 4px;
     background-color: #0096ca;
 }
+
+@media (min-width: 768px) {
+	.navbar {
+	    border-radius: 0px !important;
+	}
+}
+
 
 /*Dropdown Menu CSS*/
 .dropdown-menu {
@@ -1411,8 +1409,9 @@ a.navbar-brand {
     border-radius: 8px !important;
 }
 
-#country, #city {
+#country, #city, #unit {
 	height: 30px;
+	width: 100%;
 }
 
 #locationTitle {
@@ -1431,6 +1430,17 @@ a.navbar-brand {
 #maxTempHome {
     margin-top: -60px;
     margin-right: 56px;
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+	#minTempHome, #maxTempHome {
+	    margin-top: 0px; 
+	    margin-right: 0px; 
+	    width: 50%;
+	    margin-left: 25%;
+	    margin-top: 2%;
+	}
+
 }
 
 /*==============================
@@ -1536,6 +1546,7 @@ a.navbar-brand {
 .carousel-control.right {
     background-image: none!important;
     right: 42%;
+    z-index: 10;
 }
 
 .carousel-inner {
@@ -1543,7 +1554,7 @@ a.navbar-brand {
 }
 
 .carousel-caption {
-	color: #000;
+	color: #fff;
 }
 
 .fa-refresh {
@@ -1555,13 +1566,32 @@ a.navbar-brand {
 	margin-bottom: 15px;
 }
 
+#weatherTitle {
+	margin-top: -8px;
+}
+
 #prevButton i, #nextButton i {
 	margin-right: 5px;
     margin-left: 5px;
 }
 
-#nextButton i {
-    padding-left: 25px;
+@media (max-width: 767px) {
+	.imgClothes {
+		max-width: 30% !important;
+	}
+
+	.carousel-caption {
+		padding-bottom: 7px;
+	}
+	
+	.carouselClothes {
+    	height: 136px;
+	}
+
+	.clothesTitle {
+		margin-bottom: 0px;
+	}
+    
 }
 
 @media (min-width: 1200px) {
@@ -3509,11 +3539,39 @@ div#password {
 
 }
 
+/*=========================
+===== Signup =======
+===========================*/
+
+#signupTitle 		{
+    margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+	#signupTitle {
+        margin-top: 130px;
+	}
+}
 
 /*=========================
-===== Signup CSS =======
+===== Tuto =======
 ===========================*/
-#signupTitle, #contactTitle, #clothes-index-Title, #clothes-read-Title, #searchTitle {
+#tutoTitle {
+	margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+	#tutoTitle {
+	    margin-top: 130px;
+	}
+}
+
+
+
+/*=========================
+===== Title =======
+===========================*/
+#contactTitle, #clothes-index-Title, #searchTitle {
     margin-top: 80px;
 }
 
@@ -3521,6 +3579,10 @@ div#password {
 /*=========================
 ===== Page Index CSS =======
 ===========================*/
+i.fa.fa-users {
+    margin-right: 1%;
+}
+
 .userData h3 {
 	display: inline-block;
 }
@@ -3547,11 +3609,16 @@ span.profileData {
 }
 
 #indexTitle {
-    padding-top: 47px;
+    margin-top: 10%;
+    margin-bottom: 1%;
 }
 
 .indexButton {
     margin-top: 10px;
+}
+
+.indexButton a {
+	color: #fff;
 }
 
 .carousel-control
@@ -3560,7 +3627,7 @@ span.profileData {
 
 .carousel-control i
 {
-	margin-top: 100px;
+	margin-top: 10%;
 	background-color: white;
 	padding: 5px;
 	border-radius: 10px;
@@ -3588,47 +3655,75 @@ span.profileData {
 }
 
 
-@media (max-width: 768px) {
-	span.profileData {
-		font-size: 12px;
-	}
-	form.userData h3 {
-    	font-size: 12px;
-	}
+
+
+@media (max-width: 767px) {
 	.col-sm-offset-2 {
 		margin-top: 120px;
 	}
-	.myWardrobe {
-		margin-top: 50px;
-	}
+	
 	.personalData {
 		margin-top: 22px;
 	}
 
-  	form.userData {
-	    width: 60%;
-        margin-left: 20%;  	
+	span.profileData {
+		font-size: 12px;
+	}
+
+	.myWardrobe {
+    	margin-top: 50px;
+	}
+
+	#indexTitle {
+	    margin-top: 130px;
 	}
 
 	#persDataTitle {
-		margin-top: 6%;
+	    margin-top: 10%;
+	}
+
+	form.userData {
+	    width: 60%;
+	    margin-left: 20%;
+	}
+
+	form.userData h3 {
+    	font-size: 12px;
+	}
+
+	#wardrobeTitle {
+	    margin-top: 20%;
+	}
+
+	#thumbnailIndex {
+	    height: 315px;
+	    width: 60%;
+	    margin-left: 20%;
 	}
 
 }
+
 
 @media (min-width:768px) and (max-width: 991px) {
 	.myWardrobe {
     	margin-top: 100px;
 	}
 
-}
-
-@media (max-width: 767px) {
-	.myWardrobe {
-    	margin-top: 50px;
+	#indexTitle {
+		margin-top: 15%;
 	}
 
+	#persDataTitle {
+	    margin-top: 6%;
+	}
+
+	form.userData {
+	    width: 40%;
+	    margin-left: 30%;
+	}
 }
+
+
 
 @media (min-width: 1200px) {
 	.myWardrobe .personalData {
@@ -3641,73 +3736,19 @@ span.profileData {
 /*=========================
 =====  Layout =======
 ===========================*/
-
-.leftSection {
-    margin-right: 10px;
+.top-bar {
+    position: absolute;
+    right: 2px;
+    top: 20px;
 }
 
-@media (min-width: 1095px) and (max-width: 1199px) {
-	#navigation .navbar-right li a {
-	    font-size: 12px;
-	    padding: 10px 16px;
-	}
-
-	#navigation .navbar .navbar-fixed-top {
-	    top: 3px;
-	    position: relative;
-	    margin-right: 33px;
-	}
-
-	.top-bar .login-section i {
-	    margin-right: 2px;
-	}
-
-	.top-bar {
-	    position: absolute;
-	    right: -56px;
-	    top: 20px;
-	}
-
-	#navigation .navbar-fixed-top .navbar-right {
-	    margin-top: 0;
-	    margin-right: 129px;
-	}
-
-	.navbar-fixed-top span.login-section.leftSection {
-    	margin-right: -21px;
-	} 
-
-	.navbar-fixed-top span.login-section.rightSection {
-	    margin-left: 5px;
-	}
+#navigation .navbar-right li a {
+    padding: 10px 21px;
 }
 
-	
-@media (max-width: 768px){
-	.rightSection {
-    	margin-right: 70px;
-	}
-	.navbar .leftSection {
-		margin-left: 9px;
-	}
-
+#navigation .navbar-nav {
+    margin-right: -46px;
 }
-
-@media (min-width: 769px) {
-	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    	margin-left: -80px;
-	}
-}
-
-
-
-
-
-
-
-
-
-
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -10px;
@@ -3716,7 +3757,105 @@ span.profileData {
 #navigation .navbar-nav {
     top: 2px;
     position: relative;
-    margin-right: -55px;
+    margin-right: -64px;
+}
+
+.leftSection {
+    margin-right: 10px;
+}
+	
+@media (max-width: 767px){
+	.rightSection {
+    	margin-right: 70px;
+	}
+
+	.navbar .leftSection {
+		margin-left: 9px;
+	}
+
+	a.navbar-brand {
+	    width: 80px;
+	    margin-top: 3%;
+	}
+
+	.logo-two {
+	    margin-top: 27%;
+	    max-width: 86%;
+	}
+
+	.footer-widget {
+	    margin-left: 6%;
+	}
+
+	#partnersTitle {
+	    margin-top: 8%;
+	}
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	
+	.logo-two {
+	    max-width: 90%;
+	}
+	a.navbar-brand {
+	    width: 14%;
+	    margin-top: 3%;
+    }
+    div#countryLabel, div#cityLabel {
+	    width: 40%;
+	    margin-left: 30%;
+	}
+	.footer-widget {
+	    margin-left: 6%;
+	}
+
+	#partnersTitle {
+	    margin-top: 8%;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	.logo-two {
+	    max-width: 41%;
+	}
+
+	#navigation .navbar-right li a {
+	    padding: 10px 15px;
+	    font-size: 13px;
+	}
+
+	span.login-section.rightSection {
+	    margin-right: 71px;
+	}
+
+	#navigation .navbar-nav {
+	    margin-right: 0px;
+	}
+
+	.navbar > .container .navbar-brand {
+	    margin-left: -58px;
+	}
+
+	a.navbar-brand {
+	    width: 150px;
+	}
+
+	img.logo-two.img-responsive {
+	    margin-top: 11px;
+	}
+    
+}
+
+@media (min-width: 1200px) {
+	#navigation .navbar-nav {
+	    top: 2px;
+	    position: relative;
+	    margin-right: 50px;
+	}
+	#navigation .navbar-fixed-top ul {
+	    margin-right: -46px;
+	}
 }
 
 
@@ -3730,6 +3869,12 @@ span.profileData {
 #deleteTitle {
 	margin-top: 168px;
 
+}
+
+@media (max-width: 768px) {
+	#deleteForm {
+		margin-bottom: 20%;
+	}
 }
 
 /*=================================
@@ -3755,20 +3900,100 @@ span.profileData {
  
 
 #clothes-read-buttons {
-	margin-top: 27px;	
+	margin-top: 10px;	
 }
 
 #updateBtn {
 	margin-right: 8px;
 }
 
+#onlyAdminAccess a{
+	color: #333;
+}
+
+
+/*===============================================================
+=====  page clothes/id ('clothes_read', 'clothes_update') =======
+================================================================*/
+
+
+#loadImage {
+	padding: 12px 20px;
+}
+
+
+
+
+@media (max-width: 768px) {
+	#clothes-read-Thumbnail {
+		width: 70%;
+	    margin-left: 15%;
+	}
+
+	#clothes-read-Title {
+		margin-top: 21%;
+	}
+
+	#success-updateClothes {
+	 	width: 60%;
+    	margin-left: 20%;
+	}
+
+	#loadImage {
+		font-size: 12px;
+	}
+
+	.indexButton {
+	    margin-top: 5px;
+	}
+
+	#updateBtn {
+	    margin-right: 0px; 
+	}
+	
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+	#clothes-read-Thumbnail {
+		width: 40%;
+	    margin-left: 30%;
+	}
+
+	#clothes-read-Title {
+	    margin-top: 15%;
+	}
+
+}
+
+@media (min-width: 992px) {
+	#clothes-read-Title {
+	    margin-top: 9%;
+	}
+}
+
+
 
 /*===================================
-=====  page clothes/create =======
-====================================*/
-#cropButton {
-	margin-top: 8px;
+=====  Form clothes =================
+=====================================*/
+#picture {
+	text-transform: initial;
 }
+
+@media (max-width: 768px) {
+	.form-sign {
+		width: 60%;
+	    margin-left: 20%;
+	}
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+	.form-sign {
+		width: 60%;
+	    margin-left: 20%;
+	}
+}
+     
 
 
 
@@ -3883,22 +4108,33 @@ div#thumbnail-clothes-index {
 	    left: 4%;
 	}
 
-	div#categorySearchBottoms, div#categorySearchTops {
+	div#categorySearchTops {
     	padding-right: 18%;
 	}
 	label#categorySearchBottoms {
 		left: 30%;
 	}
 	
+	.categorySearch {
+	    padding-right: 9%;
+	}
 
 	#thumbnail-clothes-index {
 	    height: 342px;
-	    width: 50%;
-	    margin-left: 25%;
+	    width: 70%;
+	    margin-left: 15%;
 	}
 
 	#searchButton {
 		margin-left: 62%;
+	}
+
+	#delete-search-btn, #add-search-btn {
+		padding: 5px 5px !important;
+	}
+
+	div#categorySearchTops {
+	    padding-right: 12%;
 	}
 
 }
@@ -3912,6 +4148,11 @@ div#thumbnail-clothes-index {
 #prevButton {
     margin-right: 5px;
 }
+
+#exampleTitle {
+	margin-top: 0px;
+}
+
 
 
 @media (max-width: 768px) {
@@ -3939,15 +4180,15 @@ div#thumbnail-clothes-index {
 
 	#weatherIcon {
 		font-size: 65%;
+		margin-top: -22px;
 	}
 
 	#datePicker {
-		margin-top: 4%;
+		margin-top: 20px;
 	}
 
 	#prevButton, #nextButton {
 		font-size: 11px;
-	    width: 22%;
 	    padding: 6px 8px;
 	}
 	
@@ -3965,4 +4206,93 @@ div#thumbnail-clothes-index {
 	}
 	
 }
+
+@media (min-width: 769px) and (max-width: 991px) {
+	#exampleTitle {
+	    margin-top: 20px;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	#exampleTitle {
+	    margin-top: 20px;
+	}
+}
+
+/*=========================
+===== page users-list =======
+===========================*/
+
+#usersListTitle {
+   margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+	#usersListTitle {
+	    margin-top: 130px;
+	}
+
+}
+
+/*=========================
+===== page user-update =======
+===========================*/
+
+#updateTitle {
+	margin-top: 80px;
+}
+
+#email {
+	text-transform: initial;
+
+}
+
+@media (max-width: 768px) {
+	#updateTitle {
+	    margin-top: 130px;
+	}
+}
+
+
+/*=========================
+===== page contact =======
+===========================*/
+@media (max-width: 768px) {
+	#contactTitle {
+	    margin-top: 130px;
+	}
+}
+
+
+
+
+
+/*=========================
+===== pages erreurs =======
+===========================*/
+
+.errorTitle {
+    margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+	.errorTitle {
+	    margin-top: 130px !important;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

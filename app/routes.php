@@ -8,6 +8,10 @@
 		['GET', '/', 'Default#home', 'home'],
         ['GET|POST', '/update-weather', 'Default#updateWeather', 'update_weather'],
 
+        /* 
+        *-- Tutoriel
+        */
+        ['GET', '/comment-ca-marche', 'Default#tuto', 'tuto'],
 
 		/* 
         *-- Contact 
@@ -19,7 +23,7 @@
         */
         ['GET', '/profile', 'Users#index', 'profile'],
         ['GET|POST', '/users-list', 'Users#userList', "userlist"],
-        ['GET|POST', '/[i:id]/user-update', 'Users#update', 'user_update'],
+        ['GET|POST', '/user-update', 'Users#update', 'user_update'],
       	['GET|POST', '/[i:id]/user-delete', 'Users#delete', 'user_delete'],
 
         /* 
@@ -51,6 +55,11 @@
 
         ['POST', '/upload', 'Default#uploadImage', 'upload'],
 
+         /* 
+        *-- Erreurs
+        */
+        ['GET', '/404', 'Security#signin', '404_error'],
+        ['GET', '/403', 'Security#signin', '403_error'],
 
 
 	);

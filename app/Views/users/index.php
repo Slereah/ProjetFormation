@@ -6,6 +6,21 @@
 			<div class="container">
 				<div class="text-center section-title">
 					<h1 id="indexTitle"><?= $title ?></h1>
+
+					<!-- Accéder à la liste des utilisateurs si rôle=admin -->
+					<?php
+						if($_SESSION["user"]["role"] == "admin")
+						{
+							?>
+								<span class="login-section text-center" id="onlyAdminAccess">
+									<a href="<?= $this->url('userlist') ?>">
+										<i class="fa fa-users" aria-hidden="true"></i>Gestion des utilisateurs
+									</a>
+								</span>
+							<?php
+						}
+					?>
+
 				</div>
 				<div class="row"> 
 					<div class="recent-projects">
@@ -46,9 +61,9 @@
 						</div>
 
 						<!-- Ma garde-robe -->
-						<div class="col-md-6 col-md-offset-2  col-xs-10 col-xs-offset-1 myWardrobe">
+						<div class="col-md-6 col-md-offset-2 myWardrobe">
 							<div class="text-center section-title">
-								<h2>Ma garde-robe</h2>
+								<h2 id="wardrobeTitle">Ma garde-robe</h2>
 							</div>
 
 								<!-- Thumbnails -->
@@ -63,12 +78,14 @@
 										<?php
 									}
 									?>
-									<div class="col-sm-6 col-md-4" id="wardrobeThumbnail">
-								    	<div class="thumbnail">
-								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="vêtement">
+									<div class="col-md-4" id="wardrobeThumbnail">
+								    	<div class="thumbnail" id="thumbnailIndex">
+								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="<?= $value["name"] ?>">
 								      		<div class="caption">
-								        		<h3><?= $value["category"] ?></h3>
-								        		<p><?= $value["name"] ?></p>
+								      			<div class="text-center">
+									        		<h3><?= $value["category"] ?></h3>
+									        		<p><?= $value["name"] ?></p>
+								        		</div>
 								        		<div class="text-center">
 								        			<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
 								        			<a href="<?= $this->url('clothes_update_user', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Modifier</a>
@@ -91,7 +108,7 @@
 								<nav aria-label="Page navigation">
 									<ul class="pagination pagination-sm">
 										<li class="<?= ($page == 1)?"disabled":null ?>">
-									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="Previous">
+									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="précédent">
 										    	<span aria-hidden="true">&laquo;</span>
 									  		</a>
 										</li>
@@ -105,7 +122,7 @@
 										?>
 										
 										<li class="<?= ($page == $maxpage)?"disabled":null ?>">
-									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="Next" >
+									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="suivant" >
 								    			<span aria-hidden="true">&raquo;</span>
 										  	</a>
 										</li>

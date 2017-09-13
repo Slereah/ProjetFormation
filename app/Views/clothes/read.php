@@ -18,7 +18,7 @@
 									$_SESSION["ValidForm"] = false;
 							?>	
 
-								<div class="alert alert-success text-center">
+								<div class="alert alert-success text-center" id="success-updateClothes">
 									<p>Votre vêtement a bien été modifié.</p>
 								</div>
 
@@ -37,7 +37,7 @@
 									<dd> <?= $clothes['category'] ?> </dd>
 								</dl>
 							
-								<img src="<?= $clothes['picture'] ?>" class="img-responsive imgClothes imgWardrobe">
+								<img src="<?= $clothes['picture'] ?>" class="img-responsive imgClothes imgWardrobe" alt="<?= $clothes['name'] ?>">
 							
 							 	<div class="caption">
 							    	<h3 class="text-center"><?= $clothes ['name'] ?></h3>

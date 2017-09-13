@@ -19,14 +19,18 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
+		include_once "../app/constants.php";
+
 		$data["time"] = time();
 		$data["day"] = 0;
 		$data["date"] = date("d-m-Y", time());
 		$data["city"] = "Paris";
-		$data["country"] = "fr";
+
+		$data["country"] = "FR";
+		$data["countryList"] = $countryList;
 		$data["unit"] = "°C";
 
-		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
+		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "chaussures" => []];
 		
 		$data["upperClothes"] = [];
 		$data["lowerClothes"] = [];
@@ -125,7 +129,17 @@ class DefaultController extends Controller
 	{
 		$request = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' . $city . ',' . $country . '")';
 		$url = "https://query.yahooapis.com/v1/public/yql?q=" . urlencode($request) . "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-		$response = json_decode(file_get_contents($url));
+		$file = @file_get_contents($url);
+		if($file)
+		{
+			$response = json_decode($file);
+		}
+		else
+		{
+			return null;
+		}
+		
+
 		if(is_null($response->query->results))
 		{
 			return null;
@@ -170,7 +184,6 @@ class DefaultController extends Controller
 		$data["chaussures"] = [];
 		$data["errors"] = [];
 
-		
 		$data["weather"] = DefaultController::forecast($data["city"], $data["country"], $data["day"], $data["unit"] == "°C");
 		if(is_null($data["weather"]))
 		{
@@ -197,8 +210,9 @@ class DefaultController extends Controller
 		$upperClothes = ["tops", "pulls", "manteaux", "vestes"];
 		$lowerClothes = ["pantalons", "shorts"];
 		$type = (is_null($id))?"default":"personal";
-		$data = ["upperClothes" => [], "lowerClothes" => []];
-		$data["error"] = ["upperClothes" => [], "lowerClothes" => [], "shoes" => []];
+
+		$data = ["upperClothes" => [], "lowerClothes" => [], "chaussures" => []];
+
 		foreach ($upperClothes as $key => $value) 
 		{
 			$data["upperClothes"] = array_merge($data["upperClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
@@ -207,7 +221,10 @@ class DefaultController extends Controller
 		{
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
-		$data["chaussures"] = $this->clothesModel->getTemp("chaussures", $type, $weather, $id);
+		$data["chaussures"] = array_merge($data["chaussures"], $this->clothesModel->getTemp("chaussures", $type, $weather, $id));
+		$data["debug"] = $this->clothesModel->getTemp("chaussures", "personal", $weather, $id);
+
+
 
 		if(empty($data["upperClothes"]))
 		{
@@ -215,11 +232,11 @@ class DefaultController extends Controller
 		}
 		if(empty($data["lowerClothes"]))
 		{
-			$data["error"]["lowerClothes"] = "Pas de vêtement du haut trouvé";
+			$data["error"]["lowerClothes"] = "Pas de vêtement du bas trouvé";
 		}
-		if(empty($data["shoes"]))
+		if(empty($data["chaussures"]))
 		{
-			$data["error"]["shoes"] = "Pas de vêtement du haut trouvé";
+			$data["error"]["chaussures"] = "Pas de chaussures trouvé";
 		}
 
 		return $data;
@@ -239,7 +256,7 @@ class DefaultController extends Controller
 
 	private static function rain($code)
 	{
-		if(in_array($code, [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 37, 38, 39, 40, 47]))
+		if(in_array($code, [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 37, 38, 39, 40, 47]))
 		{
 			return true;
 		}
@@ -356,6 +373,11 @@ class DefaultController extends Controller
 
   		return $icon;
 
+	}
+
+	public function tuto()
+	{
+		$this->show('default/tuto', ['title'=> "Comment ça marche ?"]);
 	}
 
 }

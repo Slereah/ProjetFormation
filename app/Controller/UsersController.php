@@ -54,8 +54,34 @@ class UsersController extends Controller
 	}
 
 
+
+	public function delete($id)
+	{
+		$this->clothesModel->deleteAllClothesUser($id);
+		$this->usersModel->delete($id);
+		$this->redirectToRoute("home");
+	}
+
+	public function userList()
+	{
+		if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] != "admin")
+		{
+			$this->showForbidden();
+		}
+		else
+		{
+			$data["users"] = $this->usersModel->findAll();
+			$this->show('users/list', $data);
+		}
+	}
+
 	public function update()
 	{
+		if(!isset($_SESSION["user"]))
+		{
+			$this->showForbidden();
+		}
+
 		$user = $this->getUser();
 
 		$errors 	= [];
@@ -151,7 +177,7 @@ class UsersController extends Controller
 				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
 				{
     				$save = false;
-    				array_push($errors, "Unit invalid.");
+    				array_push($errors, "L'unité de degrés n'est pas valide.");
     			}
 
 
@@ -181,6 +207,7 @@ class UsersController extends Controller
 					"country" 	=> $user['country'],
 					"city" 		=> $user['city'],
 					"zipcode" 	=> $user['zipcode'], 
+					"role"		=> $user['role'],
 					"unit"		=> $user['unit']
 			    );
 
@@ -191,9 +218,9 @@ class UsersController extends Controller
     		}
 		}
 
-		// Affiche le formulaire de modification du profile
+		// Affiche le formulaire de modification du profil
 		$this->show('users/update', [	
-			"title" 	=> " Modifier mon profile",
+			"title" 	=> " Modifier mon profil",
 			"user" 	=> $user,
 			"username" 	=> $username,
       		"email" 	=> $email,
@@ -205,26 +232,5 @@ class UsersController extends Controller
       		"errors" 	=> $errors,
 
       	]);
-	}
-
-	public function delete($id)
-	{
-		$this->clothesModel->deleteAllClothesUser($id);
-		$this->usersModel->delete($id);
-		$this->redirectToRoute("home");
-	}
-
-	public function userList()
-	{
-		if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] != "admin")
-		{
-			$this->showForbidden();
-		}
-		else
-		{
-			$data["users"] = $this->usersModel->findAll();
-			$this->show('users/list', $data);
-		}
-
 	}
 }

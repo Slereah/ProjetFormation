@@ -3,6 +3,7 @@
     'use strict';
 
 
+
     /*==============================================================*/
     // Contact
     /*==============================================================*/
@@ -185,12 +186,24 @@
 	}());
 });
 
+$(function()
+	{
+		if($(".carousel").length)
+		{		
+			$(".carousel").carousel("pause");
+		}
+		if(typeof date != 'undefined')
+		{
+			homeButton(date);
+		}
+	});
+
 function update(day, city, country, unit, source)
 {
 	if(source == "upButton")
 	{
 		city = $("input#city").val();
-		country = $("input#country").val();
+		country = $("select#country").val();
 	}
 	data = { day : day, city : city, country : country, unit : unit };
 	$.ajax('update-weather', {
@@ -198,19 +211,37 @@ function update(day, city, country, unit, source)
 			data: data,
 			success:function(response)
 			{
-				updateDisplay(response);
+				
+				if($("#locationError"))
+					{
+						$("#locationError").remove();
+					}
+				if(!response.errors.weather)
+				{
+					updateDisplay(response);
+				}
+				else
+				{
+					$("#locationDiv").prepend("<p id='locationError'>Couldn't find location</p>");
+				}
+				
 				
 			},
 			error:function(response)
 			{
-				console.log("error");
+				if($("#locationError"))
+					{
+						$("#locationError").remove();
+					}
+				$("#locationDiv").prepend("<p id='locationError'>Connection error</p>");
 				
 			}
 		});
+	return false;
 }
 
 function updateDisplay(data)
-{
+{	
 	$("#dateTitle").text("Le " + data.date);
 	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
@@ -229,6 +260,19 @@ function updateDisplay(data)
 	var h3 = $("<h3></h3>");
 	h3.text("Haut");
 	div.append(h3);
+	if(data.upperClothes && data.upperClothes.length == 0)
+	{
+		data.upperClothes = [{picture : "/ProjetFormation/Public/assets/img/shirt.png"}];
+	}
+	if(data.lowerClothes && data.lowerClothes.length == 0)
+	{
+		data.lowerClothes = [{picture : "/ProjetFormation/Public/assets/img/jeans.png"}];
+	}
+	if(data.chaussures && data.chaussures.length == 0)
+	{
+		data.chaussures = [{picture : "/ProjetFormation/Public/assets/img/shoes.jpg"}];
+	}
+
 	for (var i = 0; i < data.upperClothes.length; i++) 
 	{
 		$("#mon-carrousel1>div").append(createCarouselElement(i, data.upperClothes[i]));
@@ -241,11 +285,14 @@ function updateDisplay(data)
 		$("#mon-carrousel2>div").append(div);
 	}
 
-	for (var i = 0; i < data.shoes.length; i++) 
+	for (var i = 0; i < data.chaussures.length; i++) 
 	{
-		$("#mon-carrousel3>div").append(createCarouselElement(i, data.shoes[i]));
+		$("#mon-carrousel3>div").append(createCarouselElement(i, data.chaussures[i]));
 		$("#mon-carrousel3>div").append(div);
 	}
+	homeButton(data.date);
+
+
 
 }
 
@@ -266,63 +313,24 @@ function createCarouselElement(key, clothes)
 	return div;
 }
 
-	var myCropper;
-	var image;
-	if($(".carousel").length)
-	{
-		$(".carousel").carousel("pause");
-	}
-	function loadCropper()
-	{
-		readURL($("#loadImage")[0]);
-		image = $("#image").eq(0);
-		
-		//myCropper.build();
-	}
+function homeButton (theDate) {
 
+	    var dateArray = theDate.split("-");
+	    var dateTitle = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
+	    
 
-	function cropperstuff()
-	{
-		console.log("enter");
-		myCropper = new Cropper(image, {
-		  aspectRatio: 16 / 9,
-		  crop: function(e) {}
-		});
-		console.log(myCropper);
-	}
-
-	function cropImage()
-	{
-		myCropper.getCroppedCanvas().toBlob(function(blob)
-		{
-			console.log(blob);
-			var formData = new FormData();
-			formData.append('croppedImage', blob);
-	  		$.ajax('/crop/upload.php', {
-		    	method: "POST",
-		    	data: formData,
-		    	processData: false,
-		    	contentType: false,
-		    	success: function (response) 
-		    	{
-		      		console.log(response);
-		    	},
-			    error: function () {
-		    	  console.log('Upload error');
-		    	}
-		  	});
-		  	
-		});
-	}
-
-	function readURL(input) 
-	{
-	    if (input.files && input.files[0]) 
-	    {
-	        var reader = new FileReader();
-	        reader.onload = function (e) {
-	            image.attr('src', e.target.result);
-	        }
-	        reader.readAsDataURL(input.files[0]);
+		var now = new Date;
+	    var month = (now.getMonth()+1);
+	    if (month < 10) { 
+	    	month = '0' + month.toString(); 
 	    }
-	}
+
+		var nowDate = now.getFullYear()+"-"+month+"-"+now.getDate();
+	    	
+	    	if (dateTitle == nowDate) {
+	    		$('#prevButton').hide();
+	    	} else {
+	    		$('#prevButton').show();
+	    	}
+
+    }

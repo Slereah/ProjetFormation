@@ -59,7 +59,7 @@ class SecurityController extends Controller
 
 	public function signup()
 	{
-
+		include_once "../app/constants.php";
 		$errors = [];
 		$user = null;
 		$username = null;
@@ -188,7 +188,7 @@ class SecurityController extends Controller
 				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
 				{
     				$save = false;
-    				array_push($errors, "Unit invalid.");
+    				array_push($errors, "L'unité de degrés est incorrecte.");
     			}
 
 			if ($save) {
@@ -238,7 +238,7 @@ class SecurityController extends Controller
     			}
     		}
 		}
-
+		
 		// Affiche le formulaire d'inscription
 		$this->show('security/signup', [
 			"title" 	=> " Inscription ",
@@ -251,6 +251,7 @@ class SecurityController extends Controller
 			"city" 		=> $city,
 			"zipcode" 	=> $zipcode,
       		"errors" 	=> $errors,
+      		"countryList" => $countryList
       	]);
 		
 	}
