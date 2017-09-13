@@ -132,7 +132,7 @@ class DefaultController extends Controller
 		$file = @file_get_contents($url);
 		if($file)
 		{
-			$response = json_decode();
+			$response = json_decode($file);
 		}
 		else
 		{
