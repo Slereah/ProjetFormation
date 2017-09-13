@@ -90,7 +90,7 @@
 								</a>
 							</li>						
 							
-	                        <li><a href="home.php#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
+	                        <li><a href="<?= $this->url('home')?>#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
@@ -121,8 +121,8 @@
 								<address>
 									<ul>
 										<li><span>Adresse :</span>URBILOG - 31 Rue Denis Papin, 59650 Villeneuve-d'Ascq - France</li>
-										<li><span>Téléphone :</span>+33 1 23 45 67 89</li>
-										<li><span>Mail:</span><a href="#">weather&wear@gmail.com</a></li>
+										<li><span>Téléphone :</span><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+										<li><span>Mail:</span><a href="mailto:weather&wear@gmail.com">weather&wear@gmail.com</a></li>
 									</ul>
 								</address>
 							</div>
