@@ -28,7 +28,7 @@ class ClothesController extends Controller
 			$this->showForbidden();
 		}
 
-		if(empty($this->usersModel->find($id)))
+		if($id != null && empty($this->usersModel->find($id)))
 		{
 			$this->showNotFound();
 		}
