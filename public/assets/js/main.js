@@ -242,7 +242,7 @@ function update(day, city, country, unit, source)
 
 function updateDisplay(data)
 {	
-	$("#dateTitle").text("Le " + data.date);
+	$(".dateTitle").text("Le " + data.date);
 	$("#weatherTitle").text("Prévisions météo pour " + data.city);
 	$("#tmpMin").text("Température Minimale : " + data.weather.minTemp + " " + data.unit);
 	$("#tmpMax").text("Température Maximale : " + data.weather.maxTemp + " " + data.unit);

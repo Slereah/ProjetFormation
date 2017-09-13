@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(0);
+
 //autochargement des classes
 require '../vendor/autoload.php';
 
