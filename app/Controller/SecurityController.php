@@ -61,6 +61,7 @@ class SecurityController extends Controller
 	{
 		include_once "../app/constants.php";
 		$errors = [];
+		$user = null;
 		$username = null;
 		$email = null;
 		$password = null;
@@ -190,7 +191,6 @@ class SecurityController extends Controller
     				array_push($errors, "L'unité de degrés est incorrecte.");
     			}
 
-
 			if ($save) {
 			
 			//	Teste de l'existance de l'utilisateur ( dans la BDD)
@@ -224,6 +224,7 @@ class SecurityController extends Controller
 					"unit"		=> $user['unit'],
 					"role"		=> "user"
 			    );
+          		
 
 				// On redirige l'utilisateur vers sa page profil
 				 $this->redirectToRoute('profile');
