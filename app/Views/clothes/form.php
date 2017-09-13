@@ -18,7 +18,7 @@
 							<select class="form-control" id="category" name="category" rows="8" cols="80">
 								<option value="">Sélectionner une catégorie :</option>
 								<?php foreach ($categories as $category): ?>
-									<option value="<?= $category ?>" 
+									<option value="<?= $category ?>" alt="<?= $category ?>"
 										<?php echo $selected_category == $category ? " selected" : null;
 									 	?>><?= $category ?>
 									 </option>

@@ -7,7 +7,7 @@
 				<div class="home-content text-center">
 					<h1 id="typer">"Des vêtements appropriés au temps"</h1>
 					<h2>Weather & Wear</h2>
-					<a href="#" class="btn btn-primary btn-animated">Commençons !</a>
+					<a href="<?= $this->url('tuto')?>" class="btn btn-primary btn-animated">Commençons !</a>
 					<div class="scroll-arrow">
 						<div class="arrow-icon">
 							<a class="animated" href="#"><i class="fa fa-angle-down"></i></a>
@@ -115,29 +115,15 @@
 								<?php
 									if(isset($error["upperClothes"]) && $error["upperClothes"])
 									{
-										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png')]];
+										$upperClothes = [["picture" => $this->assetUrl('img/shirt.png'), "name" => "Vêtement du bas par défaut"]];
 									}
 									foreach ($upperClothes as $key => $value) 
 									{
 										?>
 										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
 											<div class="carousel-caption">
-											<?php
-												if(isset($value["id"]))
-												{
-													?>
-													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
-													<?php
-												}
-												else
-												{
-													?>
-													<h3 id="clothesTitle">Haut par défaut</h3>
-													<?php
-												}
-								        		
-								        	?>
+								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
 							      			</div>
 										</div>
 										
@@ -157,29 +143,15 @@
 								<?php
 									if(isset($error["lowerClothes"]) && $error["lowerClothes"])
 									{
-										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png')]];
+										$lowerClothes = [["picture" => $this->assetUrl('img/jeans.png'), "name" => "Vêtement du bas par défaut"]];
 									}
 									foreach ($lowerClothes as $key => $value) 
 									{
 										?>
 										<div class="item <?= ($key == 0) ? "active":"" ?> carouselClothes"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
 											<div class="carousel-caption">
-								        	<?php
-												if(isset($value["id"]))
-												{
-													?>
-													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
-													<?php
-												}
-												else
-												{
-													?>
-													<h3 id="clothesTitle">Bas par défaut</h3>
-													<?php
-												}
-								        		
-								        	?>
+								        		<h3 class="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
 								      		</div>
 										</div>
 										<?php
@@ -198,29 +170,15 @@
 								<?php
 									if(isset($error["chaussures"]) && $error["chaussures"])
 									{
-										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg')]];
+										$chaussures = [["picture" => $this->assetUrl('img/shoes.jpg'), "name" => "Chaussures par défaut"]];
 									}
 									foreach ($chaussures as $key => $value) 
 									{
 										?>
 										<div class="item <?= ($key == 0) ? "active":"" ?>  carouselClothes"> 
-											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>">
+											<img class="img-responsive imgClothes" src="<?= $value["picture"] ?>" alt="<?= isset($value["name"]) ? $value["name"] : null  ?>">
 											<div class="carousel-caption">
-								        	<?php
-												if(isset($value["id"]))
-												{
-													?>
-													<h3 id="clothesTitle"><a style="text-decoration: none; color: white;" href="$this->url('clothes-create', ['id' => $value['id']])"><?= $value["name"] ?></a></h3>
-													<?php
-												}
-												else
-												{
-													?>
-													<h3 id="clothesTitle">Chaussures par défaut</h3>
-													<?php
-												}
-								        		
-								        	?>
+								        		<h3 id="clothesTitle"><?= isset($value["name"]) ? $value["name"] : null ?></h3>
 							      			</div>
 										</div>
 

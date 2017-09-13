@@ -56,12 +56,12 @@
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4">
 								<label for="country" class="control-label">Pays</label>
 								<select id="country" name="country">
-									<option value="">Sélectionner votre pays :</option>
+									<option value="" alt="sélectionner votre pays">Sélectionner votre pays :</option>
 									<?php
 										foreach ($countryList as $key => $value) 
 										{
 											?>
-												<option value="<?= $key ?>" <?= ($country == $key)?"selected":null ?>><?= $value ?></option>
+												<option value="<?= $key ?>" alt="<?= $value?>" <?= ($country == $key)?"selected":null ?>><?= $value ?></option>
 											<?php
 										}
 									?>
@@ -74,20 +74,20 @@
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4">
-								<label for="zipcode" class="control-label">Code Postale</label>
+								<label for="zipcode" class="control-label">Code Postal</label>
 								<input type="text" class="form-control" id="zipcode" name="zipcode" placeholder=" Code Postale " value="<?= $zipcode ?>">
 							</div>
 
 							<div class="form-group welcome-image form-sign col-sm-4 col-sm-offset-4">
 								<label for="unit" class="control-label">Unité</label>
 								<select id="unit" name="unit">
-									<option value="">Sélectionner l'unité de degrés :</option>
-									<option value="°C">Celsius</option>
-									<option value="°F">Fahrenheit</option>
+									<option value="" alt="sélectionner l'unité de degrés">Sélectionner l'unité de degrés :</option>
+									<option value="°C" alt="celsius">Celsius</option>
+									<option value="°F" alt="fahrenheit">Fahrenheit</option>
 								</select>
 							</div>
 							<div class="text-center col-sm-2 col-sm-offset-5">
-								<button type="submit" class="btn btn-primary">Je m'inscris</button>
+								<button type="submit" class="btn btn-primary">Je m'inscris<span class="sr-only">au site Weather&Wear</span></button>
 							</div>
 							
 						</form>

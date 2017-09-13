@@ -102,7 +102,7 @@
 									?>
 									
 									<p>Déjà ajouté à ma garde-robe</p>
-									<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
+									<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary" id="delete-search-btn">Supprimer de ma garde-robe</a> 
 
 									<?php
 

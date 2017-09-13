@@ -175,7 +175,7 @@ class UsersController extends Controller
 				if (empty($unit) || ($unit != "°C" && $unit != "°F")) 
 				{
     				$save = false;
-    				array_push($errors, "Unit invalid.");
+    				array_push($errors, "L'unité de degrés n'est pas valide.");
     			}
 
 
@@ -215,9 +215,9 @@ class UsersController extends Controller
     		}
 		}
 
-		// Affiche le formulaire de modification du profile
+		// Affiche le formulaire de modification du profil
 		$this->show('users/update', [	
-			"title" 	=> " Modifier mon profile",
+			"title" 	=> " Modifier mon profil",
 			"user" 	=> $user,
 			"username" 	=> $username,
       		"email" 	=> $email,

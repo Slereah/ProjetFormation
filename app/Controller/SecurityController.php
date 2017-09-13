@@ -238,7 +238,7 @@ class SecurityController extends Controller
     			}
     		}
 		}
-
+		
 		// Affiche le formulaire d'inscription
 		$this->show('security/signup', [
 			"title" 	=> " Inscription ",

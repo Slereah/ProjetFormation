@@ -23,7 +23,7 @@
         */
         ['GET', '/profile', 'Users#index', 'profile'],
         ['GET|POST', '/users-list', 'Users#userList', "userlist"],
-        ['GET|POST', '/[i:id]/user-update', 'Users#update', 'user_update'],
+        ['GET|POST', '/user-update', 'Users#update', 'user_update'],
       	['GET|POST', '/[i:id]/user-delete', 'Users#delete', 'user_delete'],
 
         /* 
