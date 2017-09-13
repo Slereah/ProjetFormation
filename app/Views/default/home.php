@@ -25,13 +25,13 @@
 
 						<?php if (!empty($errors)): ?>
 								
-									<?php foreach ($errors as $error) : ?>
-										<div class="alert alert-danger">
-										<?= $error ?>
-										</div>
-									<?php endforeach; ?>
+							<?php foreach ($errors as $error) : ?>
+								<div class="alert alert-danger">
+									<?= $error ?>
+								</div>
+							<?php endforeach; ?>
 								
-							<?php endif; ?>
+						<?php endif; ?>
 
 
 						<!-- Localité -->

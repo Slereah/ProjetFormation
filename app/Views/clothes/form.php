@@ -8,6 +8,17 @@
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
 					<form method="post">
+
+						<?php if (!empty($errors)): ?>
+								
+							<?php foreach ($errors as $error) : ?>
+								<div class="alert alert-danger">
+									<?= $error ?>
+								</div>
+							<?php endforeach; ?>
+								
+						<?php endif; ?>
+
 						<div class="form-group welcome-image form-sign">
 							<label for="name">Nom</label>
 							<input type="text" id="name" required="required" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
