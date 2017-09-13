@@ -4,14 +4,19 @@ namespace Controller;
 
 use \W\Controller\Controller;
 use \Model\ClothesModel;
+use \W\Model\UsersModel;
+
 
 class ClothesController extends Controller
 {
 	private $clothesModel;
+	private $userModel;
 
 	public function __construct ()
 	{
 		$this->clothesModel = new ClothesModel;
+		$this->usersModel = new UsersModel;
+		$this->usersModel->setTable('users');	
 	}
 
 	/*CRUD clothes*/
@@ -21,6 +26,11 @@ class ClothesController extends Controller
 		if(!isset($_SESSION["user"]) || (is_null($id) || ($id != $_SESSION["user"]["id"])) && $_SESSION["user"]["role"] != "admin")
 		{
 			$this->showForbidden();
+		}
+
+		if(empty($this->usersModel->find($id)))
+		{
+			$this->showNotFound();
 		}
 		$name = null;
 		$categories = $this->clothesModel->getCategories();
