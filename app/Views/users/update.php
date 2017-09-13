@@ -5,7 +5,7 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2><?= $title ?></h2>
+					<h2 id="updateTitle"><?= $title ?></h2>
 				</div>
 				<div class="welcome-content">
 					<div class="row">
@@ -15,7 +15,7 @@
 							<?php if (!empty($errors)): ?>
 								
 									<?php foreach ($errors as $error) : ?>
-										<div class="alert alert-danger">
+										<div class="alert alert-danger col-sm-4 col-sm-offset-4 text-center">
 										<?= $error ?>
 										</div>
 									<?php endforeach; ?>

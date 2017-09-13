@@ -46,7 +46,7 @@
 	                        <span class="icon-bar"></span>
 	                    </button>
 	                    
-	                    <a class="navbar-brand" href="<?= $this->url('home') ?>">
+	                    <a class="navbar-brand" href="<?= $this->url('home') ?>" title="retour à l'accueil">
 	                    	<img class="logo-two img-responsive" src="<?= $this->assetUrl('img/sun.png') ?>" alt="">
 	                    </a> 
 
@@ -90,7 +90,7 @@
 								</a>
 							</li>						
 							
-	                        <li><a href="#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
+	                        <li><a href="home.php#welcome-section">Comment s'habiller aujourd'hui ?</a></li>
 							
 	                        <li><a href="<?= $this->url('contact') ?>">Contact</a></li>
 	                    </ul>         
@@ -160,13 +160,3 @@
 	    <script type="text/javascript" src="<?= $this->assetUrl('js/main.js') ?>"></script>	
 	</body>
 </html>
-
-
-
-<!-- 								*********
-								CORRECTIONS A FAIRE
-     								*********
-	- Certaines animations (compte des chiffres bandeau rose et anim'du bandeau bleu en-tête)
-	ne fonctionnent pas.
-	
- -->

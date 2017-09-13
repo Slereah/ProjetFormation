@@ -164,6 +164,9 @@ class ClothesController extends Controller
 			"name" => $clothes['name'],
 			"categories" => $categories,
 			"picture" => $clothes['picture'],
+			"minTemp" => $clothes["minTemperature"],
+			"maxTemp" => $clothes["maxTemperature"],
+			"rain"	=> ($clothes["rain"] == "10"),
 			"selected_category" => $clothes['category'],
 		]);
 	}
@@ -250,7 +253,7 @@ class ClothesController extends Controller
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 		{
 			$search = (isset($_POST["search"]))?$_POST["search"]:"";
-
+			$data["search"] = $search;
 			$data["tops"] = $options["tops"] = isset($_POST["tops"]) && $_POST["tops"] == "true";
 			$data["sweater"] = $options["sweater"] = isset($_POST["sweater"]) && $_POST["sweater"] == "true";
 			$data["vest"] = $options["vest"] = isset($_POST["vest"]) && $_POST["vest"] == "true";

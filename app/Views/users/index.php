@@ -9,7 +9,7 @@
 
 					<!-- Accéder à la liste des utilisateurs si rôle=admin -->
 					<?php
-						if($_SESSION["user"]["role"] = "admin")
+						if($_SESSION["user"]["role"] == "admin")
 						{
 							?>
 								<span class="login-section text-center" id="onlyAdminAccess">
@@ -80,7 +80,7 @@
 									?>
 									<div class="col-md-4" id="wardrobeThumbnail">
 								    	<div class="thumbnail" id="thumbnailIndex">
-								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="vêtement">
+								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="<?= $value["name"] ?>">
 								      		<div class="caption">
 								      			<div class="text-center">
 									        		<h3><?= $value["category"] ?></h3>
@@ -108,7 +108,7 @@
 								<nav aria-label="Page navigation">
 									<ul class="pagination pagination-sm">
 										<li class="<?= ($page == 1)?"disabled":null ?>">
-									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="Previous">
+									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="précédent">
 										    	<span aria-hidden="true">&laquo;</span>
 									  		</a>
 										</li>
@@ -122,7 +122,7 @@
 										?>
 										
 										<li class="<?= ($page == $maxpage)?"disabled":null ?>">
-									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="Next" >
+									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="suivant" >
 								    			<span aria-hidden="true">&raquo;</span>
 										  	</a>
 										</li>

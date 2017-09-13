@@ -211,7 +211,7 @@ class DefaultController extends Controller
 			$data["lowerClothes"] = array_merge($data["lowerClothes"], $this->clothesModel->getTemp($value, $type, $weather, $id));
 		}
 		$data["chaussures"] = array_merge($data["chaussures"], $this->clothesModel->getTemp("chaussures", $type, $weather, $id));
-
+		$data["debug"] = $this->clothesModel->getTemp("chaussures", "personal", $weather, $id);
 
 
 
@@ -245,7 +245,7 @@ class DefaultController extends Controller
 
 	private static function rain($code)
 	{
-		if(in_array($code, [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17, 18, 37, 38, 39, 40, 47]))
+		if(in_array($code, [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 37, 38, 39, 40, 47]))
 		{
 			return true;
 		}

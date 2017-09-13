@@ -15,7 +15,7 @@
 			        			<i class="fa fa-search" aria-hidden="true"></i>
 			        			<span class="sr-only">Search icons</span>
 			        		</label>
-			        		<input id="search-input" class="form-control" name="search" placeholder="Un vêtement, une catégorie...">
+			        		<input id="search-input" class="form-control" name="search" placeholder="Un vêtement, une catégorie..." value="<?= isset($search)?$search:null ?>">
 							<button class="btn btn-primary" id="searchButton">OK</button>
 						</div>
 						<div class="col-sm-4">
@@ -102,7 +102,7 @@
 									?>
 									
 									<p>Déjà ajouté à ma garde-robe</p>
-									<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary">Supprimer de ma garde-robe</a> 
+									<a href="<?= $this->url('clothes_deleteW', ["id" => $result["id"], "idUser" => $idUser]) ?>"  class="btn btn-secondary" id="delete-search-btn">Supprimer de ma garde-robe</a> 
 
 									<?php
 

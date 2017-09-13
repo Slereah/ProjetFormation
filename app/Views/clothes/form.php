@@ -18,7 +18,7 @@
 							<select class="form-control" id="category" name="category" rows="8" cols="80">
 								<option value="">Sélectionner une catégorie :</option>
 								<?php foreach ($categories as $category): ?>
-									<option value="<?= $category ?>" 
+									<option value="<?= $category ?>" alt="<?= $category ?>"
 										<?php echo $selected_category == $category ? " selected" : null;
 									 	?>><?= $category ?>
 									 </option>
@@ -28,23 +28,24 @@
 
 						<div class="form-group welcome-image form-sign">
 							<label for="minTemp">Température minimale : </label>
-							<input type="number" class="form-control" id="minTemp" name="minTemp" value="0">
+							<input type="number" class="form-control" id="minTemp" name="minTemp" value="<?= isset($minTemp)?$minTemp:0?>">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="maxTemp">Température maximale : </label>
-							<input type="number" class="form-control" id="maxTemp" name="maxTemp" value="10">
+							<input type="number" class="form-control" id="maxTemp" name="maxTemp" value="<?= isset($maxTemp)?$maxTemp:20 ?>">
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="rain">Peut être porté en cas de pluie : </label>
-							<input type="checkbox" id="rain" name="rain" value="10">
+							<input type="checkbox" id="rain" name="rain" value="10" <?= (isset($rain) && $rain)?"checked":null ?>>
 						</div>
 
 						<div class="form-group welcome-image form-sign">
 							<label for="picture">Image</label>
 							<input type="text" class="form-control" id="picture" name="picture" placeholder="Image" value="<?= $picture ?>">
 						</div>
+
 					  	<div class="text-center">
 					  		<button type="submit" class="btn btn-primary">
 					  			Enregistrer
