@@ -3528,10 +3528,14 @@ img.mfp-img {
 	border-radius: 4 !important;
 }
 
-div#password {
+#forgotPwd:focus,
+#forgotPwd:hover {
+    text-decoration: underline;
+}
+#forgotPwd {
     text-align: center;
     margin-right: 12px;
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 #signinTitle {
@@ -3604,7 +3608,10 @@ span.profileData {
     height: 56% !important;
 }
 
-#wardrobeThumbnail {
+/*#wardrobeThumbnail {
+    padding-right: 0px;
+}*/
+.wardrobeThumbnail {
     padding-right: 0px;
 }
 
@@ -3695,7 +3702,7 @@ span.profileData {
 	    margin-top: 20%;
 	}
 
-	#thumbnailIndex {
+	.thumbnailIndex {
 	    height: 315px;
 	    width: 60%;
 	    margin-left: 20%;

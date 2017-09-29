@@ -6,7 +6,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 		<!--title-->
-	    <title>Weather & Wear</title>
+	    <title><?= $title ?></title>
 		
 		<!--CSS-->
 	    <link href="<?= $this->assetUrl('css/bootstrap.css') ?>" rel="stylesheet">
@@ -28,10 +28,10 @@
 		    <script src="js/respond.min.js"></script>
 	    <![endif]-->       
 	    <link rel="shortcut icon" href="<?= $this->assetUrl('favicon/shining-sun-152-193454.png') ?>">
-	    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-144-precomposed.png">
-	    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-114-precomposed.png">
-	    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-72-precomposed.png">
-	    <link rel="apple-touch-icon-precomposed" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-57-precomposed.png">
+	    <link rel="apple-touch-icon" sizes="144x144" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-144-precomposed.png">
+	    <link rel="apple-touch-icon" sizes="114x114" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-114-precomposed.png">
+	    <link rel="apple-touch-icon" sizes="72x72" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-72-precomposed.png">
+	    <link rel="apple-touch-icon" href="https://themeregion.com/demo/arki/default-images/ico/apple-touch-icon-57-precomposed.png">
 	</head><!--/head-->
 	<body>
 	
@@ -97,7 +97,7 @@
 	                </nav>                
 	            </div>
 				<div class="search">
-					<form role="form">
+					<form>
 					<input type="text" class="search-form" autocomplete="off" placeholder="Write something and press enter">
 					<span class="search-close"><i class="fa fa-times"></i></span>
 					</form>

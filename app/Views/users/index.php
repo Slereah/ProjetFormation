@@ -54,9 +54,9 @@
 								</div>
 							</form>
 							<div class="text-center">
-								<button type="submit" class="btn btn-primary indexButton">
-								<a href="<?= $this->url('user_update', ['id' => $user['id']]) ?>">Modifier mon profil</a>
-								</button>
+								
+								<a class="btn btn-primary indexButton" href="<?= $this->url('user_update', ['id' => $user['id']]) ?>">Modifier mon profil</a>
+								
 							</div>
 						</div>
 
@@ -74,30 +74,30 @@
 									if($key % 3 == 0)
 									{
 										?>
-								<div class="row">
+								<ul class="row">
 										<?php
 									}
 									?>
-									<div class="col-md-4" id="wardrobeThumbnail">
-								    	<div class="thumbnail" id="thumbnailIndex">
-								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" id="imgWardrobe" alt="<?= $value["name"] ?>">
+									<div class="col-md-4 wardrobeThumbnail">
+								    	<li class="thumbnail thumbnailIndex">
+								      		<img src="<?= $value["picture"] ?>" class="img-responsive imgClothes imgWardrobe" alt="<?= $value["name"] ?>">
 								      		<div class="caption">
 								      			<div class="text-center">
 									        		<h3><?= $value["category"] ?></h3>
 									        		<p><?= $value["name"] ?></p>
 								        		</div>
 								        		<div class="text-center">
-								        			<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer</a>
-								        			<a href="<?= $this->url('clothes_update_user', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Modifier</a>
+								        			<a href="<?= $this->url('clothes_deleteW', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Effacer<span class="sr-only"><?= $value["name"] ?></span></a>
+								        			<a href="<?= $this->url('clothes_update_user', ["id" => $value["id"], "idUser" => $user["id"]]) ?>" class="btn btn-secondary indexButton" role="button">Modifier<span class="sr-only"><?= $value["name"] ?></span></a>
 								        		</div>
 								      		</div>
-								    	</div>
+								    	</li>
 								  	</div>
 									<?php
 									if($key % 3 == 2 || $key == count($clothes) - 1)
 									{
 										?>
-								</div>
+								</ul>
 										<?php
 									}
 								}
@@ -109,20 +109,23 @@
 									<ul class="pagination pagination-sm">
 										<li class="<?= ($page == 1)?"disabled":null ?>">
 									  		<a href="?page=<?= ($page == 1)?$page:$page-1 ?>" aria-label="précédent">
+									  			<span class="sr-only">Page précédente</span>
 										    	<span aria-hidden="true">&laquo;</span>
+										    	
 									  		</a>
 										</li>
 										<?php
 											for($i = 1; $i <= $maxpage; $i++)
 											{
 												?>
-												<li><a href="?page=<?= $i ?>"><?= $i ?></a></li>
+												<li><a href="?page=<?= $i ?>"><span class="sr-only">Page </span><?= $i ?></a></li>
 												<?php
 											}
 										?>
 										
 										<li class="<?= ($page == $maxpage)?"disabled":null ?>">
 									  		<a href="?page=<?= ($page == $maxpage)?$page:$page+1 ?>" aria-label="suivant" >
+									  			<span class="sr-only">Page Suivante</span>
 								    			<span aria-hidden="true">&raquo;</span>
 										  	</a>
 										</li>
@@ -137,7 +140,6 @@
 					</div>
 				</div>
 			</div>				
-		</div><!--/#Recent projects-->
-	
+
 
 <?php $this->stop('main_content') ?>

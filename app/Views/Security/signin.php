@@ -34,15 +34,16 @@
 				                </div>
 				            </form>
 
-				            <div class="text-center" id="password">
-			            	 	<a href="<?= $this->url('security_lost_pwd')?>">Mot de passe oublié</a>
+				            <div class="text-center">
+			            	 	<a id="forgotPwd" href="<?= $this->url('security_lost_pwd')?>">Mot de passe oublié</a>
 				            </div>
 				           
 				            
 						</div>
 					</div>
 				</div>
-
+			</div>
+	</div>
 
 
 <?php $this->stop('main_content') ?>
