@@ -36,6 +36,11 @@ ul {
 	padding:0;
 }
 
+.accessible-blue
+{
+	color: #016588!important;
+}
+
 .navbar-nav li a:hover, 
 .navbar-nav li a:focus {
 	outline:none;

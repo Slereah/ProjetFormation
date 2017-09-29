@@ -6,7 +6,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 		<!--title-->
-	    <title>Weather & Wear</title>
+	    <title><?= $title ?></title>
 		
 		<!--CSS-->
 	    <link href="<?= $this->assetUrl('css/bootstrap.css') ?>" rel="stylesheet">
@@ -30,7 +30,13 @@
 	    <link rel="shortcut icon" href="<?= $this->assetUrl('favicon/shining-sun-152-193454.png') ?>">
 	</head><!--/head-->
 	<body>
-	
+		<div class="sr-only">
+			<ul>
+				<li><a href="#navigation">En-tête</a></li>
+				<li><a href="#main-content">Contenu de la page</a></li>
+				<li><a href="#footer-bottom">Pied de page</a></li>
+			</ul>
+		</div>
 		<header id="navigation">
 			<div class="navbar" role="banner">
 				<div class="container">
@@ -103,9 +109,9 @@
 
 
 	    
-    	<section>
+    	<main id="main-content">
 			<?= $this->section('main_content') ?>
-		</section>
+		</main>
 
 		<footer id="footer">			
 			<div class="container">
@@ -138,6 +144,15 @@
 				</div>
 			</div>
 			<div id="footer-bottom">
+				<div class="container">
+					<p>Plan du site : </p>
+					<ul>
+						<li><a href="<?= $this->url("home") ?>">Page d'acceuil</a></li>
+						<li><a href="<?= $this->url("tuto") ?>">Comment ça marche</a></li>
+						<li><a href="<?= $this->url("search") ?>">Recherche de vêtements</a></li>
+						<li><a href="<?= $this->url("contact") ?>">Contact</a></li>
+					</ul>
+				</div>
 				<div class="container text-center">
 					<p>© Copyright 2017 <a href="#">Weather & Wear</a>. All Rights Reserved.</p>
 				</div>			

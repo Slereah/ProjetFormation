@@ -6,7 +6,7 @@
 	<div id="welcome-section" class="padding">
 			<div class="container">
 				<div class="text-center section-title">
-					<h2 id="contactTitle"><?= $title ?></h2>
+					<h1 id="contactTitle" class="accessible-blue"><?= $title ?></h1>
 				</div>
 				<div class="welcome-content">
 					<div class="rows">
@@ -22,25 +22,25 @@
 							<form action="<?= $this->url('contact') ?>" method ="post" >
 								<div class="form-group welcome-image form-sign">
 									<label for="lastname">Votre Nom :</label>
-									<input type="text" class="form-control" id="lastname" name="lastname" required="required" placeholder="Nom" value="<?php if (!$_SESSION['contactSubmit']) {
+									<input type="text" class="form-control" id="lastname" name="lastname" required placeholder="Nom" value="<?php if (!$_SESSION['contactSubmit']) {
 										echo "";
 									} ?>">
 								</div>
 								<div class="form-group welcome-image form-sign">
 									<label for="firstname">Votre Prénom :</label>
-									<input type="text" class="form-control" id="firstname" name="firstname" required="required" placeholder="Prénom" value="<?php if (!$_SESSION['contactSubmit']) {
+									<input type="text" class="form-control" id="firstname" name="firstname" required placeholder="Prénom" value="<?php if (!$_SESSION['contactSubmit']) {
 										echo "";
 									} ?>">
 								</div>
 								<div class="form-group welcome-image form-sign">
 									<label for="email">Votre email :</label>
-									<input type="email" class="form-control" id="email" name="email" required="required" placeholder="Email" value="<?php if (!$_SESSION['contactSubmit']) {
+									<input type="email" class="form-control" id="email" name="email" required placeholder="Email" value="<?php if (!$_SESSION['contactSubmit']) {
 										echo "";
 									} ?>">
 								</div>
 								<div class="form-group welcome-image form-sign">
 									<label for="message">Votre message :</label>
-									<textarea id="message" class="form-control" placeholder="Entrez votre message .." name="message" required="required" rows="8", cols="80"><?php if (!$_SESSION['contactSubmit']) {
+									<textarea id="message" class="form-control" placeholder="Entrez votre message .." name="message" required rows="8" cols="80"><?php if (!$_SESSION['contactSubmit']) {
 										echo "";
 									}?></textarea>
 								</div>
@@ -52,5 +52,6 @@
 					</div>
 				</div>
 			</div>
+	</div>
 
 <?php $this->stop('main_content') ?>

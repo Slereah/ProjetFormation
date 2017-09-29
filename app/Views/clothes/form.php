@@ -1,7 +1,7 @@
 <div id="welcome-section" class="padding">
 	<div class="container">
 		<div class="text-center section-title">
-			<h2 id="signupTitle"><?= $title ?></h2>
+			<h1 id="signupTitle" class="accessible-blue"><?= $title ?></h1>
 		</div>
 		<div class="welcome-content">
 
@@ -21,15 +21,15 @@
 
 						<div class="form-group welcome-image form-sign">
 							<label for="name">Nom</label>
-							<input type="text" id="name" required="required" class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
+							<input type="text" id="name" required class="form-control" name="name" placeholder="Nom" value="<?= $name ?>">
 						</div> 
 
 						<div class="form-group welcome-image form-sign">
 							<label for="category">Catégorie</label>
-							<select class="form-control" required="required" id="category" name="category" rows="8" cols="80">
-								<option required="required" value="">Sélectionner une catégorie :</option>
+							<select class="form-control" required id="category" name="category">
+								<option value="">Sélectionner une catégorie :</option>
 								<?php foreach ($categories as $category): ?>
-									<option value="<?= $category ?>" alt="<?= $category ?>"
+									<option value="<?= $category ?>"
 										<?php echo $selected_category == $category ? " selected" : null;
 									 	?>><?= $category ?>
 									 </option>
